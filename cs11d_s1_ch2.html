@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>حاسوب — الفصل الأول | الوحدة الثانية: المنتجات الرقمية والذكاء الاصطناعي</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--c:#22d3ee;--c2:#0e7490;--bg:#020c10;--brd:rgba(34,211,238,.18);--txt:#f1f5f9;--mut:rgba(241,245,249,.62);--red:#ef4444;--grn:#22c55e}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Tajawal","Arial",sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow-x:hidden}
+#bgc,#cfc{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none}#bgc{z-index:0}#cfc{z-index:6}
+#fb{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);font-size:88px;z-index:100;pointer-events:none}
+#fb.sc{animation:fbs .9s ease forwards}#fb.wr{animation:fbw .9s ease forwards}
+@keyframes fbs{0%{transform:translate(-50%,-50%) scale(0);opacity:0}40%{transform:translate(-50%,-50%) scale(1.25);opacity:1}100%{transform:translate(-50%,-65%) scale(.6);opacity:0}}
+@keyframes fbw{0%{transform:translate(-50%,-50%) scale(0);opacity:0}40%{transform:translate(-50%,-50%) scale(1.1);opacity:1}100%{transform:translate(-50%,-65%) scale(.6);opacity:0}}
+.wrap{position:relative;z-index:10;width:100%;max-width:960px;padding:18px 26px;display:flex;flex-direction:column;gap:13px}
+.hdr{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:13px;font-weight:900;color:var(--c);letter-spacing:1.5px;text-shadow:0 0 14px color-mix(in srgb,var(--c) 50%,transparent)}
+.sb{background:rgba(255,255,255,.04);border:2px solid var(--c);border-radius:50px;padding:7px 20px;display:flex;align-items:center;gap:7px}
+.sl{font-size:13px;color:var(--mut)}.sv{font-size:25px;font-weight:900;color:var(--c);transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
+.sv.pop{transform:scale(1.55)}
+.ptrack{width:100%;height:6px;background:rgba(255,255,255,.07);border-radius:99px;overflow:hidden}
+.pfill{height:100%;background:linear-gradient(90deg,var(--c2),var(--c));border-radius:99px;transition:width .5s ease}
+.plbl{text-align:center;font-size:13px;color:var(--mut);margin-top:2px}
+.sbar{display:flex;gap:5px;justify-content:center}
+.sd{width:20px;height:7px;border-radius:4px;background:rgba(255,255,255,.08);transition:all .3s}
+.sd.on{background:var(--c);box-shadow:0 0 6px var(--c)}
+.qcard{background:rgba(255,255,255,.03);border:1.5px solid var(--brd);border-radius:20px;padding:28px 32px;backdrop-filter:blur(10px)}
+.qcard.si{animation:si .4s cubic-bezier(.34,1.56,.64,1) forwards}
+@keyframes si{from{transform:translateX(55px);opacity:0}to{transform:translateX(0);opacity:1}}
+.qn{font-size:12px;font-weight:700;color:var(--c);margin-bottom:9px;letter-spacing:2px;opacity:.8}
+.qt{font-size:20px;font-weight:700;line-height:1.7;margin-bottom:18px}
+.code{font-family:"Courier New",monospace;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:10px 14px;font-size:13px;color:#a5f3fc;display:block;margin:10px 0;direction:ltr;text-align:left;white-space:pre;overflow-x:auto}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.opt{background:rgba(255,255,255,.04);border:2px solid rgba(255,255,255,.08);border-radius:13px;padding:14px 16px;font-family:"Tajawal","Arial",sans-serif;font-size:15px;font-weight:700;color:#dde;cursor:pointer;display:flex;align-items:flex-start;gap:10px;transition:all .17s;line-height:1.5;text-align:right}
+.opt:hover:not(:disabled){border-color:rgba(255,255,255,.25);transform:translateY(-2px);color:#fff}
+.ltr{font-size:13px;font-weight:900;color:var(--c);background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.12);border-radius:7px;min-width:32px;height:32px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;font-family:"Courier New",monospace}
+.opt.correct{background:rgba(34,197,94,.12)!important;border-color:var(--grn)!important;color:#fff!important;animation:cp .5s ease}
+.opt.correct .ltr{background:var(--grn);color:#fff;border-color:var(--grn)}
+@keyframes cp{0%{transform:scale(1)}40%{transform:scale(1.03)}100%{transform:scale(1)}}
+.opt.wrong{background:rgba(239,68,68,.1)!important;border-color:var(--red)!important;animation:shk .4s ease}
+.opt.wrong .ltr{background:var(--red);color:#fff;border-color:var(--red)}
+@keyframes shk{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+.exp{margin-top:13px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.09);border-right:3px solid var(--c);border-radius:10px;padding:12px 15px;font-size:15px;line-height:1.85;color:var(--mut);display:none}
+.exp.show{display:block;animation:fd .3s ease}
+@keyframes fd{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.nbtn{margin-top:11px;width:100%;padding:12px;background:linear-gradient(135deg,var(--c2),var(--c));border:none;border-radius:10px;font-family:"Tajawal","Arial",sans-serif;font-size:16px;font-weight:900;color:#fff;cursor:pointer;display:none;transition:all .2s}
+.nbtn.show{display:block;animation:fd .25s ease}.nbtn:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.final{display:none;flex-direction:column;align-items:center;text-align:center;padding:46px 24px;max-width:620px;margin:0 auto}
+.final.vis{display:flex;animation:fd .4s ease}
+.fstars{font-size:42px;margin-bottom:12px}.ftitle{font-size:28px;font-weight:900;margin-bottom:7px}
+.fmsg{font-size:16px;color:var(--mut);margin-bottom:22px;line-height:1.7}
+.fsbox{background:rgba(255,255,255,.04);border:2px solid var(--c);border-radius:16px;padding:22px 48px;margin-bottom:24px}
+.fslbl{font-size:13px;color:var(--mut);margin-bottom:3px}.fsnum{font-size:56px;font-weight:900;color:var(--c)}
+.rbtn{background:linear-gradient(135deg,var(--c2),var(--c));color:#fff;border:none;border-radius:12px;padding:13px 40px;font-family:"Tajawal","Arial",sans-serif;font-size:17px;font-weight:900;cursor:pointer;margin-bottom:12px;transition:all .2s}
+.rbtn:hover{filter:brightness(1.1);transform:translateY(-2px)}
+.bhome{color:var(--mut);font-size:14px;cursor:pointer;text-decoration:underline}
+@media(max-width:600px){.wrap{padding:11px 13px}.qt{font-size:17px}.opts{grid-template-columns:1fr}.opt{font-size:14px}}
+</style></head><body>
+<canvas id="bgc"></canvas><canvas id="cfc"></canvas><div id="fb"></div>
+<div class="wrap" id="qs">
+  <div class="hdr"><div class="logo">🤖 حاسوب — الصف الحادي عشر علمي</div>
+  <div class="sb"><span class="sl">Score</span><span class="sv" id="sv">0</span></div></div>
+  <div class="ptrack"><div class="pfill" id="pf" style="width:0%"></div></div>
+  <div class="plbl" id="pl"></div><div class="sbar" id="sbar"></div>
+  <div class="qcard" id="qc">
+    <div class="qn" id="qn"></div><div class="qt" id="qt"></div>
+    <div class="opts" id="og"></div><div class="exp" id="ex"></div>
+    <button class="nbtn" id="nb" onclick="nxt()">Next ←</button>
+  </div>
+</div>
+<div class="final" id="fs">
+  <div class="fstars" id="fst"></div><div class="ftitle" id="ftl"></div>
+  <div class="fmsg" id="fmg"></div>
+  <div class="fsbox"><div class="fslbl">Total Score</div><div class="fsnum" id="fsn">0</div></div>
+  <button class="rbtn" onclick="rst()">🔄 Try Again</button>
+  <span class="bhome" onclick="window.history.back()">← Back to site</span>
+</div>
+<script>
+const QS=[{"q": "ما المنتج الرقمي Digital Product وما الأمثلة التي تناولتها الوحدة الثانية؟", "opts": ["أي جهاز إلكتروني مادي كالحاسوب والهاتف", "منتج يُنشأ ويُوزَّع ويُستهلك رقمياً بدون شكل مادي؛ أمثلة من الوحدة: نظام كشف الوجوه (Face Detection System) باستخدام الذكاء الاصطناعي مع قواعد البيانات، وتطبيقات تحليل البيانات", "الأجهزة الكهربائية المنزلية فقط", "شبكات الإنترنت والخوادم"], "ans": 1, "exp": "المنتج الرقمي Digital Product في الوحدة الثانية: نظام يجمع الذكاء الاصطناعي AI مع قواعد البيانات Databases. المشروع الرئيسي: نظام كشف الوجوه Face Detection يستخدم: مكتبة cv2 (OpenCV)، sqlite3 لتخزين البيانات، datetime لتسجيل الوقت. الهدف: التعرف على الوجوه وتسجيل النتائج في قاعدة بيانات."}, {"q": "ما مكتبة cv2 (OpenCV) واستخدامها في مشروع كشف الوجوه؟", "opts": ["مكتبة Python لتصميم مواقع الإنترنت", "مكتبة معالجة الصور والرؤية الحاسوبية Computer Vision؛ تُستخدم في المشروع لـ: قراءة الصور، تحويلها للتدرج الرمادي grayscale، مقارنة وجوه معروفة بوجوه مجهولة، عرض الصورة النهائية بعد التمييز", "مكتبة Python لقواعد البيانات فقط", "مكتبة لتحليل النصوص NLP"], "ans": 1, "code": "import cv2\nimport sqlite3\nfrom datetime import datetime\n\n# تحميل الصورة وتحويلها للرمادي\nimage = cv2.imread('photo.jpg')\ngray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)", "exp": "OpenCV (cv2): مكتبة مفتوحة المصدر للرؤية الحاسوبية. وظائفها في المشروع: cv2.imread(): قراءة صورة. cv2.cvtColor(): تحويل الألوان (BGR→Grayscale). cv2.imshow(): عرض الصورة. cv2.waitKey(): انتظار إدخال المستخدم. template matching: مقارنة جزء من صورة بصورة مرجعية."}, {"q": "ما وظيفة دالة recognize_face_by_template في مشروع كشف الوجوه؟", "opts": ["تُضيف وجوهاً جديدة لقاعدة البيانات", "تقارن وجهاً مجهولاً بقائمة وجوه معروفة مخزنة في مجلد known_faces؛ تُعيد اسم أفضل تطابق وأعلى درجة تشابه؛ إذا لم يتجاوز التشابه حداً معيناً تُعيد 'Unknown'", "تُنشئ جدول قاعدة البيانات", "تُحوِّل الصور من الملون إلى الرمادي"], "ans": 1, "code": "def recognize_face_by_template(face_gray):\n    best_match_name = 'Unknown'\n    highest_score = 0\n    for filename in os.listdir('known_faces'):\n        # compare with each known face\n        ...\n    return best_match_name, highest_score", "exp": "recognize_face_by_template(): دالة Template Matching تُقارن وجهاً جديداً بكل الوجوه المعروفة. تمر على ملفات مجلد known_faces، تحسب درجة التشابه لكل وجه معروف، تحتفظ بأعلى درجة تشابه، إذا تجاوزت الحد (threshold) تُعيد اسم الشخص، وإلا تُعيد 'Unknown'."}, {"q": "كيف يتم تسجيل نتائج كشف الوجوه في قاعدة البيانات في المشروع؟", "opts": ["تُكتب النتائج في ملف نصي .txt فقط", "يُستخدم cursor.execute('INSERT INTO face_log (...) VALUES (?, ?, ?, ...)') لتسجيل: اسم الشخص المعروف، وقت وتاريخ التعرف (من datetime)، درجة التشابه، ثم connection.commit() لحفظ التسجيل", "تُرسَل النتائج عبر الإنترنت لخادم", "لا يتم تسجيل النتائج في المشروع"], "ans": 1, "code": "cursor.execute(\"\"\"\n  INSERT INTO face_log (\n    name, timestamp, score, ...\n  ) VALUES (?, ?, ?, ...)\n\"\"\", (recognized_name, datetime.now(), score, ...))\nconnection.commit()", "exp": "تسجيل نتائج كشف الوجوه: جدول face_log يحتوي: name (اسم الشخص)، timestamp (وقت التعرف من datetime.now())، score (درجة التشابه). كل عملية تعرف ناجحة تُسجَّل في قاعدة البيانات → يمكن مراجعة سجل الدخول لاحقاً. هذا يجمع AI + Database في تطبيق متكامل."}, {"q": "ما مراحل تصميم وتطوير المنتج الرقمي وفق الوحدة الثانية؟", "opts": ["مرحلة واحدة: كتابة الكود مباشرةً", "عدة مراحل: تحديد الفكرة والمشكلة، التحليل والتخطيط، التصميم، التطوير (كتابة الكود)، الاختبار والتقييم، العرض والتوثيق. يُنجَز في فريق تعاوني ويجمع بين مهارات البرمجة والقواعد والذكاء الاصطناعي", "مرحلتان: التصميم ثم النشر", "البدء بالاختبار ثم التصميم"], "ans": 1, "exp": "مراحل تطوير المنتج الرقمي في الوحدة الثانية: (1) تحديد الفكرة: مشكلة واضحة قابلة للتطبيق. (2) التحليل: تحديد المتطلبات. (3) التصميم: رسم الخوارزمية وتصميم قاعدة البيانات. (4) التطوير: كتابة الكود. (5) الاختبار: التحقق من الوظائف. (6) العرض: تقديم المشروع وتوثيقه. العمل جماعي تعاوني."}, {"q": "ما مكتبة datetime في Python واستخدامها في مشروع الكشف عن الوجوه؟", "opts": ["مكتبة لرسم المخططات البيانية", "مكتبة للتعامل مع التواريخ والأوقات؛ datetime.now() تُعيد التاريخ والوقت الحاليين وتُستخدم لتسجيل وقت كل عملية كشف عن وجه في جدول قاعدة البيانات face_log", "مكتبة لحذف الملفات القديمة", "مكتبة لإدارة الملفات والمجلدات"], "ans": 1, "code": "from datetime import datetime\n\n# وقت وتاريخ الكشف\ncurrent_time = datetime.now()\n# مثال: 2025-10-15 14:30:45.123456\nprint(current_time)", "exp": "datetime module: from datetime import datetime. datetime.now(): التاريخ والوقت الحاليين (سنة-شهر-يوم ساعة:دقيقة:ثانية). في المشروع: يُسجَّل مع كل كشف ناجح للوجه في قاعدة البيانات → تتكوّن سجلات دخول Logs يمكن مراجعتها. مفيد لأنظمة المراقبة والتتبع."}, {"q": "ما مكتبة os في Python واستخدامها في مشروع كشف الوجوه؟", "opts": ["مكتبة لإنشاء نوافذ رسومية", "مكتبة للتعامل مع نظام التشغيل والملفات والمجلدات؛ تُستخدم في المشروع لـ: os.listdir('known_faces') للتكرار على ملفات الوجوه المعروفة في المجلد، وbos.path للتحقق من مسارات الملفات", "مكتبة لتحليل نصوص اللغة الطبيعية", "مكتبة لإنشاء قواعد البيانات"], "ans": 1, "code": "import os\n\n# عرض جميع ملفات مجلد الوجوه المعروفة\nfor filename in os.listdir('known_faces'):\n    print(f'Comparing with: {filename}')\n    # load and compare...", "exp": "os module (Operating System): يُتيح التعامل مع نظام الملفات. os.listdir(path): يُعيد قائمة بأسماء الملفات في مجلد. os.path.join(): يُنشئ مسار ملف. os.path.exists(): يتحقق من وجود ملف. في مشروع كشف الوجوه: يمر على ملفات known_faces ليقارن كل وجه معروف بالوجه المجهول."}, {"q": "ما هدف المشروع التكاملي في الوحدة الثانية الذي يجمع AI مع قواعد البيانات؟", "opts": ["بناء موقع إلكتروني للتسوق", "بناء نظام ذكي يستطيع التعرف على الوجوه وتسجيل النتائج في قاعدة بيانات — يجمع: الذكاء الاصطناعي (Template Matching)، معالجة الصور (OpenCV)، قواعد البيانات (SQLite)، وإدارة الملفات (os, datetime) في منتج رقمي متكامل", "تصميم لعبة فيديو ثنائية الأبعاد", "إنشاء تطبيق حجز مواعيد طبية"], "ans": 1, "exp": "هدف المشروع التكاملي: نظام Face Recognition يجمع عدة تقنيات: (1) Computer Vision (cv2): معالجة الصور والتعرف على الوجوه. (2) Database (sqlite3): تخزين السجلات ومعلومات الأشخاص. (3) File Management (os): إدارة ملفات الوجوه المعروفة. (4) Timestamps (datetime): تسجيل توقيت التعرف. هذا نموذج لتطبيقات المراقبة والأمن."}, {"q": "في كود مشروع كشف الوجوه، ما معنى السطر: cv2.imshow('Identified Faces', image)؟", "opts": ["يحفظ الصورة في ملف", "يعرض الصورة المُعدَّلة (بعد رسم مستطيلات حول الوجوه المعرَّفة) في نافذة عنوانها 'Identified Faces'. يُتبَع بـ cv2.waitKey(0) للانتظار حتى يضغط المستخدم أي مفتاح، ثم cv2.destroyAllWindows() لإغلاق النوافذ", "يرسل الصورة عبر الإنترنت", "يحذف الصورة من الذاكرة"], "ans": 1, "code": "# عرض الصورة المُعدَّلة\ncv2.imshow('Identified Faces', image)\ncv2.waitKey(0)           # انتظار ضغط أي مفتاح\ncv2.destroyAllWindows()  # إغلاق جميع النوافذ", "exp": "cv2.imshow(window_title, image): يعرض الصورة في نافذة بالعنوان المحدد. الصورة المعروضة تحتوي على مستطيلات حول الوجوه المعرّفة ونصوص بأسمائهم. cv2.waitKey(0): يُوقف البرنامج حتى يضغط المستخدم أي مفتاح. cv2.destroyAllWindows(): يُغلق جميع نوافذ OpenCV."}, {"q": "ما التفكير الحوسبي Computational Thinking المطلوب في تصميم مشروع المنتج الرقمي؟", "opts": ["مجرد كتابة الكود بشكل عشوائي", "تحليل المشكلة وتجزئتها (Decomposition) → التعرف على الأنماط (Pattern Recognition) → التجريد (Abstraction) → تصميم الخوارزمية (Algorithm Design) — وهذه المراحل تُطبَّق قبل كتابة أي كود", "نسخ حلول موجودة من الإنترنت", "البدء بالاختبار ثم التصميم"], "ans": 1, "exp": "Computational Thinking (التفكير الحوسبي) في المشروع: (1) Decomposition: تقسيم مشروع كشف الوجوه إلى خطوات: تحميل الصورة → اكتشاف الوجوه → المقارنة → التسجيل. (2) Pattern Recognition: الوجوه المتشابهة. (3) Abstraction: التركيز على الوجه دون خلفية الصورة. (4) Algorithm Design: ترتيب الخطوات منطقياً."}],L=["أ", "ب", "ج", "د"],FN=[["🌟 ممتاز! درجة كاملة!", "أجبت على جميع الأسئلة صحيحة!", "⭐⭐⭐⭐⭐"], ["🔥 أداء رائع!", "تقريباً مثالي — راجع نقطةً أو اثنتين", "⭐⭐⭐⭐"], ["👍 أحسنت!", "نتيجة جيدة — المراجعة ستُحسِّن أداءك", "⭐⭐⭐"], ["💡 حاول مجدداً!", "راجع ملاحظاتك وحاول مرة أخرى", "⭐⭐"]];
+let cq=0,sc=0,ans=false;
+const cc=document.getElementById('cfc'),cx=cc.getContext('2d');cc.width=innerWidth;cc.height=innerHeight;let cf=[];
+function lc(x,y,n=15){const cl=['#22d3ee','#fff','#fbbf24','#a855f7','#22c55e'];for(let i=0;i<n;i++)cf.push({x,y,vx:(Math.random()-.5)*11,vy:(Math.random()-1)*9,r:Math.random()*4+2,c:cl[Math.floor(Math.random()*cl.length)],l:1,s:Math.random()*4-2,a:Math.random()*360})}
+function dcf(){cx.clearRect(0,0,cc.width,cc.height);cf=cf.filter(p=>p.l>0);cf.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.35;p.l-=.022;p.a+=p.s;cx.save();cx.globalAlpha=p.l;cx.translate(p.x,p.y);cx.rotate(p.a*Math.PI/180);cx.fillStyle=p.c;cx.fillRect(-p.r/2,-p.r/2,p.r,p.r*2);cx.restore()});requestAnimationFrame(dcf)}dcf();
+const bc=document.getElementById('bgc'),bx=bc.getContext('2d');let ns=[];
+function rb(){bc.width=innerWidth;bc.height=innerHeight;ns=Array.from({length:38},()=>{return{x:Math.random()*bc.width,y:Math.random()*bc.height,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:Math.random()*2+1}})}
+function db(){bx.clearRect(0,0,bc.width,bc.height);ns.forEach(n=>{n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>bc.width)n.vx*=-1;if(n.y<0||n.y>bc.height)n.vy*=-1});for(let i=0;i<ns.length;i++)for(let j=i+1;j<ns.length;j++){const dx=ns[i].x-ns[j].x,dy=ns[i].y-ns[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<130){bx.beginPath();bx.moveTo(ns[i].x,ns[i].y);bx.lineTo(ns[j].x,ns[j].y);bx.strokeStyle=`rgba(255,255,255,${(1-d/130)*.055})`;bx.lineWidth=.5;bx.stroke()}}ns.forEach(n=>{bx.beginPath();bx.arc(n.x,n.y,n.r,0,Math.PI*2);bx.fillStyle='rgba(255,255,255,.1)';bx.fill()});requestAnimationFrame(db)}
+rb();db();window.addEventListener('resize',()=>{rb();cc.width=innerWidth;cc.height=innerHeight});
+function bsb(){const sb=document.getElementById('sbar');sb.innerHTML='';for(let i=0;i<QS.length;i++){const d=document.createElement('div');d.className='sd'+(i<cq?' on':'');sb.appendChild(d)}}
+function lq(){ans=false;document.getElementById('nb').classList.remove('show');const ex=document.getElementById('ex');ex.classList.remove('show');ex.style.display='none';
+  const q=QS[cq];document.getElementById('pf').style.width=((cq/QS.length)*100)+'%';
+  document.getElementById('pl').textContent='Question '+(cq+1)+' of '+QS.length;
+  document.getElementById('qn').textContent='QUESTION '+String(cq+1).padStart(2,'0');
+  const qc=document.getElementById('qc');qc.classList.remove('si');void qc.offsetWidth;qc.classList.add('si');
+  const qtEl=document.getElementById('qt');
+  if(q.code){qtEl.innerHTML=q.q+'<code class="code">'+q.code+'</code>'}else{qtEl.textContent=q.q}
+  const og=document.getElementById('og');og.innerHTML='';
+  q.opts.forEach((o,i)=>{const b=document.createElement('button');b.className='opt';b.innerHTML=`<span class="ltr">${L[i]}</span><span>${o}</span>`;b.addEventListener('click',()=>pick(i,b));og.appendChild(b)});bsb();}
+function pick(idx,btn){if(ans)return;ans=true;const q=QS[cq];const bs=document.querySelectorAll('.opt');bs.forEach(b=>b.disabled=true);
+  const fb=document.getElementById('fb');fb.classList.remove('sc','wr');
+  if(idx===q.ans){btn.classList.add('correct');sc+=10;const sv=document.getElementById('sv');sv.textContent=sc;sv.classList.remove('pop');void sv.offsetWidth;sv.classList.add('pop');setTimeout(()=>sv.classList.remove('pop'),400);
+    fb.textContent=['✅','🎯','⭐','🔥','💥'][Math.floor(Math.random()*5)];fb.classList.add('sc');
+    for(let i=0;i<3;i++)setTimeout(()=>lc(innerWidth*(0.2+Math.random()*0.6),innerHeight*.4),i*80);
+    setTimeout(()=>document.getElementById('nb').classList.add('show'),500);
+  }else{btn.classList.add('wrong');bs[q.ans].classList.add('correct');
+    fb.textContent=['❌','😬','💭','🙈'][Math.floor(Math.random()*4)];fb.classList.add('wr');
+    const ex=document.getElementById('ex');ex.textContent='💡 '+q.exp;ex.style.display='block';setTimeout(()=>ex.classList.add('show'),50);
+    setTimeout(()=>document.getElementById('nb').classList.add('show'),350);}bsb();}
+function nxt(){cq++;if(cq<QS.length)lq();else sf()}
+function sf(){document.getElementById('qs').style.display='none';document.getElementById('fs').classList.add('vis');document.getElementById('fsn').textContent=sc;
+  const p=sc/(QS.length*10),f=p===1?FN[0]:p>=.75?FN[1]:p>=.5?FN[2]:FN[3];
+  document.getElementById('ftl').textContent=f[0];document.getElementById('fmg').textContent=f[1];document.getElementById('fst').textContent=f[2];
+  setTimeout(()=>{for(let i=0;i<8;i++)setTimeout(()=>lc(innerWidth*Math.random(),-20,20),i*100)},250);}
+function rst(){cq=0;sc=0;ans=false;cf=[];document.getElementById('sv').textContent='0';document.getElementById('fs').classList.remove('vis');document.getElementById('qs').style.display='flex';lq()}
+lq();
+</script></body></html>
