@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>فيزياء 12 علمي · الفصل الدراسي الثاني</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--cyan:#00f5ff;--gold:#fbbf24;--purple:#c026d3;--green:#22c55e;--red:#ef4444;--dark:#020617;--dark2:#0f172a;--text:#f1f5f9;--muted:rgba(241,245,249,0.6);--border:rgba(0,245,255,0.15)}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:"Tajawal",sans-serif;background:var(--dark);color:var(--text);min-height:100vh;overflow-x:hidden;padding:24px}
+#bg{position:fixed;inset:0;z-index:0;pointer-events:none}
+.wrap{position:relative;z-index:1;max-width:860px;margin:0 auto}
+.hdr{background:rgba(15,23,42,0.9);border:1.5px solid var(--border);border-radius:22px;padding:28px 30px;margin-bottom:22px;backdrop-filter:blur(12px);position:relative;overflow:hidden}
+.hdr::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--cyan),var(--purple));opacity:0.7}
+.hdr-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:14px}
+.hdr-title{font-size:24px;font-weight:900;background:linear-gradient(135deg,#fff 0%,#b2f5ff 60%,var(--cyan) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hdr-sub{font-size:13px;color:var(--muted);margin-top:4px;font-family:"Orbitron",sans-serif;letter-spacing:2px}
+.back-btn{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:9px 18px;font-family:"Tajawal",sans-serif;font-size:14px;color:var(--muted);cursor:pointer;text-decoration:none;transition:all 0.2s}
+.back-btn:hover{background:rgba(255,255,255,0.08);color:var(--text)}
+.progress-wrap{background:rgba(255,255,255,0.05);border-radius:10px;height:8px;overflow:hidden;margin-top:8px}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--cyan),var(--purple));transition:width 0.4s ease;border-radius:10px}
+.stats{display:flex;gap:18px;margin-top:14px;flex-wrap:wrap}
+.stat{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted)}
+.stat b{color:var(--cyan);font-weight:900;font-family:"Orbitron",sans-serif}
+.stat.sc b{color:var(--gold)}
+.q-card{background:rgba(15,23,42,0.85);border:1.5px solid rgba(255,255,255,0.08);border-radius:20px;padding:28px 30px;margin-bottom:18px;backdrop-filter:blur(12px);transition:all 0.3s;animation:fadeUp 0.5s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.q-num{display:inline-flex;align-items:center;gap:6px;background:rgba(0,245,255,0.1);border:1px solid rgba(0,245,255,0.2);border-radius:10px;padding:4px 12px;font-family:"Orbitron",sans-serif;font-size:11px;font-weight:900;color:var(--cyan);margin-bottom:14px;letter-spacing:1.5px}
+.q-tag{display:inline-block;margin-right:6px;background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.25);border-radius:8px;padding:3px 10px;font-size:10px;font-weight:700;color:var(--gold);letter-spacing:1px}
+.q-text{font-size:17px;font-weight:700;line-height:1.8;margin-bottom:20px}
+.q-text .m{background:rgba(0,245,255,0.08);border:1px solid rgba(0,245,255,0.15);border-radius:6px;padding:1px 8px;font-family:"Cambria Math","Times New Roman",serif;color:var(--cyan);font-size:16px;direction:ltr;display:inline-block}
+.options{display:flex;flex-direction:column;gap:10px}
+.opt{background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 18px;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:12px;font-size:15px;line-height:1.6}
+.opt:hover:not(.locked){background:rgba(0,245,255,0.05);border-color:rgba(0,245,255,0.25);transform:translateX(-3px)}
+.opt .opt-letter{font-family:"Orbitron",sans-serif;font-size:12px;font-weight:900;background:rgba(0,245,255,0.1);border:1px solid rgba(0,245,255,0.2);border-radius:8px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--cyan);transition:all 0.2s}
+.opt .opt-text{flex:1;direction:rtl}
+.opt .opt-text .m{background:rgba(0,245,255,0.06);border:1px solid rgba(0,245,255,0.12);border-radius:5px;padding:0 6px;font-family:"Cambria Math","Times New Roman",serif;color:var(--cyan);direction:ltr;display:inline-block}
+.opt.correct{background:rgba(34,197,94,0.1);border-color:var(--green)}
+.opt.correct .opt-letter{background:var(--green);color:var(--dark);border-color:var(--green)}
+.opt.wrong{background:rgba(239,68,68,0.1);border-color:var(--red)}
+.opt.wrong .opt-letter{background:var(--red);color:#fff;border-color:var(--red)}
+.opt.locked{cursor:default}
+.feedback{margin-top:16px;padding:14px 18px;border-radius:12px;font-size:14px;line-height:1.8;display:none;animation:fadeUp 0.3s ease}
+.feedback.show{display:block}
+.feedback.ok{background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.3);color:#bbf7d0}
+.feedback.no{background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.3);color:#fecaca}
+.feedback b{color:var(--gold)}
+.feedback .m{background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.25);border-radius:5px;padding:1px 6px;font-family:"Cambria Math","Times New Roman",serif;color:var(--gold);direction:ltr;display:inline-block}
+.nav-btns{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+.nav-btn{flex:1;min-width:120px;padding:12px 20px;border-radius:12px;font-family:"Tajawal",sans-serif;font-size:14px;font-weight:900;cursor:pointer;border:none;transition:all 0.2s}
+.nav-btn.primary{background:var(--cyan);color:var(--dark)}
+.nav-btn.primary:hover{filter:brightness(1.15);transform:translateY(-2px)}
+.nav-btn.primary:disabled{background:rgba(255,255,255,0.08);color:var(--muted);cursor:not-allowed;transform:none;filter:none}
+.nav-btn.ghost{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--muted)}
+.nav-btn.ghost:hover{background:rgba(255,255,255,0.08);color:var(--text)}
+.result{background:rgba(15,23,42,0.9);border:1.5px solid var(--border);border-radius:22px;padding:40px 32px;text-align:center;display:none;backdrop-filter:blur(12px)}
+.result.show{display:block;animation:fadeUp 0.5s ease}
+.result-emoji{font-size:72px;margin-bottom:14px;display:block}
+.result-score{font-family:"Orbitron",sans-serif;font-size:48px;font-weight:900;background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
+.result-msg{font-size:18px;color:var(--text);margin-bottom:8px;font-weight:700}
+.result-detail{font-size:14px;color:var(--muted);margin-bottom:28px}
+.result-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+@media(max-width:640px){body{padding:14px}.hdr{padding:20px}.q-card{padding:20px 22px}.hdr-title{font-size:20px}.result{padding:28px 20px}}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div class="wrap">
+  <div class="hdr">
+    <div class="hdr-top">
+      <div>
+        <div class="hdr-title">⚡ فيزياء · الثاني عشر علمي</div>
+        <div class="hdr-sub">SEMESTER 2 · EM · ELECTRONICS · NUCLEAR</div>
+      </div>
+      <a class="back-btn" href="index.html">→ رجوع</a>
+    </div>
+    <div class="stats">
+      <div class="stat">📖 <b id="qnum">1</b>/<b id="qtot">15</b></div>
+      <div class="stat sc">⭐ <b id="sc">0</b></div>
+      <div class="stat">✅ <b id="corr">0</b></div>
+    </div>
+    <div class="progress-wrap"><div class="progress-bar" id="prog" style="width:0"></div></div>
+  </div>
+
+  <div id="quiz"></div>
+
+  <div class="result" id="result">
+    <span class="result-emoji" id="re">🎯</span>
+    <div class="result-score" id="rs">0/15</div>
+    <div class="result-msg" id="rm">أحسنت!</div>
+    <div class="result-detail" id="rd">نسبة الإجابات الصحيحة: 0%</div>
+    <div class="result-btns">
+      <button class="nav-btn primary" onclick="restart()">🔄 حاول مرة أخرى</button>
+      <a class="nav-btn ghost" href="index.html" style="text-decoration:none;display:inline-flex;align-items:center;justify-content:center">🏠 الرئيسية</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const QUESTIONS=[
+  {
+    tag:"Magnetic Field",
+    q:'ينتج المجال المغناطيسي بسبب:',
+    opts:['الشحنات الساكنة','الشحنات المتحركة','الكتلة','الضغط'],
+    ans:1,
+    exp:'الشحنات المتحركة (التيار الكهربائي) تولّد مجالاً مغناطيسياً. هذا هو اكتشاف <span class="en">Oersted</span>.'
+  },
+  {
+    tag:"Magnetic Force on Wire",
+    q:'سلك طوله <span class="m">L = 0.5 m</span> يحمل تياراً <span class="m">I = 4 A</span> ويوضع عمودياً على مجال <span class="m">B = 0.2 T</span>. القوة المغناطيسية تساوي:',
+    opts:['<span class="m">0.4 N</span>','<span class="m">4 N</span>','<span class="m">0.04 N</span>','<span class="m">10 N</span>'],
+    ans:0,
+    exp:'<span class="m">F = B · I · L · sin(θ)</span>. عند العمودية: <span class="m">F = 0.2 × 4 × 0.5 = 0.4 N</span>.'
+  },
+  {
+    tag:"Faraday\'s Law",
+    q:'ينص قانون فاراداي <span class="en">Faraday\'s Law</span> على أن القوة الدافعة الكهربائية المحثة تتناسب مع:',
+    opts:['شدة المجال المغناطيسي','معدل التغير في التدفق المغناطيسي','مقاومة الملف','درجة الحرارة'],
+    ans:1,
+    exp:'<span class="m">ε = −dΦ/dt</span>. كلما تغيّر التدفق <span class="m">Φ</span> بسرعة أكبر، زادت القوة الدافعة المحثة.'
+  },
+  {
+    tag:"Lenz\'s Law",
+    q:'ينص قانون لنز <span class="en">Lenz\'s Law</span> على أن اتجاه التيار المحث يكون بحيث:',
+    opts:['يزيد من التغير في التدفق','يعارض التغير في التدفق المسبب له','يساوي صفراً دائماً','لا علاقة له بالتدفق'],
+    ans:1,
+    exp:'قانون لنز هو تعبير عن حفظ الطاقة: التيار المحث يعارض السبب الذي أنشأه. هذا سبب إشارة السالب في قانون فاراداي.'
+  },
+  {
+    tag:"Transformer",
+    q:'محول كهربائي <span class="en">transformer</span> عدد لفات الملف الابتدائي <span class="m">100</span> والثانوي <span class="m">500</span>. الجهد الابتدائي <span class="m">220 V</span>. الجهد الثانوي:',
+    opts:['<span class="m">44 V</span>','<span class="m">220 V</span>','<span class="m">1100 V</span>','<span class="m">2200 V</span>'],
+    ans:2,
+    exp:'<span class="m">V<sub>s</sub>/V<sub>p</sub> = N<sub>s</sub>/N<sub>p</sub></span>. إذن <span class="m">V<sub>s</sub> = 220 × (500/100) = 1100 V</span>. (محول رافع)'
+  },
+  {
+    tag:"AC Circuit",
+    q:'قيمة الجهد الفعّال <span class="en">RMS</span> لتيار متردد قيمته العظمى <span class="m">V₀ = 311 V</span> تساوي تقريباً:',
+    opts:['<span class="m">155 V</span>','<span class="m">220 V</span>','<span class="m">311 V</span>','<span class="m">440 V</span>'],
+    ans:1,
+    exp:'<span class="m">V<sub>rms</sub> = V₀ / √2 = 311/1.414 ≈ 220 V</span>. هذه قيمة الجهد المنزلي في معظم الدول.'
+  },
+  {
+    tag:"Diode · الوصلة الثنائية",
+    q:'الدايود (الوصلة الثنائية) في الانحياز الأمامي <span class="en">forward bias</span>:',
+    opts:['يمنع مرور التيار','يسمح بمرور التيار','يحوّل التيار إلى متردد','يضاعف الجهد'],
+    ans:1,
+    exp:'في الانحياز الأمامي يُوصَل الـ<span class="en">P-side</span> بالقطب الموجب فيسمح بمرور التيار. وفي العكسي يمنعه تقريباً. هذه خاصية <span class="en">rectification</span>.'
+  },
+  {
+    tag:"Semiconductor",
+    q:'شبه الموصل من النوع <span class="en">N-type</span> يحتوي على حاملات شحنة أغلبية هي:',
+    opts:['الإلكترونات','الفجوات','البروتونات','الأيونات'],
+    ans:0,
+    exp:'<span class="en">N-type</span>: تطعيم بعنصر خماسي التكافؤ (مثل الفوسفور) ⟵ فائض إلكترونات. <span class="en">P-type</span>: تطعيم ثلاثي ⟵ فجوات.'
+  },
+  {
+    tag:"Transistor · الترانزستور",
+    q:'الترانزستور ثنائي القطبية <span class="en">BJT</span> يتكون من:',
+    opts:['قطعتي شبه موصل','ثلاث طبقات شبه موصل','أربع طبقات','مقاومة وحيدة'],
+    ans:1,
+    exp:'الترانزستور BJT له ثلاث طبقات: <span class="en">Emitter, Base, Collector</span>. يستخدم للتضخيم أو كمفتاح <span class="en">switch</span>.'
+  },
+  {
+    tag:"Photon Energy",
+    q:'طاقة الفوتون للضوء ذي التردد <span class="m">f</span> تعطى بالعلاقة:',
+    opts:['<span class="m">E = mc²</span>','<span class="m">E = hf</span>','<span class="m">E = ½mv²</span>','<span class="m">E = qV</span>'],
+    ans:1,
+    exp:'<span class="m">E = hf = hc/λ</span>، حيث <span class="m">h</span> ثابت بلانك. هذه هي صيغة <span class="en">Planck</span> لطاقة الفوتون.'
+  },
+  {
+    tag:"Photoelectric Effect",
+    q:'في ظاهرة التأثير الكهروضوئي <span class="en">photoelectric effect</span>، لا تنبعث إلكترونات إذا كان تردد الضوء الساقط:',
+    opts:['أكبر من تردد العتبة','أقل من تردد العتبة','يساوي أي تردد','مساوياً للصفر'],
+    ans:1,
+    exp:'لا بد من <span class="m">f ≥ f₀</span> (تردد العتبة)، بغض النظر عن شدة الضوء. هذا أثبت الطبيعة الجسيمية للضوء (إينشتاين 1905).'
+  },
+  {
+    tag:"Bohr Model",
+    q:'في نموذج بور لذرة الهيدروجين، إلكترون ينتقل من مستوى <span class="m">n = 3</span> إلى <span class="m">n = 2</span>. هذا الانتقال يصاحبه:',
+    opts:['امتصاص فوتون','انبعاث فوتون','لا شيء','تأين الذرة'],
+    ans:1,
+    exp:'الانتقال إلى مستوى أدنى = انبعاث فوتون. الانتقال إلى مستوى أعلى يحتاج امتصاص فوتون. طاقة الفوتون = الفرق بين المستويين.'
+  },
+  {
+    tag:"Rest Energy · E=mc²",
+    q:'كتلة <span class="m">1 kg</span> تحوي طاقة سكون مقدارها (<span class="m">c = 3 × 10⁸ m/s</span>):',
+    opts:['<span class="m">3 × 10⁸ J</span>','<span class="m">9 × 10¹⁶ J</span>','<span class="m">1 J</span>','<span class="m">9 × 10⁸ J</span>'],
+    ans:1,
+    exp:'<span class="m">E = mc² = 1 × (3 × 10⁸)² = 9 × 10¹⁶ J</span>. طاقة هائلة — أساس الانشطار النووي.'
+  },
+  {
+    tag:"Nuclear Physics",
+    q:'النوى تبقى متماسكة رغم تنافر البروتونات بسبب:',
+    opts:['القوة الكهرومغناطيسية','القوة النووية الشديدة <span class="en">Strong Force</span>','الجاذبية','الاحتكاك'],
+    ans:1,
+    exp:'القوة النووية الشديدة قصيرة المدى لكنها أقوى من التنافر الكهربائي بين البروتونات، فتربط <span class="en">protons</span> و<span class="en">neutrons</span> داخل النواة.'
+  },
+  {
+    tag:"Radioactive Decay",
+    q:'جسيم ألفا <span class="en">α</span> يتكون من:',
+    opts:['إلكترون واحد','بروتونين ونيوترونين','بروتون واحد','فوتون عالي الطاقة'],
+    ans:1,
+    exp:'جسيم ألفا = نواة الهيليوم <span class="m">⁴₂He</span> (2 بروتون + 2 نيوترون). جسيم بيتا <span class="en">β</span> = إلكترون. أشعة جاما <span class="en">γ</span> = فوتونات.'
+  }
+];
+
+let cur=0,score=0,correctCount=0,locked=false;
+
+function render(){
+  const quiz=document.getElementById("quiz");
+  const q=QUESTIONS[cur];
+  document.getElementById("qnum").textContent=cur+1;
+  document.getElementById("qtot").textContent=QUESTIONS.length;
+  document.getElementById("prog").style.width=((cur)/QUESTIONS.length*100)+"%";
+  document.getElementById("sc").textContent=score;
+  document.getElementById("corr").textContent=correctCount;
+  locked=false;
+  const letters=["أ","ب","ج","د"];
+  quiz.innerHTML=`
+    <div class="q-card">
+      <div class="q-num">Q${String(cur+1).padStart(2,"0")}${q.tag?`<span class="q-tag">${q.tag}</span>`:""}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="options" id="opts">
+        ${q.opts.map((o,i)=>`<div class="opt" data-i="${i}"><span class="opt-letter">${letters[i]}</span><span class="opt-text">${o}</span></div>`).join("")}
+      </div>
+      <div class="feedback" id="fb"></div>
+      <div class="nav-btns">
+        <button class="nav-btn primary" id="nxt" disabled>${cur===QUESTIONS.length-1?"📊 عرض النتيجة":"السؤال التالي ←"}</button>
+      </div>
+    </div>`;
+  quiz.querySelectorAll(".opt").forEach(el=>el.onclick=()=>pick(parseInt(el.dataset.i)));
+  document.getElementById("nxt").onclick=next;
+}
+
+function pick(i){
+  if(locked)return;locked=true;
+  const q=QUESTIONS[cur];
+  const opts=document.querySelectorAll(".opt");
+  opts.forEach(o=>o.classList.add("locked"));
+  const fb=document.getElementById("fb");
+  if(i===q.ans){opts[i].classList.add("correct");score+=10;correctCount++;fb.className="feedback show ok";fb.innerHTML=`<b>✅ إجابة صحيحة!</b><br>${q.exp}`}
+  else{opts[i].classList.add("wrong");opts[q.ans].classList.add("correct");fb.className="feedback show no";fb.innerHTML=`<b>❌ إجابة غير صحيحة</b><br>${q.exp}`}
+  document.getElementById("nxt").disabled=false;
+  document.getElementById("sc").textContent=score;
+  document.getElementById("corr").textContent=correctCount;
+}
+
+function next(){if(cur===QUESTIONS.length-1){showResult();return}cur++;render()}
+
+function showResult(){
+  document.getElementById("quiz").style.display="none";
+  const r=document.getElementById("result");r.classList.add("show");
+  const pct=Math.round(correctCount/QUESTIONS.length*100);
+  document.getElementById("rs").textContent=`${correctCount}/${QUESTIONS.length}`;
+  document.getElementById("rd").textContent=`نسبة الإجابات الصحيحة: ${pct}% · مجموع النقاط: ${score}`;
+  let emoji="🎯",msg="أحسنت المحاولة!";
+  if(pct>=90){emoji="🏆";msg="ممتاز! أداء رائع جداً"}
+  else if(pct>=75){emoji="⭐";msg="جيد جداً، استمر!"}
+  else if(pct>=50){emoji="📚";msg="جيد، راجع بعض المواضيع"}
+  else{emoji="💪";msg="حاول مرة أخرى، ستتحسن!"}
+  document.getElementById("re").textContent=emoji;
+  document.getElementById("rm").textContent=msg;
+  document.getElementById("prog").style.width="100%";
+}
+
+function restart(){cur=0;score=0;correctCount=0;document.getElementById("result").classList.remove("show");document.getElementById("quiz").style.display="block";render()}
+
+render();
+
+const cv=document.getElementById("bg"),cx=cv.getContext("2d");let ns=[];
+function rsz(){cv.width=innerWidth;cv.height=innerHeight}
+function ini(){ns=Array.from({length:40},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,r:Math.random()*2.2+1}))}
+function draw(){
+  cx.clearRect(0,0,cv.width,cv.height);
+  ns.forEach(n=>{n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>cv.width)n.vx*=-1;if(n.y<0||n.y>cv.height)n.vy*=-1});
+  for(let i=0;i<ns.length;i++)for(let j=i+1;j<ns.length;j++){const dx=ns[i].x-ns[j].x,dy=ns[i].y-ns[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<150){cx.beginPath();cx.moveTo(ns[i].x,ns[i].y);cx.lineTo(ns[j].x,ns[j].y);cx.strokeStyle=`rgba(0,245,255,${(1-d/150)*.08})`;cx.lineWidth=.6;cx.stroke()}}
+  ns.forEach(n=>{cx.beginPath();cx.arc(n.x,n.y,n.r,0,Math.PI*2);cx.fillStyle="rgba(0,245,255,0.2)";cx.fill()});
+  requestAnimationFrame(draw);
+}
+rsz();ini();draw();addEventListener("resize",()=>{rsz();ini()});
+</script>
+</body>
+</html>
