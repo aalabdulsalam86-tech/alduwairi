@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الفرنسي - الثاني عشر أدبي - Dossier 5: Une maladie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Orbitron:wght@500;700;900&family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0e1a;--bg2:#0f1524;--panel:rgba(15,21,36,.85);
+  --cyan:#00d9ff;--gold:#ffb840;
+  --fr-blue:#1e3a8a;--fr-red:#dc2626;--fr-white:#f5f5f5;
+  --text:#e6edf7;--muted:#8fa0bd;
+  --ok:#10d18b;--bad:#ff5875;--border:rgba(0,217,255,.25);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:var(--bg);color:var(--text);font-family:'Tajawal',sans-serif;min-height:100vh;overflow-x:hidden}
+body{
+  background:
+    radial-gradient(1200px 700px at 15% -10%, rgba(30,58,138,.22), transparent 60%),
+    radial-gradient(900px 600px at 100% 0%, rgba(220,38,38,.15), transparent 60%),
+    radial-gradient(800px 600px at 50% 110%, rgba(255,184,64,.10), transparent 60%),
+    var(--bg);
+}
+#particles{position:fixed;inset:0;z-index:0;pointer-events:none}
+.wrap{position:relative;z-index:2;max-width:980px;margin:0 auto;padding:24px 18px 60px}
+.header{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  background:linear-gradient(135deg, rgba(30,58,138,.35), rgba(220,38,38,.25));
+  border:1px solid var(--border);border-radius:18px;padding:18px 22px;
+  box-shadow:0 10px 40px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.06);
+}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{
+  width:54px;height:54px;border-radius:14px;
+  background:conic-gradient(from 210deg, #1e3a8a, #dc2626, #f5f5f5, #1e3a8a);
+  display:grid;place-items:center;color:#fff;font-family:'Orbitron';font-weight:900;
+  box-shadow:0 0 30px rgba(30,58,138,.4);
+}
+.logo span{font-family:'Cormorant Garamond',serif;font-size:30px;font-style:italic}
+.title{font-family:'Orbitron',sans-serif;font-weight:800;font-size:17px;letter-spacing:1px;color:#fff}
+.subtitle{color:var(--muted);font-size:13px;margin-top:2px}
+.subject{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:var(--gold);text-shadow:0 0 20px rgba(255,184,64,.35)}
+.back{text-decoration:none;color:var(--text);background:rgba(255,255,255,.05);border:1px solid var(--border);padding:8px 14px;border-radius:10px;font-weight:600;font-size:13px;transition:all .2s}
+.back:hover{background:rgba(0,217,255,.12);border-color:var(--cyan)}
+.hero{margin-top:18px;background:var(--panel);backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:18px;padding:22px;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center}
+.hero h1{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:32px;line-height:1.2;background:linear-gradient(90deg,#fff,#ffb840);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .meta{color:var(--muted);margin-top:6px;font-size:14px}
+.badge{background:linear-gradient(135deg,var(--fr-blue),var(--fr-red));color:#fff;padding:10px 14px;border-radius:12px;font-family:'Orbitron';font-weight:700;font-size:13px;letter-spacing:1px;box-shadow:0 0 20px rgba(220,38,38,.3)}
+.progress-wrap{margin-top:16px;background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:14px 18px}
+.progress-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:13px;color:var(--muted)}
+.progress-top .score{font-family:'Orbitron';color:var(--gold);font-weight:700}
+.bar{height:10px;background:rgba(255,255,255,.06);border-radius:99px;overflow:hidden;position:relative}
+.bar>span{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--fr-blue),var(--fr-red),var(--gold));border-radius:99px;transition:width .4s ease;box-shadow:0 0 12px rgba(220,38,38,.4)}
+.card{margin-top:18px;background:var(--panel);backdrop-filter:blur(10px);border:1px solid var(--border);border-radius:18px;padding:24px;box-shadow:0 10px 40px rgba(0,0,0,.3)}
+.qnum{display:inline-block;font-family:'Orbitron';font-weight:700;font-size:12px;letter-spacing:2px;color:var(--gold);background:rgba(255,184,64,.1);padding:5px 10px;border-radius:8px;margin-bottom:10px}
+.qtext{font-size:19px;font-weight:500;line-height:1.7;margin-bottom:6px}
+.qtext .fr{font-family:'Cormorant Garamond',serif;font-style:italic;color:#c9d5f0}
+.hint{color:var(--muted);font-size:13px;margin-bottom:14px}
+.options{display:grid;gap:10px;margin-top:10px}
+.opt{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);padding:13px 16px;border-radius:12px;cursor:pointer;font-size:15.5px;transition:all .18s;text-align:right;font-family:inherit;color:var(--text);width:100%}
+.opt .fr-txt{font-family:'Cormorant Garamond',serif;font-size:17px;color:#dbe4f8}
+.opt:hover{border-color:var(--cyan);background:rgba(0,217,255,.05);transform:translateX(-3px)}
+.opt .letter{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,.06);display:grid;place-items:center;font-family:'Orbitron';font-weight:700;color:var(--gold);flex-shrink:0;font-size:14px}
+.opt.correct{background:rgba(16,209,139,.12);border-color:var(--ok)}
+.opt.correct .letter{background:var(--ok);color:#04241a}
+.opt.wrong{background:rgba(255,88,117,.12);border-color:var(--bad)}
+.opt.wrong .letter{background:var(--bad);color:#2a050c}
+.opt:disabled{cursor:not-allowed;opacity:.85}
+.feedback{margin-top:14px;padding:14px 16px;border-radius:12px;font-size:14.5px;line-height:1.7;display:none;border-left:3px solid var(--gold);background:rgba(255,184,64,.06)}
+.feedback.show{display:block;animation:fadeIn .35s ease}
+.feedback b{color:var(--gold)}
+.feedback .fr{font-family:'Cormorant Garamond',serif;font-style:italic;color:#e7ecff}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:18px}
+.btn{font-family:'Orbitron';font-weight:700;font-size:14px;letter-spacing:1px;padding:12px 22px;border-radius:12px;border:none;cursor:pointer;transition:all .18s}
+.btn-primary{background:linear-gradient(135deg,var(--fr-blue),var(--fr-red));color:#fff;box-shadow:0 6px 20px rgba(220,38,38,.35)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(220,38,38,.45)}
+.btn-primary:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.btn-ghost{background:rgba(255,255,255,.05);color:var(--text);border:1px solid var(--border)}
+.btn-ghost:hover{background:rgba(0,217,255,.1)}
+.result{display:none;text-align:center;padding:40px 20px}
+.result.show{display:block;animation:fadeIn .5s ease}
+.result .emoji{font-size:80px;margin-bottom:14px}
+.result h2{font-family:'Cormorant Garamond',serif;font-size:38px;margin-bottom:8px;color:#fff}
+.result .score-big{font-family:'Orbitron';font-size:54px;font-weight:900;background:linear-gradient(90deg,var(--fr-blue),var(--fr-red),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent;margin:14px 0}
+.result .tier{color:var(--gold);font-size:19px;margin-bottom:20px;font-family:'Cormorant Garamond',serif;font-style:italic}
+.result .msg{color:var(--muted);margin-bottom:24px;font-size:15px}
+@media (max-width:640px){.hero{grid-template-columns:1fr}.hero h1{font-size:24px}.title{font-size:14px}.subject{font-size:18px}.qtext{font-size:17px}}
+</style>
+</head>
+<body>
+<canvas id="particles"></canvas>
+<div class="wrap">
+  <div class="header">
+    <div class="brand">
+      <div class="logo"><span>Fr</span></div>
+      <div>
+        <div class="title">ثانوية فهد الدويري للبنين</div>
+        <div class="subtitle">الثاني عشر أدبي · الفصل الدراسي الثاني</div>
+      </div>
+    </div>
+    <div class="subject">Langue Française</div>
+    <a class="back" href="index.html">→ عودة</a>
+  </div>
+  <div class="hero">
+    <div>
+      <h1>Dossier 5 — Une maladie</h1>
+      <div class="meta">الصحة · أعضاء الجسم · <span style="font-family:'Cormorant Garamond';font-style:italic">avoir mal · l'impératif · les verbes pronominaux</span></div>
+    </div>
+    <div class="badge">15 Questions</div>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-top">
+      <span id="progress-text">السؤال 1 من 15</span>
+      <span class="score">النتيجة: <span id="score">0</span>/15</span>
+    </div>
+    <div class="bar"><span id="bar"></span></div>
+  </div>
+  <div id="quiz"></div>
+  <div class="result" id="result">
+    <div class="emoji" id="result-emoji">🎉</div>
+    <h2>Terminé !</h2>
+    <div class="score-big"><span id="final-score">0</span>/15</div>
+    <div class="tier" id="tier">—</div>
+    <div class="msg" id="result-msg"></div>
+    <button class="btn btn-primary" onclick="location.reload()">إعادة المحاولة</button>
+    <a class="back" href="index.html" style="margin-right:10px;display:inline-block">→ القائمة الرئيسية</a>
+  </div>
+</div>
+<script>
+const QUESTIONS = [
+  {
+    q: 'ما معنى عبارة "<span class="fr">Ça ne va pas</span>"؟',
+    options: ['أنا بخير','أنا لست بخير','أنا سعيد','أنا متعب قليلاً'],
+    answer: 1,
+    explain: '<span class="fr">Ça ne va pas = Je vais mal</span> أي "أنا لست بخير". وعكسها <span class="fr">Ça va / Je vais bien</span>.'
+  },
+  {
+    q: 'أين يذهب المريض عادةً؟',
+    options: [
+      '<span class="fr-txt">Au restaurant</span>',
+      '<span class="fr-txt">À la bibliothèque</span>',
+      '<span class="fr-txt">Chez le médecin</span>',
+      '<span class="fr-txt">Au cinéma</span>'
+    ],
+    answer: 2,
+    explain: '<span class="fr">Chez le médecin = à la clinique = à l\'hôpital = au centre de santé</span>، كلها أماكن يذهب إليها المريض.'
+  },
+  {
+    q: 'أكمل: <span class="fr">J\'ai mal ___ tête.</span>',
+    options: ['au','à la','à','aux'],
+    answer: 1,
+    explain: 'مع <span class="fr">avoir mal</span> نستعمل: <span class="fr">à la</span> قبل المؤنث (<span class="fr">la tête</span>)، <span class="fr">au</span> قبل المذكر (<span class="fr">au ventre</span>)، <span class="fr">à l\'</span> قبل حرف العلة (<span class="fr">à l\'œil</span>)، و<span class="fr">aux</span> للجمع (<span class="fr">aux pieds</span>).'
+  },
+  {
+    q: 'ما هو الدواء الذي يُؤخذ عن طريق الفم على شكل قرص؟',
+    options: [
+      '<span class="fr-txt">Un sirop</span>',
+      '<span class="fr-txt">Une pommade</span>',
+      '<span class="fr-txt">Un comprimé</span>',
+      '<span class="fr-txt">Une injection</span>'
+    ],
+    answer: 2,
+    explain: '<span class="fr">Un comprimé</span> هو قرص الدواء. <span class="fr">Un sirop</span> شراب، <span class="fr">une pommade</span> مرهم، <span class="fr">une injection</span> حقنة.'
+  },
+  {
+    q: 'صيغة الأمر من فعل <span class="fr">ouvrir</span> للضمير <span class="fr">vous</span>:',
+    options: ['Ouvre','Ouvrez','Ouvrons','Ouvrir'],
+    answer: 1,
+    explain: 'صيغة <span class="fr">l\'impératif</span> للضمير <span class="fr">vous</span>: نأخذ تصريف الفعل في الحاضر ونحذف الضمير. <span class="fr">Vous ouvrez → Ouvrez !</span>'
+  },
+  {
+    q: 'حوّل للأمر: <span class="fr">Tu manges trop.</span> → كيف تنهاه؟',
+    options: [
+      '<span class="fr-txt">Manges pas !</span>',
+      '<span class="fr-txt">Ne manges pas trop !</span>',
+      '<span class="fr-txt">Ne mange pas trop !</span>',
+      '<span class="fr-txt">Pas manger !</span>'
+    ],
+    answer: 2,
+    explain: 'في <span class="fr">l\'impératif</span>، مع أفعال المجموعة الأولى (<span class="fr">-er</span>) تُحذف الـ<span class="fr">s</span> من <span class="fr">tu</span>. <span class="fr">Tu manges → Mange !</span> وفي النفي: <span class="fr">Ne mange pas !</span>'
+  },
+  {
+    q: 'اختر التصريف الصحيح: <span class="fr">Je ___ tôt le matin.</span> (se lever)',
+    options: ['me lève','te lèves','se lève','nous levons'],
+    answer: 0,
+    explain: 'فعل <span class="fr">se lever</span> فعل ضميري. مع <span class="fr">Je</span> يصبح <span class="fr">je me lève</span>. الضمائر الضميرية: <span class="fr">me, te, se, nous, vous, se</span>.'
+  },
+  {
+    q: 'النفي الصحيح للفعل الضميري: <span class="fr">Nous ___ tôt.</span>',
+    options: [
+      '<span class="fr-txt">ne nous couchons pas</span>',
+      '<span class="fr-txt">nous ne couchons pas</span>',
+      '<span class="fr-txt">nous couchons ne pas</span>',
+      '<span class="fr-txt">ne couchons nous pas</span>'
+    ],
+    answer: 0,
+    explain: 'في الأفعال الضميرية، النفي يُحيط كتلة الضمير + الفعل: <span class="fr">Nous <b>ne</b> nous couchons <b>pas</b> tôt.</span>'
+  },
+  {
+    q: 'ما العضو الذي نسمع به؟',
+    options: [
+      '<span class="fr-txt">La bouche</span>',
+      '<span class="fr-txt">L\'œil</span>',
+      '<span class="fr-txt">L\'oreille</span>',
+      '<span class="fr-txt">Le nez</span>'
+    ],
+    answer: 2,
+    explain: '<span class="fr">L\'oreille</span> = الأذن. <span class="fr">La bouche</span> = الفم، <span class="fr">l\'œil</span> = العين، <span class="fr">le nez</span> = الأنف.'
+  },
+  {
+    q: 'ما معنى "<span class="fr">Le nez est bouché</span>"؟',
+    options: ['الأنف مفتوح','الأنف مسدود','الأنف مكسور','الأنف نظيف'],
+    answer: 1,
+    explain: '<span class="fr">bouché</span> = مسدود، وعكسها <span class="fr">débouché</span> = مفتوح. يحدث هذا عادة بسبب الزكام <span class="fr">un rhume</span>.'
+  },
+  {
+    q: 'أي من هذه الكلمات لا تنتمي للمجموعة: <span class="fr">angine — rhume — grippe — sport</span>',
+    options: ['angine','rhume','grippe','sport'],
+    answer: 3,
+    explain: '<span class="fr">angine, rhume, grippe</span> كلها <span class="fr">maladies</span> (أمراض). أما <span class="fr">sport</span> فهو نشاط رياضي.'
+  },
+  {
+    q: 'ماذا يفعل الطبيب عند فحص المريض؟',
+    options: [
+      '<span class="fr-txt">Il mange.</span>',
+      '<span class="fr-txt">Il prend la tension et la température.</span>',
+      '<span class="fr-txt">Il dort.</span>',
+      '<span class="fr-txt">Il chante.</span>'
+    ],
+    answer: 1,
+    explain: 'عند الفحص، يقول الطبيب: <span class="fr">Ouvrez la bouche, toussez, respirez !</span> ويقوم بـ<span class="fr">prendre la tension et la température</span>.'
+  },
+  {
+    q: 'نصيحة الطبيب بعد الفحص للمريض بالزكام:',
+    options: [
+      '<span class="fr-txt">Faites du sport intense !</span>',
+      '<span class="fr-txt">Travaillez tard !</span>',
+      '<span class="fr-txt">Reposez-vous et buvez beaucoup d\'eau.</span>',
+      '<span class="fr-txt">Mangez beaucoup de grignotages !</span>'
+    ],
+    answer: 2,
+    explain: 'نصائح الطبيب النموذجية: <span class="fr">Reposez-vous, restez chez vous, prenez ces médicaments, buvez beaucoup d\'eau, ne travaillez pas tard, ne mangez pas trop.</span>'
+  },
+  {
+    q: 'ما معنى "<span class="fr">J\'ai de la fièvre</span>"؟',
+    options: [
+      'أنا جائع',
+      'درجة حرارتي مرتفعة',
+      'أشعر بالبرد',
+      'أريد النوم'
+    ],
+    answer: 1,
+    explain: '<span class="fr">J\'ai de la fièvre = ma température est élevée</span> أي "درجة حرارتي مرتفعة" (<span class="fr">38° mesuré par un thermomètre</span>).'
+  },
+  {
+    q: 'في ورشة حماية البيئة، أي من التالي ليس حلاً لمكافحة التلوث؟',
+    options: [
+      '<span class="fr-txt">Recycler les déchets</span>',
+      '<span class="fr-txt">Planter des arbres</span>',
+      '<span class="fr-txt">Gaspiller l\'eau</span>',
+      '<span class="fr-txt">Éviter les gaz d\'échappement</span>'
+    ],
+    answer: 2,
+    explain: '<span class="fr">Gaspiller l\'eau</span> (إهدار الماء) هو <b>مشكلة</b> وليس حلاً. الحلول: <span class="fr">Réduire les déchets, éviter le gaspillage, protéger la nature, nettoyer les plages</span>.'
+  }
+];
+
+(function(){
+  const c=document.getElementById('particles');const x=c.getContext('2d');
+  let w,h,pts;
+  function rs(){w=c.width=innerWidth;h=c.height=innerHeight;pts=Array.from({length:55},()=>({
+    x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,
+    r:Math.random()*1.8+.4,
+    c:['rgba(30,58,138,','rgba(220,38,38,','rgba(255,184,64,'][Math.floor(Math.random()*3)]
+  }))}
+  function draw(){
+    x.clearRect(0,0,w,h);
+    for(const p of pts){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;
+      x.beginPath();x.arc(p.x,p.y,p.r,0,Math.PI*2);x.fillStyle=p.c+'.6)';x.fill()}
+    requestAnimationFrame(draw)}
+  rs();draw();addEventListener('resize',rs);
+})();
+
+let idx=0, score=0, locked=false;
+const quiz=document.getElementById('quiz');
+const bar=document.getElementById('bar');
+const progressText=document.getElementById('progress-text');
+const scoreEl=document.getElementById('score');
+
+function render(){
+  if(idx>=QUESTIONS.length){finish();return}
+  const q=QUESTIONS[idx];
+  bar.style.width=((idx)/QUESTIONS.length*100)+'%';
+  progressText.textContent=`السؤال ${idx+1} من ${QUESTIONS.length}`;
+  const letters=['A','B','C','D'];
+  quiz.innerHTML=`
+    <div class="card">
+      <div class="qnum">QUESTION ${String(idx+1).padStart(2,'0')}</div>
+      <div class="qtext">${q.q}</div>
+      <div class="options">
+        ${q.options.map((o,i)=>`<button class="opt" data-i="${i}"><span class="letter">${letters[i]}</span><span>${o}</span></button>`).join('')}
+      </div>
+      <div class="feedback" id="fb"></div>
+      <div class="nav">
+        <button class="btn btn-ghost" id="skip">تخطّي</button>
+        <button class="btn btn-primary" id="next" disabled>التالي ←</button>
+      </div>
+    </div>
+  `;
+  locked=false;
+  quiz.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',()=>choose(parseInt(b.dataset.i))));
+  document.getElementById('next').addEventListener('click',()=>{idx++;render()});
+  document.getElementById('skip').addEventListener('click',()=>{idx++;render()});
+}
+function choose(i){
+  if(locked)return;locked=true;
+  const q=QUESTIONS[idx];
+  const opts=quiz.querySelectorAll('.opt');
+  opts.forEach((b,bi)=>{b.disabled=true;if(bi===q.answer)b.classList.add('correct');else if(bi===i)b.classList.add('wrong')});
+  const fb=document.getElementById('fb');
+  const correct=i===q.answer;
+  if(correct){score++;scoreEl.textContent=score}
+  fb.innerHTML=`<b>${correct?'✔ Correct !':'✘ Incorrect.'}</b> ${q.explain}`;
+  fb.classList.add('show');
+  document.getElementById('next').disabled=false;
+}
+function finish(){
+  document.getElementById('quiz').style.display='none';
+  bar.style.width='100%';
+  progressText.textContent=`اكتمل الاختبار`;
+  const r=document.getElementById('result');
+  r.classList.add('show');
+  document.getElementById('final-score').textContent=score;
+  const pct=score/QUESTIONS.length*100;
+  let emoji,tier,msg;
+  if(pct>=90){emoji='🏆';tier='Excellent — Félicitations !';msg='أداء متميز! إتقان كامل لمفردات الصحة والقواعد.'}
+  else if(pct>=75){emoji='🎉';tier='Très bien — مستوى ممتاز';msg='نتيجة جيدة جداً. راجع الأخطاء البسيطة.'}
+  else if(pct>=60){emoji='👍';tier='Bien — جيد';msg='ركّز على الـ<span class="fr">impératif</span> والأفعال الضميرية.'}
+  else if(pct>=40){emoji='📚';tier='Passable — يحتاج مراجعة';msg='راجع الدوسيه 5 بعناية: المفردات وقواعد الأمر.'}
+  else{emoji='💪';tier='À refaire — حاول مجدداً';msg='لا تيأس! أعد قراءة الحوار والمفردات ثم حاول مجدداً.'}
+  document.getElementById('result-emoji').textContent=emoji;
+  document.getElementById('tier').textContent=tier;
+  document.getElementById('result-msg').innerHTML=msg;
+}
+render();
+</script>
+</body>
+</html>

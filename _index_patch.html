@@ -1,0 +1,126 @@
+<!--
+========================================================================
+  إضافة جديدة لـ الثاني عشر أدبي (g12d) — فرنسي الفصل الثاني
+  French S2 entries to add under the g12d block / French subject
+========================================================================
+
+  HOW TO USE
+  ----------
+  In your existing index.html, locate the g12d (الثاني عشر أدبي) block,
+  find the French (الفرنسي) subject card/section, and add these chapter
+  entries alongside the existing S1 entry. Adapt selectors/classes to
+  match your existing DOM shape.
+
+  FILES CREATED (place next to index.html):
+    • frn12d_s2_d4.html   — Dossier 4: Une fête
+    • frn12d_s2_d5.html   — Dossier 5: Une maladie
+    • frn12d_s2_d6.html   — Dossier 6: Un logement
+    • frn12d_s2_delf.html — Vers le DELF Junior A1
+
+========================================================================
+-->
+
+<!-- ============== SNIPPET A: simple list items ============== -->
+<!-- Paste inside the French subject card for g12d, S2 section -->
+
+<li>
+  <a href="frn12d_s2_d4.html" class="chapter-link">
+    <span class="ch-num">D4</span>
+    <span class="ch-title">Une fête</span>
+    <span class="ch-sub">penser/croire · quantificateurs · imparfait</span>
+  </a>
+</li>
+<li>
+  <a href="frn12d_s2_d5.html" class="chapter-link">
+    <span class="ch-num">D5</span>
+    <span class="ch-title">Une maladie</span>
+    <span class="ch-sub">avoir mal · impératif · verbes pronominaux</span>
+  </a>
+</li>
+<li>
+  <a href="frn12d_s2_d6.html" class="chapter-link">
+    <span class="ch-num">D6</span>
+    <span class="ch-title">Un logement</span>
+    <span class="ch-sub">conditionnel · adjectifs qualificatifs</span>
+  </a>
+</li>
+<li>
+  <a href="frn12d_s2_delf.html" class="chapter-link">
+    <span class="ch-num">DELF</span>
+    <span class="ch-title">Vers le DELF A1</span>
+    <span class="ch-sub">compréhension écrite · production écrite</span>
+  </a>
+</li>
+
+<!-- ============== SNIPPET B: JS-object style (if data-driven) ============== -->
+<!--
+  If your index.html uses a JS data model (as in your cyber template),
+  add these objects to the g12d → french → s2 chapters array:
+-->
+
+<script>
+/*
+  // Example — adapt to your existing data structure
+  const g12dFrenchS2Chapters = [
+    {
+      id: 'd4',
+      file: 'frn12d_s2_d4.html',
+      title: 'Dossier 4 — Une fête',
+      subtitle: 'penser/croire · quantificateurs · imparfait',
+      questions: 15
+    },
+    {
+      id: 'd5',
+      file: 'frn12d_s2_d5.html',
+      title: 'Dossier 5 — Une maladie',
+      subtitle: 'avoir mal · impératif · verbes pronominaux',
+      questions: 15
+    },
+    {
+      id: 'd6',
+      file: 'frn12d_s2_d6.html',
+      title: 'Dossier 6 — Un logement',
+      subtitle: 'conditionnel · adjectifs qualificatifs',
+      questions: 15
+    },
+    {
+      id: 'delf',
+      file: 'frn12d_s2_delf.html',
+      title: 'Vers le DELF Junior A1',
+      subtitle: 'compréhension écrite · production écrite',
+      questions: 15
+    }
+  ];
+*/
+</script>
+
+<!-- ============== SNIPPET C: card-grid style (matching cyber template) ============== -->
+<!-- If chapters are rendered as cards inside a grid: -->
+
+<div class="chapter-card" data-grade="g12d" data-subject="french" data-semester="s2">
+  <div class="card-badge">D4</div>
+  <h3 class="card-title">Une fête</h3>
+  <p class="card-desc">حفلة — مفردات الاحتفالات · <em>penser/croire · quantificateurs · imparfait</em></p>
+  <a class="card-link" href="frn12d_s2_d4.html">بدء الاختبار ←</a>
+</div>
+
+<div class="chapter-card" data-grade="g12d" data-subject="french" data-semester="s2">
+  <div class="card-badge">D5</div>
+  <h3 class="card-title">Une maladie</h3>
+  <p class="card-desc">الصحة والمرض · أعضاء الجسم · <em>impératif · verbes pronominaux</em></p>
+  <a class="card-link" href="frn12d_s2_d5.html">بدء الاختبار ←</a>
+</div>
+
+<div class="chapter-card" data-grade="g12d" data-subject="french" data-semester="s2">
+  <div class="card-badge">D6</div>
+  <h3 class="card-title">Un logement</h3>
+  <p class="card-desc">السكن والأثاث · <em>conditionnel présent · adjectifs qualificatifs</em></p>
+  <a class="card-link" href="frn12d_s2_d6.html">بدء الاختبار ←</a>
+</div>
+
+<div class="chapter-card" data-grade="g12d" data-subject="french" data-semester="s2">
+  <div class="card-badge">DELF</div>
+  <h3 class="card-title">Vers le DELF Junior A1</h3>
+  <p class="card-desc">تدريب على امتحان <em>DELF A1</em> · فهم المقروء والمكتوب</p>
+  <a class="card-link" href="frn12d_s2_delf.html">بدء الاختبار ←</a>
+</div>

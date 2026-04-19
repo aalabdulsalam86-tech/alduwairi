@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>☪️ المجالان الثاني والثالث: علوم القرآن والحديث</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#d4a017;--gold2:#b8860b;--cream:#fdf6e3;--dark:#1a0f00;--card:rgba(26,15,0,0.92);--text:#f5e6c8;--muted:rgba(245,230,200,0.65);--green:#22c55e;--red:#ef4444;--border:rgba(212,160,23,0.22)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Tajawal",sans-serif;background:var(--dark);color:var(--text);min-height:100vh;overflow-x:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center}
+#bgc{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.wrap{position:relative;z-index:10;width:100%;max-width:980px;padding:20px 32px;display:flex;flex-direction:column;gap:16px}
+.header{display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:"Amiri",serif;font-size:16px;color:var(--gold);letter-spacing:1px;text-shadow:0 0 14px rgba(212,160,23,0.5)}
+.score-badge{background:rgba(212,160,23,0.08);border:2px solid var(--gold);border-radius:50px;padding:8px 22px;display:flex;align-items:center;gap:8px;box-shadow:0 0 18px rgba(212,160,23,0.2)}
+.sc-lbl{font-size:15px;color:var(--muted)}
+.sc-val{font-family:"Amiri",serif;font-size:28px;font-weight:700;color:var(--gold);text-shadow:0 0 12px var(--gold);transition:transform 0.3s cubic-bezier(.34,1.56,.64,1)}
+.sc-val.pop{transform:scale(1.5)}
+.prog-track{width:100%;height:7px;background:rgba(255,255,255,0.07);border-radius:999px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--gold2),var(--gold));border-radius:999px;transition:width 0.6s cubic-bezier(.4,0,.2,1);box-shadow:0 0 8px rgba(212,160,23,0.5)}
+.prog-lbl{text-align:center;font-size:15px;color:var(--muted);margin-top:3px;letter-spacing:1px}
+.qcard{background:var(--card);border:1.5px solid var(--border);border-radius:22px;padding:32px 38px;position:relative;backdrop-filter:blur(14px);box-shadow:0 0 30px rgba(212,160,23,0.05)}
+.qcard.si{animation:sIn 0.45s cubic-bezier(.34,1.56,.64,1) forwards}
+@keyframes sIn{from{transform:translateX(70px);opacity:0}to{transform:translateX(0);opacity:1}}
+.q-num{font-family:"Amiri",serif;font-size:14px;color:var(--gold2);margin-bottom:12px;letter-spacing:2px}
+.q-text{font-size:24px;font-weight:700;line-height:1.7;color:var(--text)}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.opt{background:rgba(40,25,5,0.9);border:2px solid rgba(212,160,23,0.12);border-radius:16px;padding:18px 22px;font-family:"Tajawal",sans-serif;font-size:18px;font-weight:700;color:#e8d5a0;cursor:pointer;text-align:right;display:flex;align-items:center;gap:12px;transition:all 0.18s ease;line-height:1.5}
+.opt:hover:not(:disabled){border-color:rgba(212,160,23,0.5);transform:translateY(-3px);box-shadow:0 8px 24px rgba(212,160,23,0.12);color:#fff}
+.opt:active:not(:disabled){transform:scale(0.97)}
+.opt-ltr{font-family:"Amiri",serif;font-size:15px;font-weight:700;color:var(--gold);background:rgba(212,160,23,0.1);border:1.5px solid rgba(212,160,23,0.3);border-radius:8px;min-width:38px;height:38px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.opt.correct{background:rgba(34,197,94,0.14)!important;border-color:var(--green)!important;color:#fff!important;box-shadow:0 0 24px rgba(34,197,94,0.35)!important;animation:cpulse 0.6s ease}
+.opt.correct .opt-ltr{background:var(--green);color:#fff;border-color:var(--green)}
+@keyframes cpulse{0%{transform:scale(1)}40%{transform:scale(1.04)}100%{transform:scale(1)}}
+.opt.wrong{background:rgba(239,68,68,0.13)!important;border-color:var(--red)!important;box-shadow:0 0 24px rgba(239,68,68,0.25)!important;animation:shake 0.45s ease}
+.opt.wrong .opt-ltr{background:var(--red);color:#fff;border-color:var(--red)}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-9px)}40%{transform:translateX(9px)}60%{transform:translateX(-7px)}80%{transform:translateX(7px)}}
+.explanation{margin-top:16px;background:rgba(212,160,23,0.07);border:1px solid rgba(212,160,23,0.25);border-right:3px solid var(--gold);border-radius:12px;padding:14px 18px;font-size:16px;line-height:1.9;color:rgba(245,230,200,0.88);display:none}
+.explanation.show{display:block;animation:fadeIn 0.35s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.next-btn{margin-top:14px;width:100%;padding:14px;background:linear-gradient(135deg,var(--gold2),var(--gold));border:none;border-radius:12px;font-family:"Tajawal",sans-serif;font-size:18px;font-weight:900;color:var(--dark);cursor:pointer;transition:all 0.2s;display:none}
+.next-btn.show{display:block;animation:fadeIn 0.3s ease}
+.next-btn:hover{transform:translateY(-2px);filter:brightness(1.1)}
+.fb{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);font-size:90px;z-index:100;pointer-events:none}
+.fb.sc{animation:fbSc 0.9s ease forwards}
+.fb.wr{animation:fbWr 0.9s ease forwards}
+@keyframes fbSc{0%{transform:translate(-50%,-50%) scale(0);opacity:0}40%{transform:translate(-50%,-50%) scale(1.25);opacity:1}70%{transform:translate(-50%,-50%) scale(1.0);opacity:1}100%{transform:translate(-50%,-65%) scale(0.65);opacity:0}}
+@keyframes fbWr{0%{transform:translate(-50%,-50%) scale(0) rotate(0deg);opacity:0}40%{transform:translate(-50%,-50%) scale(1.15) rotate(-8deg);opacity:1}100%{transform:translate(-50%,-65%) scale(0.65) rotate(8deg);opacity:0}}
+#cfcvs{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:6}
+.final{display:none;flex-direction:column;align-items:center;text-align:center;padding:50px 30px;max-width:700px;margin:0 auto}
+.final.vis{display:flex;animation:fadeIn 0.5s ease}
+.f-stars{font-size:48px;margin-bottom:18px}
+.f-title{font-family:"Amiri",serif;font-size:36px;font-weight:700;margin-bottom:10px}
+.f-msg{font-size:18px;color:var(--muted);margin-bottom:28px;line-height:1.8}
+.f-score-box{background:rgba(212,160,23,0.08);border:2px solid var(--gold);border-radius:20px;padding:28px 60px;margin-bottom:32px}
+.f-sc-lbl{font-size:16px;color:var(--muted);margin-bottom:6px}
+.f-sc-num{font-family:"Amiri",serif;font-size:64px;font-weight:700;color:var(--gold);text-shadow:0 0 20px var(--gold)}
+.restart-btn{background:linear-gradient(135deg,var(--gold2),var(--gold));color:var(--dark);border:none;border-radius:14px;padding:16px 48px;font-family:"Tajawal",sans-serif;font-size:20px;font-weight:900;cursor:pointer;transition:all 0.2s;margin-bottom:16px}
+.restart-btn:hover{transform:translateY(-3px);filter:brightness(1.1)}
+.back-home{color:var(--muted);font-size:15px;cursor:pointer;text-decoration:underline}
+.streak-bar{display:flex;gap:5px;justify-content:center}
+.sd{width:22px;height:8px;border-radius:4px;background:rgba(255,255,255,0.08);transition:all 0.3s}
+.sd.filled{background:var(--gold);box-shadow:0 0 6px var(--gold)}
+@media(max-width:640px){.wrap{padding:14px 16px}.q-text{font-size:19px}.opts{grid-template-columns:1fr}.opt{font-size:16px}}
+</style>
+</head>
+<body>
+<canvas id="bgc"></canvas>
+<canvas id="cfcvs"></canvas>
+<div id="fb-el" class="fb"></div>
+
+<div class="wrap" id="quiz-screen">
+  <div class="header">
+    <div class="logo">☪️ التربية الإسلامية</div>
+    <div class="score-badge"><span class="sc-lbl">النقاط</span><span class="sc-val" id="sc-val">0</span></div>
+  </div>
+  <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+  <div class="prog-lbl" id="prog-lbl"></div>
+  <div class="streak-bar" id="streak-bar"></div>
+  <div class="qcard" id="qcard">
+    <div class="q-num" id="q-num"></div>
+    <div class="q-text" id="q-text"></div>
+    <div class="opts" id="opts-grid"></div>
+    <div class="explanation" id="explanation"></div>
+    <button class="next-btn" id="next-btn" onclick="nextQ()">التالي ←</button>
+  </div>
+</div>
+
+<div class="final" id="final-screen">
+  <div class="f-stars" id="f-stars"></div>
+  <div class="f-title" id="f-title"></div>
+  <div class="f-msg" id="f-msg"></div>
+  <div class="f-score-box"><div class="f-sc-lbl">مجموع نقاطك</div><div class="f-sc-num" id="f-sc-num">0</div></div>
+  <button class="restart-btn" onclick="restart()">🔄 إعادة المحاولة</button>
+  <span class="back-home" onclick="window.history.back()">← العودة للموقع</span>
+</div>
+
+<script>
+const QS = [{"q": "ما معنى نزول القرآن على سبعة أحرف؟", "opts": ["نزل القرآن في سبع مراحل", "أُنزل القرآن على سبعة أوجه من القراءة تيسيراً على الناس", "القرآن مكتوب بسبعة خطوط", "القرآن تُرجم إلى سبع لغات"], "ans": 1, "exp": "نزول القرآن على سبعة أحرف يعني نزوله على سبعة أوجه من الأداء والقراءة، تيسيراً على الأمة الإسلامية ذات اللهجات المتعددة، وكل حرف منها كافٍ شافٍ وصحيح ومنزل من عند الله -تعالى-."}, {"q": "ما القراءات القرآنية العشر؟", "opts": ["قراءات ظنية اجتهادية", "أوجه ثابتة لأداء القرآن بأسانيد صحيحة متصلة إلى النبي -صلى الله عليه وسلم-", "ترجمات للقرآن باللغات المختلفة", "قراءات ابتكرها العلماء المتأخرون"], "ans": 1, "exp": "القراءات القرآنية العشر أوجه صحيحة لأداء القرآن الكريم ثبتت بأسانيد صحيحة متصلة إلى النبي -صلى الله عليه وسلم-، أشهرها قراءة نافع وابن كثير وعاصم وابن عامر وغيرهم."}, {"q": "ما الرواية في علوم القرآن؟", "opts": ["ما انتسب إلى الراوي عن أحد القراء", "ما انتسب إلى الراوي عن الصحابي", "ما انتسب إلى الصحابي مباشرة", "ما روي عن تابعي التابعين"], "ans": 0, "exp": "الرواية في علوم القرآن هي ما نُسب إلى الراوي عن أحد القراء المشهورين، فمثلاً قراءة عاصم لها روايتان: رواية شعبة ورواية حفص، وأكثر المسلمين اليوم يقرؤون برواية حفص عن عاصم."}, {"q": "ما مكانة الصحابة الكرام -رضي الله عنهم- في الإسلام؟", "opts": ["كسائر المسلمين لا مزية لهم", "خير القرون وأفضل الأمة بعد الأنبياء لصحبتهم للنبي ونصرتهم للإسلام", "فضلهم متساوٍ مع العلماء المتأخرين", "أفضلهم من تأخر منهم"], "ans": 1, "exp": "الصحابة -رضي الله عنهم- هم خير القرون وأفضل هذه الأمة بعد الأنبياء، زكّاهم الله في كتابه وأثنى عليهم النبي -صلى الله عليه وسلم- بقوله: (خير الناس قرني ثم الذين يلونهم)."}, {"q": "ما فضل التفقه في الدين؟", "opts": ["لا فضل خاص له", "من يرد الله به خيراً يفقهه في الدين، وهو أشرف العلوم وأنفعها", "هو علم دنيوي كسائر العلوم", "يكفي المسلم قراءة القرآن دون تعلم الأحكام"], "ans": 1, "exp": "قال النبي -صلى الله عليه وسلم-: (من يرد الله به خيراً يفقهه في الدين)، وهو دليل عظيم على فضل التفقه في الدين وأن التوفيق إليه نعمة من الله العظيمة."}, {"q": "ما الآداب الإسلامية في التعامل مع الناس؟", "opts": ["لا تقرر الشريعة آداباً في التعامل", "حسن الخلق والرفق والصدق والأمانة وإفشاء السلام والتحدث بما ينفع", "التشدد مع الجميع في كل الأحوال", "الصمت الدائم وتجنب الناس"], "ans": 1, "exp": "الآداب الإسلامية في التعامل شاملة ومتكاملة، تشمل: إفشاء السلام، وحسن الخلق، والرفق، والصدق، والأمانة، والتبسم في وجه الآخرين، وصلة الرحم، والتواضع مع الجميع."}, {"q": "ما حكم الغيبة والنميمة في الإسلام؟", "opts": ["مكروهتان فقط", "محرمتان من كبائر الذنوب المفسدة للمجتمع", "مباحتان إذا كانت المعلومات صحيحة", "لا حكم لهما في الشرع"], "ans": 1, "exp": "الغيبة -ذكر المسلم بما يكره- والنميمة -نقل الكلام بين الناس للإفساد- من الكبائر المحرمة. قال تعالى عن الغيبة: (أيحب أحدكم أن يأكل لحم أخيه ميتاً فكرهتموه). وهما يفسدان المجتمع."}, {"q": "ما الضابط في الحكم على قراءة ما؟", "opts": ["أن تكون عربية فقط", "موافقة رسم المصحف العثماني وصحة السند وموافقة العربية", "أن يرويها عدد كبير من العلماء", "أن تكون مشهورة بين الناس"], "ans": 1, "exp": "الضوابط الثلاثة لصحة القراءة القرآنية: 1- موافقة رسم المصحف العثماني. 2- صحة السند المتصل بالنبي -صلى الله عليه وسلم-. 3- موافقة وجه من وجوه اللغة العربية."}, {"q": "ما واجب المسلم نحو الصحابة الكرام -رضي الله عنهم-؟", "opts": ["يجوز الطعن فيهم إذا أخطأوا", "محبتهم والترضي عنهم والكف عن الطعن فيهم واحترام مكانتهم العظيمة", "لا موقف خاص منهم", "الاقتداء بهم في كل شيء دون استثناء"], "ans": 1, "exp": "يجب على المسلم محبة الصحابة -رضي الله عنهم- والثناء عليهم والكف عن الطعن فيهم وبيان فضلهم، قال تعالى عنهم: (رضي الله عنهم ورضوا عنه)، وهم حاملو الدين إلينا."}, {"q": "ما دليل النبي -صلى الله عليه وسلم- على فضل التفقه في الدين عن أبي هريرة؟", "opts": ["(طلب العلم فريضة على كل مسلم)", "(من يرد الله به خيراً يفقهه في الدين)", "(العلماء ورثة الأنبياء)", "(اطلبوا العلم من المهد إلى اللحد)"], "ans": 1, "exp": "قال النبي -صلى الله عليه وسلم-: (من يرد الله به خيراً يفقهه في الدين) رواه البخاري ومسلم، وهو حديث عظيم يدل على أن التفقه في الدين علامة على إرادة الله الخير بعبده."}];
+const L = ['أ','ب','ج','د'];
+let cq=0,sc=0,streak=0,answered=false;
+
+const cfc=document.getElementById('cfcvs'),ccx=cfc.getContext('2d');
+cfc.width=innerWidth;cfc.height=innerHeight;
+let cfs=[];
+function launchCf(x,y,n=18){
+  const cols=['#d4a017','#b8860b','#f5e6c8','#22c55e','#fbbf24'];
+  for(let i=0;i<n;i++) cfs.push({x,y,vx:(Math.random()-.5)*13,vy:(Math.random()-1)*11,r:Math.random()*5+2,color:cols[Math.floor(Math.random()*cols.length)],life:1,spin:Math.random()*5-2.5,angle:Math.random()*360});
+}
+function drawCf(){
+  ccx.clearRect(0,0,cfc.width,cfc.height);
+  cfs=cfs.filter(c=>c.life>0);
+  cfs.forEach(c=>{c.x+=c.vx;c.y+=c.vy;c.vy+=0.38;c.life-=0.022;c.angle+=c.spin;ccx.save();ccx.globalAlpha=c.life;ccx.translate(c.x,c.y);ccx.rotate(c.angle*Math.PI/180);ccx.fillStyle=c.color;ccx.fillRect(-c.r/2,-c.r/2,c.r,c.r*2);ccx.restore()});
+  requestAnimationFrame(drawCf);
+}
+drawCf();
+
+const bgc=document.getElementById('bgc'),bgx=bgc.getContext('2d');
+let ns=[];
+function rszBg(){bgc.width=innerWidth;bgc.height=innerHeight}
+function initNs(){ns=Array.from({length:45},()=>{return{x:Math.random()*bgc.width,y:Math.random()*bgc.height,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,r:Math.random()*2.5+1}})}
+function drawBg(){
+  bgx.clearRect(0,0,bgc.width,bgc.height);
+  ns.forEach(n=>{n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>bgc.width)n.vx*=-1;if(n.y<0||n.y>bgc.height)n.vy*=-1});
+  for(let i=0;i<ns.length;i++)for(let j=i+1;j<ns.length;j++){const dx=ns[i].x-ns[j].x,dy=ns[i].y-ns[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<150){bgx.beginPath();bgx.moveTo(ns[i].x,ns[i].y);bgx.lineTo(ns[j].x,ns[j].y);bgx.strokeStyle=`rgba(212,160,23,${(1-d/150)*.08})`;bgx.lineWidth=.65;bgx.stroke()}}
+  ns.forEach(n=>{bgx.beginPath();bgx.arc(n.x,n.y,n.r,0,Math.PI*2);bgx.fillStyle='rgba(212,160,23,0.18)';bgx.fill()});
+  requestAnimationFrame(drawBg);
+}
+rszBg();initNs();drawBg();
+window.addEventListener('resize',()=>{rszBg();initNs();cfc.width=innerWidth;cfc.height=innerHeight});
+
+function buildStreak(){
+  const bar=document.getElementById('streak-bar');bar.innerHTML='';
+  for(let i=0;i<QS.length;i++){const d=document.createElement('div');d.className='sd'+(i<cq?' filled':'');bar.appendChild(d)}
+}
+
+function loadQ(){
+  answered=false;
+  document.getElementById('next-btn').classList.remove('show');
+  document.getElementById('explanation').classList.remove('show');
+  document.getElementById('explanation').style.display='none';
+  const q=QS[cq];
+  document.getElementById('prog-fill').style.width=((cq/QS.length)*100)+'%';
+  document.getElementById('prog-lbl').textContent='السؤال '+(cq+1)+' من '+QS.length;
+  document.getElementById('q-num').textContent='سؤال '+(cq+1);
+  const card=document.getElementById('qcard');
+  card.classList.remove('si');void card.offsetWidth;card.classList.add('si');
+  document.getElementById('q-text').textContent=q.q;
+  const grid=document.getElementById('opts-grid');grid.innerHTML='';
+  q.opts.forEach((opt,i)=>{
+    const btn=document.createElement('button');btn.className='opt';
+    btn.innerHTML=`<span class="opt-ltr">${L[i]}</span><span>${opt}</span>`;
+    btn.addEventListener('click',()=>pick(i,btn));
+    grid.appendChild(btn);
+  });
+  buildStreak();
+}
+
+function pick(idx,btn){
+  if(answered)return;answered=true;
+  const q=QS[cq];
+  const btns=document.querySelectorAll('.opt');btns.forEach(b=>b.disabled=true);
+  const fb=document.getElementById('fb-el');fb.classList.remove('sc','wr');
+  if(idx===q.ans){
+    btn.classList.add('correct');sc+=10;streak++;
+    document.getElementById('sc-val').textContent=sc;
+    const sv=document.getElementById('sc-val');sv.classList.remove('pop');void sv.offsetWidth;sv.classList.add('pop');setTimeout(()=>sv.classList.remove('pop'),400);
+    fb.textContent=['✅','🌙','⭐','💫','🌟'][Math.floor(Math.random()*5)];fb.classList.add('sc');
+    for(let i=0;i<4;i++)setTimeout(()=>launchCf(innerWidth*(0.2+Math.random()*0.6),innerHeight*0.4,14),i*80);
+    setTimeout(()=>document.getElementById('next-btn').classList.add('show'),600);
+  }else{
+    btn.classList.add('wrong');streak=0;btns[q.ans].classList.add('correct');
+    fb.textContent=['❌','😟','💭','🙈'][Math.floor(Math.random()*4)];fb.classList.add('wr');
+    const expEl=document.getElementById('explanation');
+    expEl.textContent='💡 '+q.exp;expEl.style.display='block';
+    setTimeout(()=>expEl.classList.add('show'),50);
+    setTimeout(()=>document.getElementById('next-btn').classList.add('show'),400);
+  }
+  buildStreak();
+}
+
+function nextQ(){cq++;if(cq<QS.length)loadQ();else showFinal()}
+
+function showFinal(){
+  document.getElementById('quiz-screen').style.display='none';
+  const fs=document.getElementById('final-screen');fs.classList.add('vis');
+  document.getElementById('f-sc-num').textContent=sc;
+  const pct=sc/(QS.length*10);
+  let title,msg,stars;
+  if(pct===1){title='ممتاز! نتيجة كاملة 🌟';msg='ما شاء الله! أجبت على كل الأسئلة صحيحة — بارك الله فيك';stars='⭐⭐⭐⭐⭐'}
+  else if(pct>=0.75){title='أحسنت! أداء رائع 🌙';msg='تقريباً مثالي — مراجعة بسيطة وستكمل الدرجة كاملة';stars='⭐⭐⭐⭐'}
+  else if(pct>=0.5){title='جيد! استمر في المراجعة 📖';msg='نتيجة جيدة — راجع الدروس وستتحسن أكثر بإذن الله';stars='⭐⭐⭐'}
+  else{title='حاول مجدداً 💪';msg='لا بأس، المراجعة مفتاح النجاح — إن شاء الله في المرة القادمة أفضل';stars='⭐⭐'}
+  document.getElementById('f-stars').textContent=stars;
+  document.getElementById('f-title').textContent=title;
+  document.getElementById('f-msg').textContent=msg;
+  setTimeout(()=>{for(let i=0;i<10;i++)setTimeout(()=>launchCf(innerWidth*Math.random(),-20,25),i*110)},300);
+}
+
+function restart(){
+  cq=0;sc=0;streak=0;answered=false;cfs=[];
+  document.getElementById('sc-val').textContent='0';
+  document.getElementById('final-screen').classList.remove('vis');
+  document.getElementById('quiz-screen').style.display='flex';
+  loadQ();
+}
+loadQ();
+</script>
+</body>
+</html>

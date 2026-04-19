@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>تاريخ — الفصل الأول | نشأة الكويت والحكام الأوائل</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--c:#d97706;--c2:#92400e;--bg:#0f0800;--brd:rgba(217,119,6,0.2);--txt:#fdf0dc;--mut:rgba(253,240,220,0.6);--red:#ef4444;--grn:#22c55e}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Tajawal",sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow-x:hidden}
+#bgc{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+#cfcvs{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:6}
+#fb-el{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);font-size:90px;z-index:100;pointer-events:none}
+#fb-el.sc{animation:fbSc 0.9s ease forwards}
+#fb-el.wr{animation:fbWr 0.9s ease forwards}
+@keyframes fbSc{0%{transform:translate(-50%,-50%) scale(0);opacity:0}40%{transform:translate(-50%,-50%) scale(1.25);opacity:1}100%{transform:translate(-50%,-65%) scale(0.6);opacity:0}}
+@keyframes fbWr{0%{transform:translate(-50%,-50%) scale(0);opacity:0}40%{transform:translate(-50%,-50%) scale(1.15);opacity:1}100%{transform:translate(-50%,-65%) scale(0.6);opacity:0}}
+.wrap{position:relative;z-index:10;width:100%;max-width:960px;padding:20px 28px;display:flex;flex-direction:column;gap:14px}
+.header{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:13px;font-weight:700;color:var(--c);letter-spacing:1.5px;text-transform:uppercase;opacity:0.85}
+.score-badge{background:rgba(255,255,255,0.04);border:2px solid var(--c);border-radius:50px;padding:7px 20px;display:flex;align-items:center;gap:8px;box-shadow:0 0 16px rgba(0,0,0,0.3)}
+.sc-lbl{font-size:13px;color:var(--mut)}
+.sc-val{font-size:26px;font-weight:800;color:var(--c);transition:transform 0.3s cubic-bezier(.34,1.56,.64,1)}
+.sc-val.pop{transform:scale(1.5)}
+.prog-track{width:100%;height:6px;background:rgba(255,255,255,0.07);border-radius:999px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--c2),var(--c));border-radius:999px;transition:width 0.5s ease}
+.prog-lbl{text-align:center;font-size:13px;color:var(--mut);margin-top:2px}
+.streak-bar{display:flex;gap:5px;justify-content:center}
+.sd{width:20px;height:7px;border-radius:4px;background:rgba(255,255,255,0.08);transition:all 0.3s}
+.sd.filled{background:var(--c);box-shadow:0 0 5px var(--c)}
+.qcard{background:rgba(255,255,255,0.03);border:1.5px solid var(--brd);border-radius:20px;padding:30px 34px;backdrop-filter:blur(12px)}
+.qcard.si{animation:sIn 0.4s cubic-bezier(.34,1.56,.64,1) forwards}
+@keyframes sIn{from{transform:translateX(60px);opacity:0}to{transform:translateX(0);opacity:1}}
+.q-num{font-size:12px;font-weight:700;color:var(--c);margin-bottom:10px;letter-spacing:2px;opacity:0.8}
+.q-text{font-size:22px;font-weight:700;line-height:1.65;color:var(--txt);margin-bottom:22px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.opt{background:rgba(255,255,255,0.04);border:2px solid rgba(255,255,255,0.08);border-radius:14px;padding:16px 18px;font-family:"Tajawal",sans-serif;font-size:17px;font-weight:600;color:#dde;cursor:pointer;display:flex;align-items:center;gap:11px;transition:all 0.17s ease;text-align:right;line-height:1.4}
+.opt:hover:not(:disabled){border-color:rgba(255,255,255,0.25);transform:translateY(-2px);color:#fff}
+.opt-ltr{font-size:13px;font-weight:800;color:var(--c);background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.12);border-radius:7px;min-width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.opt.correct{background:rgba(34,197,94,0.12)!important;border-color:var(--grn)!important;color:#fff!important;animation:cpulse 0.5s ease}
+.opt.correct .opt-ltr{background:var(--grn);color:#fff;border-color:var(--grn)}
+@keyframes cpulse{0%{transform:scale(1)}40%{transform:scale(1.03)}100%{transform:scale(1)}}
+.opt.wrong{background:rgba(239,68,68,0.1)!important;border-color:var(--red)!important;animation:shake 0.4s ease}
+.opt.wrong .opt-ltr{background:var(--red);color:#fff;border-color:var(--red)}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.explanation{margin-top:14px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);border-right:3px solid var(--c);border-radius:10px;padding:13px 16px;font-size:15px;line-height:1.8;color:var(--mut);display:none}
+.explanation.show{display:block;animation:fadeIn 0.3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.next-btn{margin-top:12px;width:100%;padding:13px;background:linear-gradient(135deg,var(--c2),var(--c));border:none;border-radius:10px;font-family:"Tajawal",sans-serif;font-size:17px;font-weight:800;color:#fff;cursor:pointer;display:none;transition:all 0.2s}
+.next-btn.show{display:block;animation:fadeIn 0.25s ease}
+.next-btn:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.final{display:none;flex-direction:column;align-items:center;text-align:center;padding:50px 28px;max-width:650px;margin:0 auto}
+.final.vis{display:flex;animation:fadeIn 0.4s ease}
+.f-stars{font-size:44px;margin-bottom:14px}
+.f-title{font-size:30px;font-weight:800;margin-bottom:8px}
+.f-msg{font-size:16px;color:var(--mut);margin-bottom:24px;line-height:1.7}
+.f-score-box{background:rgba(255,255,255,0.04);border:2px solid var(--c);border-radius:18px;padding:24px 52px;margin-bottom:28px}
+.f-sc-lbl{font-size:14px;color:var(--mut);margin-bottom:4px}
+.f-sc-num{font-size:58px;font-weight:800;color:var(--c)}
+.restart-btn{background:linear-gradient(135deg,var(--c2),var(--c));color:#fff;border:none;border-radius:12px;padding:14px 44px;font-family:"Tajawal",sans-serif;font-size:18px;font-weight:800;cursor:pointer;margin-bottom:14px;transition:all 0.2s}
+.restart-btn:hover{filter:brightness(1.1);transform:translateY(-2px)}
+.back-home{color:var(--mut);font-size:14px;cursor:pointer;text-decoration:underline}
+@media(max-width:600px){.wrap{padding:12px 14px}.q-text{font-size:18px}.opts{grid-template-columns:1fr}.opt{font-size:16px}}
+</style>
+</head>
+<body>
+<canvas id="bgc"></canvas>
+<canvas id="cfcvs"></canvas>
+<div id="fb-el"></div>
+
+<div class="wrap" id="quiz-screen">
+  <div class="header">
+    <div class="logo">🏛️ التاريخ — الصف العاشر</div>
+    <div class="score-badge"><span class="sc-lbl">النقاط</span><span class="sc-val" id="sc-val">0</span></div>
+  </div>
+  <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+  <div class="prog-lbl" id="prog-lbl"></div>
+  <div class="streak-bar" id="streak-bar"></div>
+  <div class="qcard" id="qcard">
+    <div class="q-num" id="q-num"></div>
+    <div class="q-text" id="q-text"></div>
+    <div class="opts" id="opts-grid"></div>
+    <div class="explanation" id="explanation"></div>
+    <button class="next-btn" id="next-btn" onclick="nextQ()">التالي ←</button>
+  </div>
+</div>
+
+<div class="final" id="final-screen">
+  <div class="f-stars" id="f-stars"></div>
+  <div class="f-title" id="f-title"></div>
+  <div class="f-msg" id="f-msg"></div>
+  <div class="f-score-box"><div class="f-sc-lbl">مجموع النقاط</div><div class="f-sc-num" id="f-sc-num">0</div></div>
+  <button class="restart-btn" onclick="restart()">🔄 إعادة المحاولة</button>
+  <span class="back-home" onclick="window.history.back()">← العودة للموقع</span>
+</div>
+
+<script>
+const QS=[{"q": "من هم العتوب وإلى أين هاجروا؟", "opts": ["قبيلة من اليمن استقرت في مصر", "تحالف من القبائل العربية هاجرت إلى منطقة الكويت في القرن السابع عشر الميلادي", "قبائل من شمال الجزيرة العربية انتقلت إلى العراق", "عائلة واحدة من عُمان أسست دولة الكويت"], "ans": 1, "exp": "العتوب تحالف من القبائل العربية، من أبرزها آل صباح وآل خليفة وآل جلاهمة، هاجروا إلى شبه جزيرة الكويت في أواخر القرن السابع عشر الميلادي وأسسوا نواة دولة الكويت الحديثة."}, {"q": "متى وصل العتوب إلى منطقة الكويت تقريباً؟", "opts": ["في القرن الخامس عشر الميلادي", "في أواخر القرن السابع عشر أو مطلع القرن الثامن عشر الميلادي", "في منتصف القرن التاسع عشر الميلادي", "في القرن العشرين"], "ans": 1, "exp": "يُرجَّح أن هجرة العتوب إلى الكويت تمت في أواخر القرن السابع عشر أو مطلع القرن الثامن عشر الميلادي (حوالي 1716م)، حين استقروا في المنطقة وبنوا قوتهم التدريجية."}, {"q": "من هو الحاكم الأول لدولة الكويت؟", "opts": ["الشيخ عبدالله بن صباح", "الشيخ صباح بن جابر (صباح الأول)", "الشيخ جابر بن عبدالله", "الشيخ مبارك الصباح"], "ans": 1, "exp": "الشيخ صباح بن جابر المعروف بـ(صباح الأول) هو الحاكم الأول لدولة الكويت، وإليه تُنسب السلالة الحاكمة آل الصباح التي تتولى حكم الكويت حتى اليوم."}, {"q": "لماذا اختار الكويتيون آل الصباح لتولي الحكم دون سائر عائلات العتوب؟", "opts": ["لأنهم الأكثر ثروةً", "لكفاءتهم القيادية وحكمتهم وقدرتهم على الحفاظ على وحدة المجتمع وإدارة شؤون الإمارة", "لأنهم فرضوا حكمهم بالقوة", "لأن الدول الأجنبية اختارتهم"], "ans": 1, "exp": "اختار الكويتيون آل الصباح لتولي الحكم بسبب توسمهم فيهم الحكمة والكفاءة والقدرة على إدارة شؤون المجتمع وتحقيق العدالة والوحدة، وتشير الروايات إلى أن الاختيار جاء بتراضٍ واتفاق بين القبائل."}, {"q": "ما علاقة الكويت ببني خالد في مرحلة التأسيس؟", "opts": ["كانت علاقة عدائية دائمة", "كانت الكويت تحت الحماية الفضفاضة لبني خالد حكام الأحساء وعلاقتهم كانت ودية في البداية", "بني خالد استعمروا الكويت", "لا علاقة تاريخية بينهما"], "ans": 1, "exp": "في بداية نشأة الكويت، كانت المنطقة تقع ضمن النطاق الذي تمتد إليه سيطرة قبيلة بني خالد حكام الأحساء، وكانت العلاقة بينهم ودية وتعاونية في البداية قبل أن يرسّخ الكويتيون استقلاليتهم."}, {"q": "ما أبرز ما يتميز به الحاكم السادس الشيخ محمد بن صباح في تاريخ الكويت؟", "opts": ["هو أول من اكتشف النفط", "حكم الكويت في فترة انتقالية مهدت لعهد الشيخ مبارك الصباح الذي أسس الكويت الحديثة", "هو من أبرم اتفاقية الاستقلال مع بريطانيا", "هو باني الميناء التجاري الأول"], "ans": 1, "exp": "يمثل عهد الشيخ محمد بن صباح (الحاكم السادس) المرحلة التي أعقبها توليّ الشيخ مبارك الكبير الحكم عام 1896م، الذي يُعدّ أبرز حكام الكويت وصاحب التحولات الاستراتيجية الكبرى في تاريخها."}, {"q": "ما معركة الرقة وما أهميتها في تاريخ الكويت؟", "opts": ["أول معركة برية خاضتها الكويت ضد قبيلة مجاورة", "أول معركة بحرية في تاريخ الإمارة الكويتية، حين انتصر الكويتيون على بني كعب", "معركة مع الإنجليز لنيل الاستقلال", "معركة دينية فرضت السلام في المنطقة"], "ans": 1, "exp": "معركة الرقة هي أول معركة بحرية في تاريخ دولة الكويت، خاضها الكويتيون ضد قبيلة بني كعب التي حاولت الاعتداء على الكويت، وانتصر فيها الكويتيون وغنموا أسلحة ومدافع كثيرة."}, {"q": "متى تولى الشيخ مبارك الصباح حكم الكويت؟", "opts": ["1860م", "1896م", "1899م", "1915م"], "ans": 1, "exp": "تولى الشيخ مبارك بن صباح الصباح حكم الكويت عام 1896م، وحكم حتى وفاته عام 1915م. تُعدّ فترة حكمه من أكثر الحقب تأثيراً في تاريخ الكويت الحديث."}, {"q": "ما أبرز ما اتسمت به فترة حكم الشيخ مبارك الكبير؟", "opts": ["الهدوء والاستقرار الكامل دون أي تحديات", "مواجهة تحديات دولية كبيرة من القوى الأوروبية والعثمانيين مع تثبيت أركان الدولة وتطوير علاقاتها", "الانعزال التام عن المحيط الإقليمي", "التركيز على الزراعة وتحقيق الاكتفاء الذاتي"], "ans": 1, "exp": "حكم الشيخ مبارك في مرحلة بالغة الحساسية؛ إذ كانت الدولة العثمانية تطمع في ضم الكويت، وكانت الدول الأوروبية تتنافس على النفوذ في الخليج، فتحرك بدهاء ليحافظ على استقلالية الكويت."}, {"q": "ما اتفاقية الحماية البريطانية عام 1899م وما نصها الرئيسي؟", "opts": ["اتفاقية تجارية بين الكويت وبريطانيا لاستيراد النفط", "التزم الشيخ مبارك بعدم التنازل عن أي أرض كويتية لدولة أخرى مقابل الحماية البريطانية", "اتفاقية استقلال كاملة للكويت", "اتفاقية لبناء ميناء بحري مشترك"], "ans": 1, "exp": "نصت اتفاقية الحماية (1899م) على التزام الشيخ مبارك وورثته بعدم التنازل أو بيع أو رهن أي جزء من أراضي الكويت لأي دولة أخرى إلا لبريطانيا، مقابل حماية بريطانية للإمارة وسيادتها."}];
+const L=["\u0623", "\u0628", "\u062c", "\u062f"];
+let cq=0,sc=0,answered=false;
+const cfc=document.getElementById('cfcvs'),ccx=cfc.getContext('2d');
+cfc.width=innerWidth;cfc.height=innerHeight;
+let cfs=[];
+function launchCf(x,y,n=16){const cols=['#d97706','#fff','#fbbf24','#22c55e','#a855f7'];for(let i=0;i<n;i++)cfs.push({x,y,vx:(Math.random()-.5)*12,vy:(Math.random()-1)*10,r:Math.random()*5+2,color:cols[Math.floor(Math.random()*cols.length)],life:1,spin:Math.random()*5-2.5,angle:Math.random()*360})}
+function drawCf(){ccx.clearRect(0,0,cfc.width,cfc.height);cfs=cfs.filter(c=>c.life>0);cfs.forEach(c=>{c.x+=c.vx;c.y+=c.vy;c.vy+=0.35;c.life-=0.022;c.angle+=c.spin;ccx.save();ccx.globalAlpha=c.life;ccx.translate(c.x,c.y);ccx.rotate(c.angle*Math.PI/180);ccx.fillStyle=c.color;ccx.fillRect(-c.r/2,-c.r/2,c.r,c.r*2);ccx.restore()});requestAnimationFrame(drawCf)}
+drawCf();
+const bgc=document.getElementById('bgc'),bgx=bgc.getContext('2d');
+let ns=[];
+function rszBg(){bgc.width=innerWidth;bgc.height=innerHeight;ns=Array.from({length:40},()=>{return{x:Math.random()*bgc.width,y:Math.random()*bgc.height,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,r:Math.random()*2+1}})}
+function drawBg(){bgx.clearRect(0,0,bgc.width,bgc.height);ns.forEach(n=>{n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>bgc.width)n.vx*=-1;if(n.y<0||n.y>bgc.height)n.vy*=-1});for(let i=0;i<ns.length;i++)for(let j=i+1;j<ns.length;j++){const dx=ns[i].x-ns[j].x,dy=ns[i].y-ns[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<140){bgx.beginPath();bgx.moveTo(ns[i].x,ns[i].y);bgx.lineTo(ns[j].x,ns[j].y);bgx.strokeStyle=`rgba(255,255,255,${(1-d/140)*.06})`;bgx.lineWidth=.5;bgx.stroke()}}ns.forEach(n=>{bgx.beginPath();bgx.arc(n.x,n.y,n.r,0,Math.PI*2);bgx.fillStyle='rgba(255,255,255,0.12)';bgx.fill()});requestAnimationFrame(drawBg)}
+rszBg();drawBg();
+window.addEventListener('resize',()=>{rszBg();cfc.width=innerWidth;cfc.height=innerHeight});
+function buildStreak(){const bar=document.getElementById('streak-bar');bar.innerHTML='';for(let i=0;i<QS.length;i++){const d=document.createElement('div');d.className='sd'+(i<cq?' filled':'');bar.appendChild(d)}}
+function loadQ(){
+  answered=false;
+  document.getElementById('next-btn').classList.remove('show');
+  const expEl=document.getElementById('explanation');expEl.classList.remove('show');expEl.style.display='none';
+  const q=QS[cq];
+  document.getElementById('prog-fill').style.width=((cq/QS.length)*100)+'%';
+  document.getElementById('prog-lbl').textContent='السؤال '+(cq+1)+' من '+QS.length;
+  document.getElementById('q-num').textContent='سؤال '+String(cq+1).padStart(2,'0');
+  const card=document.getElementById('qcard');card.classList.remove('si');void card.offsetWidth;card.classList.add('si');
+  document.getElementById('q-text').textContent=q.q;
+  const grid=document.getElementById('opts-grid');grid.innerHTML='';
+  q.opts.forEach((opt,i)=>{const btn=document.createElement('button');btn.className='opt';btn.innerHTML=`<span class="opt-ltr">${L[i]}</span><span>${opt}</span>`;btn.addEventListener('click',()=>pick(i,btn));grid.appendChild(btn)});
+  buildStreak();
+}
+function pick(idx,btn){
+  if(answered)return;answered=true;
+  const q=QS[cq];const btns=document.querySelectorAll('.opt');btns.forEach(b=>b.disabled=true);
+  const fb=document.getElementById('fb-el');fb.classList.remove('sc','wr');
+  if(idx===q.ans){
+    btn.classList.add('correct');sc+=10;
+    const sv=document.getElementById('sc-val');sv.textContent=sc;sv.classList.remove('pop');void sv.offsetWidth;sv.classList.add('pop');setTimeout(()=>sv.classList.remove('pop'),400);
+    fb.textContent=['✅','🎯','⭐','🔥','💥'][Math.floor(Math.random()*5)];fb.classList.add('sc');
+    for(let i=0;i<3;i++)setTimeout(()=>launchCf(innerWidth*(0.2+Math.random()*0.6),innerHeight*0.4),i*80);
+    setTimeout(()=>document.getElementById('next-btn').classList.add('show'),500);
+  }else{
+    btn.classList.add('wrong');btns[q.ans].classList.add('correct');
+    fb.textContent=['❌','😬','💭','🙈'][Math.floor(Math.random()*4)];fb.classList.add('wr');
+    const expEl=document.getElementById('explanation');expEl.textContent='💡 '+q.exp;expEl.style.display='block';setTimeout(()=>expEl.classList.add('show'),50);
+    setTimeout(()=>document.getElementById('next-btn').classList.add('show'),350);
+  }
+  buildStreak();
+}
+function nextQ(){cq++;if(cq<QS.length)loadQ();else showFinal()}
+function showFinal(){
+  document.getElementById('quiz-screen').style.display='none';
+  document.getElementById('final-screen').classList.add('vis');
+  document.getElementById('f-sc-num').textContent=sc;
+  const pct=sc/(QS.length*10);
+  const f=pct===1?["\ud83c\udf1f \u0645\u0645\u062a\u0627\u0632! \u062f\u0631\u062c\u0629 \u0643\u0627\u0645\u0644\u0629!", "\u0645\u0627 \u0634\u0627\u0621 \u0627\u0644\u0644\u0647! \u0623\u062c\u0628\u062a \u0639\u0644\u0649 \u0643\u0644 \u0627\u0644\u0623\u0633\u0626\u0644\u0629 \u0635\u062d\u064a\u062d\u0629", "\u2b50\u2b50\u2b50\u2b50\u2b50"]:pct>=0.75?["\ud83d\udd25 \u0623\u062f\u0627\u0621 \u0631\u0627\u0626\u0639!", "\u062a\u0642\u0631\u064a\u0628\u0627\u064b \u0645\u062b\u0627\u0644\u064a \u2014 \u0631\u0627\u062c\u0639 \u0628\u0639\u0636 \u0627\u0644\u0646\u0642\u0627\u0637 \u0648\u0633\u062a\u0635\u0644 \u0644\u0644\u0643\u0645\u0627\u0644", "\u2b50\u2b50\u2b50\u2b50"]:pct>=0.5?["\ud83d\udc4d \u0623\u062d\u0633\u0646\u062a!", "\u0646\u062a\u064a\u062c\u0629 \u062c\u064a\u062f\u0629 \u2014 \u0631\u0627\u062c\u0639 \u0627\u0644\u062f\u0631\u0648\u0633 \u0644\u062a\u062a\u062d\u0633\u0646 \u0623\u0643\u062b\u0631", "\u2b50\u2b50\u2b50"]:["\ud83d\udca1 \u062d\u0627\u0648\u0644 \u0645\u062c\u062f\u062f\u0627\u064b!", "\u0644\u0627 \u0628\u0623\u0633\u060c \u0627\u0644\u0645\u0631\u0627\u062c\u0639\u0629 \u0645\u0641\u062a\u0627\u062d \u0627\u0644\u0646\u062c\u0627\u062d", "\u2b50\u2b50"];
+  document.getElementById('f-title').textContent=f[0];document.getElementById('f-msg').textContent=f[1];document.getElementById('f-stars').textContent=f[2];
+  setTimeout(()=>{for(let i=0;i<8;i++)setTimeout(()=>launchCf(innerWidth*Math.random(),-20,20),i*100)},200);
+}
+function restart(){cq=0;sc=0;answered=false;cfs=[];document.getElementById('sc-val').textContent='0';document.getElementById('final-screen').classList.remove('vis');document.getElementById('quiz-screen').style.display='flex';loadQ()}
+loadQ();
+</script>
+</body>
+</html>

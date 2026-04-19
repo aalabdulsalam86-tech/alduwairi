@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>عربي 12 علمي · الفصل الدراسي الثاني</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Orbitron:wght@700;900&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--cyan:#00f5ff;--gold:#fbbf24;--purple:#c026d3;--green:#22c55e;--red:#ef4444;--dark:#020617;--dark2:#0f172a;--text:#f1f5f9;--muted:rgba(241,245,249,0.6);--border:rgba(0,245,255,0.15)}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:"Tajawal",sans-serif;background:var(--dark);color:var(--text);min-height:100vh;overflow-x:hidden;padding:24px}
+#bg{position:fixed;inset:0;z-index:0;pointer-events:none}
+.wrap{position:relative;z-index:1;max-width:860px;margin:0 auto}
+.hdr{background:rgba(15,23,42,0.9);border:1.5px solid var(--border);border-radius:22px;padding:28px 30px;margin-bottom:22px;backdrop-filter:blur(12px);position:relative;overflow:hidden}
+.hdr::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--cyan),var(--purple));opacity:0.7}
+.hdr-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:14px}
+.hdr-title{font-size:24px;font-weight:900;background:linear-gradient(135deg,#fff 0%,#b2f5ff 60%,var(--cyan) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hdr-sub{font-size:13px;color:var(--muted);margin-top:4px;font-family:"Orbitron",sans-serif;letter-spacing:2px}
+.back-btn{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:9px 18px;font-family:"Tajawal",sans-serif;font-size:14px;color:var(--muted);cursor:pointer;text-decoration:none;transition:all 0.2s}
+.back-btn:hover{background:rgba(255,255,255,0.08);color:var(--text)}
+.progress-wrap{background:rgba(255,255,255,0.05);border-radius:10px;height:8px;overflow:hidden;margin-top:8px}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--cyan),var(--purple));transition:width 0.4s ease;border-radius:10px}
+.stats{display:flex;gap:18px;margin-top:14px;flex-wrap:wrap}
+.stat{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted)}
+.stat b{color:var(--cyan);font-weight:900;font-family:"Orbitron",sans-serif}
+.stat.sc b{color:var(--gold)}
+.q-card{background:rgba(15,23,42,0.85);border:1.5px solid rgba(255,255,255,0.08);border-radius:20px;padding:28px 30px;margin-bottom:18px;backdrop-filter:blur(12px);transition:all 0.3s;animation:fadeUp 0.5s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.q-num{display:inline-flex;align-items:center;gap:6px;background:rgba(0,245,255,0.1);border:1px solid rgba(0,245,255,0.2);border-radius:10px;padding:4px 12px;font-family:"Orbitron",sans-serif;font-size:11px;font-weight:900;color:var(--cyan);margin-bottom:14px;letter-spacing:1.5px}
+.q-tag{display:inline-block;margin-right:6px;background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.25);border-radius:8px;padding:3px 10px;font-size:10px;font-weight:700;color:var(--gold);letter-spacing:1px}
+.q-text{font-size:17px;font-weight:700;line-height:1.9;margin-bottom:20px}
+.q-text .verse{background:rgba(251,191,36,0.08);border:1px solid rgba(251,191,36,0.25);border-right:3px solid var(--gold);border-radius:8px;padding:10px 16px;margin:10px 0;font-family:"Amiri",serif;font-size:18px;color:#fde68a;line-height:2.2;display:block}
+.q-text .hadith{background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.25);border-right:3px solid var(--green);border-radius:8px;padding:10px 16px;margin:10px 0;font-family:"Amiri",serif;font-size:18px;color:#bbf7d0;line-height:2.2;display:block}
+.q-text .poetry{background:rgba(192,38,211,0.08);border:1px solid rgba(192,38,211,0.25);border-right:3px solid var(--purple);border-radius:8px;padding:10px 16px;margin:10px 0;font-family:"Amiri",serif;font-size:17px;color:#e9d5ff;line-height:2.2;text-align:center;display:block}
+.q-text em{color:var(--cyan);font-style:normal;font-weight:900;background:rgba(0,245,255,0.08);border-radius:5px;padding:0 6px}
+.options{display:flex;flex-direction:column;gap:10px}
+.opt{background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 18px;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:12px;font-size:15px;line-height:1.6}
+.opt:hover:not(.locked){background:rgba(0,245,255,0.05);border-color:rgba(0,245,255,0.25);transform:translateX(-3px)}
+.opt .opt-letter{font-family:"Orbitron",sans-serif;font-size:12px;font-weight:900;background:rgba(0,245,255,0.1);border:1px solid rgba(0,245,255,0.2);border-radius:8px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--cyan);transition:all 0.2s}
+.opt .opt-text{flex:1;direction:rtl}
+.opt .opt-text em{color:var(--cyan);font-style:normal;font-weight:900}
+.opt.correct{background:rgba(34,197,94,0.1);border-color:var(--green)}
+.opt.correct .opt-letter{background:var(--green);color:var(--dark);border-color:var(--green)}
+.opt.wrong{background:rgba(239,68,68,0.1);border-color:var(--red)}
+.opt.wrong .opt-letter{background:var(--red);color:#fff;border-color:var(--red)}
+.opt.locked{cursor:default}
+.feedback{margin-top:16px;padding:14px 18px;border-radius:12px;font-size:14px;line-height:1.9;display:none;animation:fadeUp 0.3s ease}
+.feedback.show{display:block}
+.feedback.ok{background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.3);color:#bbf7d0}
+.feedback.no{background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.3);color:#fecaca}
+.feedback b{color:var(--gold)}
+.feedback em{color:var(--gold);font-style:normal;font-weight:900;background:rgba(251,191,36,0.1);border-radius:4px;padding:0 6px}
+.nav-btns{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+.nav-btn{flex:1;min-width:120px;padding:12px 20px;border-radius:12px;font-family:"Tajawal",sans-serif;font-size:14px;font-weight:900;cursor:pointer;border:none;transition:all 0.2s}
+.nav-btn.primary{background:var(--cyan);color:var(--dark)}
+.nav-btn.primary:hover{filter:brightness(1.15);transform:translateY(-2px)}
+.nav-btn.primary:disabled{background:rgba(255,255,255,0.08);color:var(--muted);cursor:not-allowed;transform:none;filter:none}
+.nav-btn.ghost{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--muted)}
+.nav-btn.ghost:hover{background:rgba(255,255,255,0.08);color:var(--text)}
+.result{background:rgba(15,23,42,0.9);border:1.5px solid var(--border);border-radius:22px;padding:40px 32px;text-align:center;display:none;backdrop-filter:blur(12px)}
+.result.show{display:block;animation:fadeUp 0.5s ease}
+.result-emoji{font-size:72px;margin-bottom:14px;display:block}
+.result-score{font-family:"Orbitron",sans-serif;font-size:48px;font-weight:900;background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
+.result-msg{font-size:18px;color:var(--text);margin-bottom:8px;font-weight:700}
+.result-detail{font-size:14px;color:var(--muted);margin-bottom:28px}
+.result-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+@media(max-width:640px){body{padding:14px}.hdr{padding:20px}.q-card{padding:20px 22px}.hdr-title{font-size:20px}.result{padding:28px 20px}}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div class="wrap">
+  <div class="hdr">
+    <div class="hdr-top">
+      <div>
+        <div class="hdr-title">📖 عربي · الثاني عشر علمي</div>
+        <div class="hdr-sub">SEMESTER 2 · نصوص · نحو · بلاغة · أدب</div>
+      </div>
+      <a class="back-btn" href="index.html">→ رجوع</a>
+    </div>
+    <div class="stats">
+      <div class="stat">📖 <b id="qnum">1</b>/<b id="qtot">15</b></div>
+      <div class="stat sc">⭐ <b id="sc">0</b></div>
+      <div class="stat">✅ <b id="corr">0</b></div>
+    </div>
+    <div class="progress-wrap"><div class="progress-bar" id="prog" style="width:0"></div></div>
+  </div>
+
+  <div id="quiz"></div>
+
+  <div class="result" id="result">
+    <span class="result-emoji" id="re">🎯</span>
+    <div class="result-score" id="rs">0/15</div>
+    <div class="result-msg" id="rm">أحسنت!</div>
+    <div class="result-detail" id="rd">نسبة الإجابات الصحيحة: 0%</div>
+    <div class="result-btns">
+      <button class="nav-btn primary" onclick="restart()">🔄 حاول مرة أخرى</button>
+      <a class="nav-btn ghost" href="index.html" style="text-decoration:none;display:inline-flex;align-items:center;justify-content:center">🏠 الرئيسية</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const QUESTIONS=[
+  {
+    tag:"الحديث الشريف",
+    q:'قال ﷺ: <span class="hadith">"المسلمُ مَنْ سَلِمَ المسلمونَ من لسانِه ويدِه"</span> يبيّن الحديث:',
+    opts:['فضل الصدقة','حقيقة الإسلام في معاملة الآخرين','أهمية الصلاة','بر الوالدين'],
+    ans:1,
+    exp:'الحديث يبيّن أن <em>حقيقة الإسلام</em> في التعامل الطيب مع الآخرين، فلا يؤذي المسلم إخوانه لا بقول ولا بفعل.'
+  },
+  {
+    tag:"النحو · المبني للمجهول",
+    q:'الفعل "كُتِبَ" في قولنا: "كُتِبَ الدرسُ" هو فعل:',
+    opts:['مبني للمعلوم','مبني للمجهول','لازم','ناسخ'],
+    ans:1,
+    exp:'<em>المبني للمجهول</em>: يُحذف فاعله ويُقام المفعول به مقامه ليكون "نائب فاعل". "كُتِبَ" ⟵ مضموم الأول مكسور ما قبل الآخر.'
+  },
+  {
+    tag:"النحو · نائب الفاعل",
+    q:'في جملة: "فُتح البابُ"، كلمة "البابُ" تعرب:',
+    opts:['فاعلاً مرفوعاً','نائب فاعل مرفوعاً','مفعولاً به','مبتدأً'],
+    ans:1,
+    exp:'<em>نائب الفاعل</em> اسم مرفوع يحل محل الفاعل بعد حذفه. يأخذ حكم الفاعل في الإعراب. علامة رفعه الضمة.'
+  },
+  {
+    tag:"النحو · التوكيد",
+    q:'في جملة: "جاء الطلابُ <em>كلُّهم</em>"، كلمة "كلّهم" تعرب:',
+    opts:['نعت مرفوع','توكيد معنوي مرفوع','بدل مرفوع','عطف بيان'],
+    ans:1,
+    exp:'<em>التوكيد المعنوي</em> يُؤكد الشمول بألفاظ مخصوصة مثل: كل، جميع، عامّة، كلا، كلتا. ويتصل بضمير يعود على المؤكَّد.'
+  },
+  {
+    tag:"النحو · العطف",
+    q:'في جملة: "أحبُّ القراءةَ <em>والكتابةَ</em>"، الواو حرف:',
+    opts:['استئناف','عطف','قسم','ابتداء'],
+    ans:1,
+    exp:'<em>واو العطف</em> تفيد الجمع والمشاركة دون ترتيب. المعطوف "الكتابة" يتبع المعطوف عليه "القراءة" في الإعراب (منصوب).'
+  },
+  {
+    tag:"البلاغة · المجاز",
+    q:'في قولنا: "شربتُ ماءَ زمزم" إذا قصدنا الماء الذي ورد من زمزم، فالعلاقة:',
+    opts:['مجاز مرسل - محلية','مجاز مرسل - سببية','استعارة تصريحية','تشبيه ضمني'],
+    ans:0,
+    exp:'<em>مجاز مرسل</em> علاقته <em>محلية</em>: أطلق المحل (زمزم = البئر) وأراد الحالّ فيه (الماء). لا تُستعمل أداة التشبيه.'
+  },
+  {
+    tag:"البلاغة · الطباق",
+    q:'في قوله تعالى: "وَأَنَّهُ هُوَ أَضْحَكَ وَأَبْكَىٰ" نوع المحسن البديعي:',
+    opts:['طباق','جناس','سجع','ترصيع'],
+    ans:0,
+    exp:'<em>الطباق</em> هو الجمع بين الكلمة وضدها في الكلام. هنا: "أضحك" و"أبكى" ضدّان، وهذا طباق إيجاب.'
+  },
+  {
+    tag:"البلاغة · الجناس",
+    q:'في قول الشاعر: <span class="poetry">يا مَن يَضيع عمره باللهو واللعب</span> الجناس بين:',
+    opts:['يضيع وعمره','اللهو واللعب','يا ومن','لا جناس'],
+    ans:1,
+    exp:'<em>الجناس</em> تشابه لفظين في النطق واختلافهما في المعنى. "اللهو واللعب" بينهما تقارب صوتي وفرق في المعنى (جناس غير تام).'
+  },
+  {
+    tag:"الأدب · زهير بن أبي سلمى",
+    q:'زهير بن أبي سُلمى من شعراء العصر الجاهلي، اشتهر بـ:',
+    opts:['شعر الحروب','شعر الحكمة','شعر الفخر القبلي فقط','شعر الغزل'],
+    ans:1,
+    exp:'<em>زهير بن أبي سُلمى</em> اشتهر بـ<em>شعر الحكمة</em>. من أشهر أبياته: "ومَن يجعل المعروفَ في غير أهلِه / يكن حمدُه ذمّاً عليه ويندمِ".'
+  },
+  {
+    tag:"الأدب · المعلقات",
+    q:'من أبيات زهير المشهورة في معلقته:',
+    opts:['<span class="poetry">قِفا نبكِ من ذكرى حبيبٍ ومنزلِ</span>','<span class="poetry">ومَن لم يذُدْ عن حوضهِ بسلاحهِ / يُهدَّمْ</span>','<span class="poetry">أَلا لَيتَ شِعري هَل أَقولُ قَصيدَةً</span>','<span class="poetry">ألا كلُّ شيءٍ ما خلا اللهَ باطلُ</span>'],
+    ans:1,
+    exp:'معلقة زهير تبدأ بالوقوف على الأطلال ثم تنتقل إلى الحكمة والموعظة. بيت الذود عن الحوض من أشهر حكمه في المعلقة.'
+  },
+  {
+    tag:"الأدب · كعب بن زهير",
+    q:'قصيدة "بانتْ سعادُ" لكعب بن زهير تسمى أيضاً:',
+    opts:['المعلقة','البُردة','الهمزية','اللامية'],
+    ans:1,
+    exp:'<em>البُردة</em>: سميت كذلك لأن النبي ﷺ خلع بُردته على كعب بن زهير حين أنشدها في حضرته. من أشهر قصائد الاعتذار في الأدب العربي.'
+  },
+  {
+    tag:"الأدب · شعر الرثاء",
+    q:'من أغراض الشعر العربي التي برز فيها الخنساء:',
+    opts:['المدح','الرثاء','الهجاء','الغزل'],
+    ans:1,
+    exp:'<em>الخنساء</em> (تماضر بنت عمرو) أشهر شواعر العرب في <em>الرثاء</em>، خاصة مراثيها في أخويها صخر ومعاوية.'
+  },
+  {
+    tag:"الإملاء · الألف اللينة",
+    q:'الكتابة الصحيحة للفعل "سعى" في الماضي:',
+    opts:['سعي','سعى','سعا','سعة'],
+    ans:1,
+    exp:'<em>الألف اللينة</em> في الأفعال الثلاثية تُكتب <em>ألفاً مقصورة (ى)</em> إن كان أصلها ياء. "سعى" أصلها "سعي" ⟵ ى.'
+  },
+  {
+    tag:"الصرف · الميزان الصرفي",
+    q:'كلمة "استخرج" على الميزان الصرفي:',
+    opts:['فَعَل','فاعَل','أَفعَل','اِستَفعَل'],
+    ans:3,
+    exp:'<em>استَفعَلَ</em>: الزيادة فيها "ألف الوصل + السين + التاء". "استخرج" ⟵ "است" زائدة، و"خرج" هي الأصل. المعنى: طَلَبَ الخروج.'
+  },
+  {
+    tag:"الأساليب",
+    q:'الجملة "ما أجملَ السماءَ!" أسلوب:',
+    opts:['استفهام','تعجب','نفي','نداء'],
+    ans:1,
+    exp:'<em>أسلوب التعجب القياسي</em> على وزن "ما أفعلَ". "ما" نكرة تامة بمعنى شيء، و"أجمل" فعل ماضٍ جامد للتعجب، و"السماءَ" مفعول به.'
+  }
+];
+
+let cur=0,score=0,correctCount=0,locked=false;
+
+function render(){
+  const quiz=document.getElementById("quiz");
+  const q=QUESTIONS[cur];
+  document.getElementById("qnum").textContent=cur+1;
+  document.getElementById("qtot").textContent=QUESTIONS.length;
+  document.getElementById("prog").style.width=((cur)/QUESTIONS.length*100)+"%";
+  document.getElementById("sc").textContent=score;
+  document.getElementById("corr").textContent=correctCount;
+  locked=false;
+  const letters=["أ","ب","ج","د"];
+  quiz.innerHTML=`
+    <div class="q-card">
+      <div class="q-num">Q${String(cur+1).padStart(2,"0")}${q.tag?`<span class="q-tag">${q.tag}</span>`:""}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="options" id="opts">
+        ${q.opts.map((o,i)=>`<div class="opt" data-i="${i}"><span class="opt-letter">${letters[i]}</span><span class="opt-text">${o}</span></div>`).join("")}
+      </div>
+      <div class="feedback" id="fb"></div>
+      <div class="nav-btns">
+        <button class="nav-btn primary" id="nxt" disabled>${cur===QUESTIONS.length-1?"📊 عرض النتيجة":"السؤال التالي ←"}</button>
+      </div>
+    </div>`;
+  quiz.querySelectorAll(".opt").forEach(el=>el.onclick=()=>pick(parseInt(el.dataset.i)));
+  document.getElementById("nxt").onclick=next;
+}
+
+function pick(i){
+  if(locked)return;locked=true;
+  const q=QUESTIONS[cur];
+  const opts=document.querySelectorAll(".opt");
+  opts.forEach(o=>o.classList.add("locked"));
+  const fb=document.getElementById("fb");
+  if(i===q.ans){opts[i].classList.add("correct");score+=10;correctCount++;fb.className="feedback show ok";fb.innerHTML=`<b>✅ إجابة صحيحة!</b><br>${q.exp}`}
+  else{opts[i].classList.add("wrong");opts[q.ans].classList.add("correct");fb.className="feedback show no";fb.innerHTML=`<b>❌ إجابة غير صحيحة</b><br>${q.exp}`}
+  document.getElementById("nxt").disabled=false;
+  document.getElementById("sc").textContent=score;
+  document.getElementById("corr").textContent=correctCount;
+}
+
+function next(){if(cur===QUESTIONS.length-1){showResult();return}cur++;render()}
+
+function showResult(){
+  document.getElementById("quiz").style.display="none";
+  const r=document.getElementById("result");r.classList.add("show");
+  const pct=Math.round(correctCount/QUESTIONS.length*100);
+  document.getElementById("rs").textContent=`${correctCount}/${QUESTIONS.length}`;
+  document.getElementById("rd").textContent=`نسبة الإجابات الصحيحة: ${pct}% · مجموع النقاط: ${score}`;
+  let emoji="🎯",msg="أحسنت المحاولة!";
+  if(pct>=90){emoji="🏆";msg="ممتاز! أداء رائع جداً"}
+  else if(pct>=75){emoji="⭐";msg="جيد جداً، استمر!"}
+  else if(pct>=50){emoji="📚";msg="جيد، راجع بعض المواضيع"}
+  else{emoji="💪";msg="حاول مرة أخرى، ستتحسن!"}
+  document.getElementById("re").textContent=emoji;
+  document.getElementById("rm").textContent=msg;
+  document.getElementById("prog").style.width="100%";
+}
+
+function restart(){cur=0;score=0;correctCount=0;document.getElementById("result").classList.remove("show");document.getElementById("quiz").style.display="block";render()}
+
+render();
+
+const cv=document.getElementById("bg"),cx=cv.getContext("2d");let ns=[];
+function rsz(){cv.width=innerWidth;cv.height=innerHeight}
+function ini(){ns=Array.from({length:40},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,r:Math.random()*2.2+1}))}
+function draw(){
+  cx.clearRect(0,0,cv.width,cv.height);
+  ns.forEach(n=>{n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>cv.width)n.vx*=-1;if(n.y<0||n.y>cv.height)n.vy*=-1});
+  for(let i=0;i<ns.length;i++)for(let j=i+1;j<ns.length;j++){const dx=ns[i].x-ns[j].x,dy=ns[i].y-ns[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<150){cx.beginPath();cx.moveTo(ns[i].x,ns[i].y);cx.lineTo(ns[j].x,ns[j].y);cx.strokeStyle=`rgba(0,245,255,${(1-d/150)*.08})`;cx.lineWidth=.6;cx.stroke()}}
+  ns.forEach(n=>{cx.beginPath();cx.arc(n.x,n.y,n.r,0,Math.PI*2);cx.fillStyle="rgba(0,245,255,0.2)";cx.fill()});
+  requestAnimationFrame(draw);
+}
+rsz();ini();draw();addEventListener("resize",()=>{rsz();ini()});
+</script>
+</body>
+</html>

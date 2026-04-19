@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>English — Semester 2 | Module 1: Culture</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--c:#3b82f6;--c2:#1d4ed8;--bg:#020a1a;--brd:rgba(59,130,246,0.2);--txt:#f0f4ff;--mut:rgba(200,215,255,0.65);--red:#ef4444;--grn:#22c55e}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Inter","Segoe UI",sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow-x:hidden}
+#bgc{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+#cfcvs{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:6}
+#fb-el{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);font-size:90px;z-index:100;pointer-events:none}
+#fb-el.sc{animation:fbSc 0.9s ease forwards}
+#fb-el.wr{animation:fbWr 0.9s ease forwards}
+@keyframes fbSc{0%{transform:translate(-50%,-50%) scale(0);opacity:0}40%{transform:translate(-50%,-50%) scale(1.25);opacity:1}100%{transform:translate(-50%,-65%) scale(0.6);opacity:0}}
+@keyframes fbWr{0%{transform:translate(-50%,-50%) scale(0);opacity:0}40%{transform:translate(-50%,-50%) scale(1.15);opacity:1}100%{transform:translate(-50%,-65%) scale(0.6);opacity:0}}
+.wrap{position:relative;z-index:10;width:100%;max-width:960px;padding:20px 28px;display:flex;flex-direction:column;gap:14px}
+.header{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:13px;font-weight:700;color:var(--c);letter-spacing:1.5px;text-transform:uppercase;opacity:0.85}
+.score-badge{background:rgba(255,255,255,0.04);border:2px solid var(--c);border-radius:50px;padding:7px 20px;display:flex;align-items:center;gap:8px;box-shadow:0 0 16px rgba(0,0,0,0.3)}
+.sc-lbl{font-size:13px;color:var(--mut)}
+.sc-val{font-size:26px;font-weight:800;color:var(--c);transition:transform 0.3s cubic-bezier(.34,1.56,.64,1)}
+.sc-val.pop{transform:scale(1.5)}
+.prog-track{width:100%;height:6px;background:rgba(255,255,255,0.07);border-radius:999px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--c2),var(--c));border-radius:999px;transition:width 0.5s ease}
+.prog-lbl{text-align:center;font-size:13px;color:var(--mut);margin-top:2px}
+.streak-bar{display:flex;gap:5px;justify-content:center}
+.sd{width:20px;height:7px;border-radius:4px;background:rgba(255,255,255,0.08);transition:all 0.3s}
+.sd.filled{background:var(--c);box-shadow:0 0 5px var(--c)}
+.qcard{background:rgba(255,255,255,0.03);border:1.5px solid var(--brd);border-radius:20px;padding:30px 34px;backdrop-filter:blur(12px)}
+.qcard.si{animation:sIn 0.4s cubic-bezier(.34,1.56,.64,1) forwards}
+@keyframes sIn{from{transform:translateX(60px);opacity:0}to{transform:translateX(0);opacity:1}}
+.q-num{font-size:12px;font-weight:700;color:var(--c);margin-bottom:10px;letter-spacing:2px;opacity:0.8}
+.q-text{font-size:22px;font-weight:700;line-height:1.65;color:var(--txt);margin-bottom:22px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.opt{background:rgba(255,255,255,0.04);border:2px solid rgba(255,255,255,0.08);border-radius:14px;padding:16px 18px;font-family:"Inter","Segoe UI",sans-serif;font-size:17px;font-weight:600;color:#dde;cursor:pointer;display:flex;align-items:center;gap:11px;transition:all 0.17s ease;text-align:left;line-height:1.4}
+.opt:hover:not(:disabled){border-color:rgba(255,255,255,0.25);transform:translateY(-2px);color:#fff}
+.opt-ltr{font-size:13px;font-weight:800;color:var(--c);background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.12);border-radius:7px;min-width:34px;height:34px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.opt.correct{background:rgba(34,197,94,0.12)!important;border-color:var(--grn)!important;color:#fff!important;animation:cpulse 0.5s ease}
+.opt.correct .opt-ltr{background:var(--grn);color:#fff;border-color:var(--grn)}
+@keyframes cpulse{0%{transform:scale(1)}40%{transform:scale(1.03)}100%{transform:scale(1)}}
+.opt.wrong{background:rgba(239,68,68,0.1)!important;border-color:var(--red)!important;animation:shake 0.4s ease}
+.opt.wrong .opt-ltr{background:var(--red);color:#fff;border-color:var(--red)}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.explanation{margin-top:14px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.1);border-left:3px solid var(--c);border-radius:10px;padding:13px 16px;font-size:15px;line-height:1.8;color:var(--mut);display:none}
+.explanation.show{display:block;animation:fadeIn 0.3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.next-btn{margin-top:12px;width:100%;padding:13px;background:linear-gradient(135deg,var(--c2),var(--c));border:none;border-radius:10px;font-family:"Inter","Segoe UI",sans-serif;font-size:17px;font-weight:800;color:#fff;cursor:pointer;display:none;transition:all 0.2s}
+.next-btn.show{display:block;animation:fadeIn 0.25s ease}
+.next-btn:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.final{display:none;flex-direction:column;align-items:center;text-align:center;padding:50px 28px;max-width:650px;margin:0 auto}
+.final.vis{display:flex;animation:fadeIn 0.4s ease}
+.f-stars{font-size:44px;margin-bottom:14px}
+.f-title{font-size:30px;font-weight:800;margin-bottom:8px}
+.f-msg{font-size:16px;color:var(--mut);margin-bottom:24px;line-height:1.7}
+.f-score-box{background:rgba(255,255,255,0.04);border:2px solid var(--c);border-radius:18px;padding:24px 52px;margin-bottom:28px}
+.f-sc-lbl{font-size:14px;color:var(--mut);margin-bottom:4px}
+.f-sc-num{font-size:58px;font-weight:800;color:var(--c)}
+.restart-btn{background:linear-gradient(135deg,var(--c2),var(--c));color:#fff;border:none;border-radius:12px;padding:14px 44px;font-family:"Inter","Segoe UI",sans-serif;font-size:18px;font-weight:800;cursor:pointer;margin-bottom:14px;transition:all 0.2s}
+.restart-btn:hover{filter:brightness(1.1);transform:translateY(-2px)}
+.back-home{color:var(--mut);font-size:14px;cursor:pointer;text-decoration:underline}
+@media(max-width:600px){.wrap{padding:12px 14px}.q-text{font-size:18px}.opts{grid-template-columns:1fr}.opt{font-size:16px}}
+</style>
+</head>
+<body>
+<canvas id="bgc"></canvas>
+<canvas id="cfcvs"></canvas>
+<div id="fb-el"></div>
+
+<div class="wrap" id="quiz-screen">
+  <div class="header">
+    <div class="logo">🇬🇧 ENGLISH GRADE 10</div>
+    <div class="score-badge"><span class="sc-lbl">Score</span><span class="sc-val" id="sc-val">0</span></div>
+  </div>
+  <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+  <div class="prog-lbl" id="prog-lbl"></div>
+  <div class="streak-bar" id="streak-bar"></div>
+  <div class="qcard" id="qcard">
+    <div class="q-num" id="q-num"></div>
+    <div class="q-text" id="q-text"></div>
+    <div class="opts" id="opts-grid"></div>
+    <div class="explanation" id="explanation"></div>
+    <button class="next-btn" id="next-btn" onclick="nextQ()">Next →</button>
+  </div>
+</div>
+
+<div class="final" id="final-screen">
+  <div class="f-stars" id="f-stars"></div>
+  <div class="f-title" id="f-title"></div>
+  <div class="f-msg" id="f-msg"></div>
+  <div class="f-score-box"><div class="f-sc-lbl">Total Score</div><div class="f-sc-num" id="f-sc-num">0</div></div>
+  <button class="restart-btn" onclick="restart()">🔄 Try Again</button>
+  <span class="back-home" onclick="window.history.back()">← Back to site</span>
+</div>
+
+<script>
+const QS=[{"q": "In Unit 1 'We Are What We Eat', what does 'obesity' mean?", "opts": ["Being very athletic", "The condition of being very overweight, which can harm health", "A type of healthy diet", "Being extremely tired after exercise"], "ans": 1, "exp": "Obesity is a medical condition where a person has excess body fat that presents a risk to their health. It is linked to poor diet, lack of exercise, and other factors."}, {"q": "Unit 2 is 'Respecting Cultures'. Which is an example of showing cultural respect?", "opts": ["Laughing at other people's traditions", "Learning about and accepting the customs and beliefs of others", "Insisting your culture is the best", "Refusing to try different food"], "ans": 1, "exp": "Showing cultural respect means being open to and accepting of the customs, traditions, beliefs, and practices of other cultures, even when they are different from your own."}, {"q": "Unit 3 covers 'Inspiring Architecture'. The Burj Khalifa is an example of what type of architecture?", "opts": ["Medieval Gothic architecture", "Modern skyscraper architecture", "Ancient Roman architecture", "Traditional Bedouin architecture"], "ans": 1, "exp": "The Burj Khalifa in Dubai is an iconic example of modern skyscraper architecture — featuring a sleek design, advanced engineering, and record-breaking height. It represents the modern architectural ambition of the Gulf region."}, {"q": "The 'Focus on' section in Module 1 highlights 'Traditional Dress in Kuwait'. What is the traditional dress for Kuwaiti women called?", "opts": ["Abaya", "Kandora", "Bisht", "Ghutra"], "ans": 0, "exp": "The abaya is the traditional outer garment worn by Kuwaiti and many Arab women. It is typically black and worn as a sign of modesty and cultural identity. The 'Focus on' section explores traditional Kuwaiti culture and identity."}, {"q": "In reading comprehension, what is the purpose of a 'topic sentence'?", "opts": ["To conclude a paragraph", "To introduce the main idea of a paragraph", "To provide specific examples", "To ask a question for the reader"], "ans": 1, "exp": "A topic sentence introduces and states the main idea of a paragraph. It is usually the first sentence of the paragraph and tells the reader what the paragraph is going to be about."}, {"q": "Which grammar structure is used to compare two things of equal quality?", "opts": ["Comparative adjective (-er)", "Superlative adjective (-est)", "'As ... as' structure", "Present perfect tense"], "ans": 2, "exp": "The 'as ... as' structure is used to compare two things that are equal in some quality. E.g. 'Kuwait is as hot as Dubai in summer.' It shows equality between the two things being compared."}, {"q": "What does 'cross-curricular' mean in the context of this course?", "opts": ["Topics taught only in English class", "Topics that connect to other subjects like science, history and geography", "Topics that are only about Kuwait", "Grammar rules used in all languages"], "ans": 1, "exp": "'Cross-curricular' means connecting topics from different school subjects. The English for Kuwait course uses topics from science, history, geography, and culture so students learn English while gaining broader knowledge."}, {"q": "What is the language function of saying: 'I'd prefer to... / I'd rather...'?", "opts": ["Expressing certainty", "Expressing preferences", "Giving instructions", "Describing a place"], "ans": 1, "exp": "'I'd prefer to...' and 'I'd rather...' are used to express preferences — to say what you like or want more than something else. E.g. 'I'd prefer to eat at home rather than go to a restaurant.'"}, {"q": "In Unit 1, which nutrient is especially important for muscle repair after exercise?", "opts": ["Carbohydrates", "Fats", "Protein", "Vitamins"], "ans": 2, "exp": "Protein is essential for repairing and building muscle tissue after exercise. Athletes need sufficient protein in their diet to recover properly and improve their physical performance."}, {"q": "What type of text presents arguments for and against an issue, then gives a conclusion?", "opts": ["A narrative text", "A descriptive text", "A discursive (for and against) essay", "A personal letter"], "ans": 2, "exp": "A discursive essay (for and against essay) presents arguments on both sides of an issue before giving a conclusion. It develops critical thinking skills and is a key writing type in the Grade 10 course."}];
+const L=["A", "B", "C", "D"];
+let cq=0,sc=0,answered=false;
+const cfc=document.getElementById('cfcvs'),ccx=cfc.getContext('2d');
+cfc.width=innerWidth;cfc.height=innerHeight;
+let cfs=[];
+function launchCf(x,y,n=16){const cols=['#3b82f6','#fff','#fbbf24','#22c55e','#a855f7'];for(let i=0;i<n;i++)cfs.push({x,y,vx:(Math.random()-.5)*12,vy:(Math.random()-1)*10,r:Math.random()*5+2,color:cols[Math.floor(Math.random()*cols.length)],life:1,spin:Math.random()*5-2.5,angle:Math.random()*360})}
+function drawCf(){ccx.clearRect(0,0,cfc.width,cfc.height);cfs=cfs.filter(c=>c.life>0);cfs.forEach(c=>{c.x+=c.vx;c.y+=c.vy;c.vy+=0.35;c.life-=0.022;c.angle+=c.spin;ccx.save();ccx.globalAlpha=c.life;ccx.translate(c.x,c.y);ccx.rotate(c.angle*Math.PI/180);ccx.fillStyle=c.color;ccx.fillRect(-c.r/2,-c.r/2,c.r,c.r*2);ccx.restore()});requestAnimationFrame(drawCf)}
+drawCf();
+const bgc=document.getElementById('bgc'),bgx=bgc.getContext('2d');
+let ns=[];
+function rszBg(){bgc.width=innerWidth;bgc.height=innerHeight;ns=Array.from({length:40},()=>{return{x:Math.random()*bgc.width,y:Math.random()*bgc.height,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,r:Math.random()*2+1}})}
+function drawBg(){bgx.clearRect(0,0,bgc.width,bgc.height);ns.forEach(n=>{n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>bgc.width)n.vx*=-1;if(n.y<0||n.y>bgc.height)n.vy*=-1});for(let i=0;i<ns.length;i++)for(let j=i+1;j<ns.length;j++){const dx=ns[i].x-ns[j].x,dy=ns[i].y-ns[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<140){bgx.beginPath();bgx.moveTo(ns[i].x,ns[i].y);bgx.lineTo(ns[j].x,ns[j].y);bgx.strokeStyle=`rgba(255,255,255,${(1-d/140)*.06})`;bgx.lineWidth=.5;bgx.stroke()}}ns.forEach(n=>{bgx.beginPath();bgx.arc(n.x,n.y,n.r,0,Math.PI*2);bgx.fillStyle='rgba(255,255,255,0.12)';bgx.fill()});requestAnimationFrame(drawBg)}
+rszBg();drawBg();
+window.addEventListener('resize',()=>{rszBg();cfc.width=innerWidth;cfc.height=innerHeight});
+function buildStreak(){const bar=document.getElementById('streak-bar');bar.innerHTML='';for(let i=0;i<QS.length;i++){const d=document.createElement('div');d.className='sd'+(i<cq?' filled':'');bar.appendChild(d)}}
+function loadQ(){
+  answered=false;
+  document.getElementById('next-btn').classList.remove('show');
+  const expEl=document.getElementById('explanation');expEl.classList.remove('show');expEl.style.display='none';
+  const q=QS[cq];
+  document.getElementById('prog-fill').style.width=((cq/QS.length)*100)+'%';
+  document.getElementById('prog-lbl').textContent='Question '+(cq+1)+' of '+QS.length;
+  document.getElementById('q-num').textContent='QUESTION '+String(cq+1).padStart(2,'0');
+  const card=document.getElementById('qcard');card.classList.remove('si');void card.offsetWidth;card.classList.add('si');
+  document.getElementById('q-text').textContent=q.q;
+  const grid=document.getElementById('opts-grid');grid.innerHTML='';
+  q.opts.forEach((opt,i)=>{const btn=document.createElement('button');btn.className='opt';btn.innerHTML=`<span class="opt-ltr">${L[i]}</span><span>${opt}</span>`;btn.addEventListener('click',()=>pick(i,btn));grid.appendChild(btn)});
+  buildStreak();
+}
+function pick(idx,btn){
+  if(answered)return;answered=true;
+  const q=QS[cq];const btns=document.querySelectorAll('.opt');btns.forEach(b=>b.disabled=true);
+  const fb=document.getElementById('fb-el');fb.classList.remove('sc','wr');
+  if(idx===q.ans){
+    btn.classList.add('correct');sc+=10;
+    const sv=document.getElementById('sc-val');sv.textContent=sc;sv.classList.remove('pop');void sv.offsetWidth;sv.classList.add('pop');setTimeout(()=>sv.classList.remove('pop'),400);
+    fb.textContent=['✅','🎯','⭐','🔥','💥'][Math.floor(Math.random()*5)];fb.classList.add('sc');
+    for(let i=0;i<3;i++)setTimeout(()=>launchCf(innerWidth*(0.2+Math.random()*0.6),innerHeight*0.4),i*80);
+    setTimeout(()=>document.getElementById('next-btn').classList.add('show'),500);
+  }else{
+    btn.classList.add('wrong');btns[q.ans].classList.add('correct');
+    fb.textContent=['❌','😬','💭','🙈'][Math.floor(Math.random()*4)];fb.classList.add('wr');
+    const expEl=document.getElementById('explanation');expEl.textContent='💡 '+q.exp;expEl.style.display='block';setTimeout(()=>expEl.classList.add('show'),50);
+    setTimeout(()=>document.getElementById('next-btn').classList.add('show'),350);
+  }
+  buildStreak();
+}
+function nextQ(){cq++;if(cq<QS.length)loadQ();else showFinal()}
+function showFinal(){
+  document.getElementById('quiz-screen').style.display='none';
+  document.getElementById('final-screen').classList.add('vis');
+  document.getElementById('f-sc-num').textContent=sc;
+  const pct=sc/(QS.length*10);
+  const f=pct===1?["\ud83c\udf1f Perfect score!", "Excellent! You answered everything correctly \u2014 well done!", "\u2b50\u2b50\u2b50\u2b50\u2b50"]:pct>=0.75?["\ud83d\udd25 Great job!", "Almost perfect \u2014 just a little more review needed!", "\u2b50\u2b50\u2b50\u2b50"]:pct>=0.5?["\ud83d\udc4d Good effort!", "Not bad \u2014 keep reviewing and you'll improve!", "\u2b50\u2b50\u2b50"]:["\ud83d\udca1 Keep trying!", "Review your notes and try again \u2014 you've got this!", "\u2b50\u2b50"];
+  document.getElementById('f-title').textContent=f[0];document.getElementById('f-msg').textContent=f[1];document.getElementById('f-stars').textContent=f[2];
+  setTimeout(()=>{for(let i=0;i<8;i++)setTimeout(()=>launchCf(innerWidth*Math.random(),-20,20),i*100)},200);
+}
+function restart(){cq=0;sc=0;answered=false;cfs=[];document.getElementById('sc-val').textContent='0';document.getElementById('final-screen').classList.remove('vis');document.getElementById('quiz-screen').style.display='flex';loadQ()}
+loadQ();
+</script>
+</body>
+</html>

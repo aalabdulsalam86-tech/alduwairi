@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>حاسوب — الفصل الثاني | الوحدة الأولى: العلاقات في قواعد البيانات</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--c:#22d3ee;--c2:#0e7490;--bg:#020c10;--brd:rgba(34,211,238,.18);--txt:#f1f5f9;--mut:rgba(241,245,249,.62);--red:#ef4444;--grn:#22c55e}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Tajawal","Arial",sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow-x:hidden}
+#bgc,#cfc{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none}#bgc{z-index:0}#cfc{z-index:6}
+#fb{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);font-size:88px;z-index:100;pointer-events:none}
+#fb.sc{animation:fbs .9s ease forwards}#fb.wr{animation:fbw .9s ease forwards}
+@keyframes fbs{0%{transform:translate(-50%,-50%) scale(0);opacity:0}40%{transform:translate(-50%,-50%) scale(1.25);opacity:1}100%{transform:translate(-50%,-65%) scale(.6);opacity:0}}
+@keyframes fbw{0%{transform:translate(-50%,-50%) scale(0);opacity:0}40%{transform:translate(-50%,-50%) scale(1.1);opacity:1}100%{transform:translate(-50%,-65%) scale(.6);opacity:0}}
+.wrap{position:relative;z-index:10;width:100%;max-width:960px;padding:18px 26px;display:flex;flex-direction:column;gap:13px}
+.hdr{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:13px;font-weight:900;color:var(--c);letter-spacing:1.5px;text-shadow:0 0 14px color-mix(in srgb,var(--c) 50%,transparent)}
+.sb{background:rgba(255,255,255,.04);border:2px solid var(--c);border-radius:50px;padding:7px 20px;display:flex;align-items:center;gap:7px}
+.sl{font-size:13px;color:var(--mut)}.sv{font-size:25px;font-weight:900;color:var(--c);transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
+.sv.pop{transform:scale(1.55)}
+.ptrack{width:100%;height:6px;background:rgba(255,255,255,.07);border-radius:99px;overflow:hidden}
+.pfill{height:100%;background:linear-gradient(90deg,var(--c2),var(--c));border-radius:99px;transition:width .5s ease}
+.plbl{text-align:center;font-size:13px;color:var(--mut);margin-top:2px}
+.sbar{display:flex;gap:5px;justify-content:center}
+.sd{width:20px;height:7px;border-radius:4px;background:rgba(255,255,255,.08);transition:all .3s}
+.sd.on{background:var(--c);box-shadow:0 0 6px var(--c)}
+.qcard{background:rgba(255,255,255,.03);border:1.5px solid var(--brd);border-radius:20px;padding:28px 32px;backdrop-filter:blur(10px)}
+.qcard.si{animation:si .4s cubic-bezier(.34,1.56,.64,1) forwards}
+@keyframes si{from{transform:translateX(55px);opacity:0}to{transform:translateX(0);opacity:1}}
+.qn{font-size:12px;font-weight:700;color:var(--c);margin-bottom:9px;letter-spacing:2px;opacity:.8}
+.qt{font-size:20px;font-weight:700;line-height:1.7;margin-bottom:18px}
+.code{font-family:"Courier New",monospace;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:10px 14px;font-size:13px;color:#a5f3fc;display:block;margin:10px 0;direction:ltr;text-align:left;white-space:pre;overflow-x:auto}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.opt{background:rgba(255,255,255,.04);border:2px solid rgba(255,255,255,.08);border-radius:13px;padding:14px 16px;font-family:"Tajawal","Arial",sans-serif;font-size:15px;font-weight:700;color:#dde;cursor:pointer;display:flex;align-items:flex-start;gap:10px;transition:all .17s;line-height:1.5;text-align:right}
+.opt:hover:not(:disabled){border-color:rgba(255,255,255,.25);transform:translateY(-2px);color:#fff}
+.ltr{font-size:13px;font-weight:900;color:var(--c);background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.12);border-radius:7px;min-width:32px;height:32px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;font-family:"Courier New",monospace}
+.opt.correct{background:rgba(34,197,94,.12)!important;border-color:var(--grn)!important;color:#fff!important;animation:cp .5s ease}
+.opt.correct .ltr{background:var(--grn);color:#fff;border-color:var(--grn)}
+@keyframes cp{0%{transform:scale(1)}40%{transform:scale(1.03)}100%{transform:scale(1)}}
+.opt.wrong{background:rgba(239,68,68,.1)!important;border-color:var(--red)!important;animation:shk .4s ease}
+.opt.wrong .ltr{background:var(--red);color:#fff;border-color:var(--red)}
+@keyframes shk{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+.exp{margin-top:13px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.09);border-right:3px solid var(--c);border-radius:10px;padding:12px 15px;font-size:15px;line-height:1.85;color:var(--mut);display:none}
+.exp.show{display:block;animation:fd .3s ease}
+@keyframes fd{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.nbtn{margin-top:11px;width:100%;padding:12px;background:linear-gradient(135deg,var(--c2),var(--c));border:none;border-radius:10px;font-family:"Tajawal","Arial",sans-serif;font-size:16px;font-weight:900;color:#fff;cursor:pointer;display:none;transition:all .2s}
+.nbtn.show{display:block;animation:fd .25s ease}.nbtn:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.final{display:none;flex-direction:column;align-items:center;text-align:center;padding:46px 24px;max-width:620px;margin:0 auto}
+.final.vis{display:flex;animation:fd .4s ease}
+.fstars{font-size:42px;margin-bottom:12px}.ftitle{font-size:28px;font-weight:900;margin-bottom:7px}
+.fmsg{font-size:16px;color:var(--mut);margin-bottom:22px;line-height:1.7}
+.fsbox{background:rgba(255,255,255,.04);border:2px solid var(--c);border-radius:16px;padding:22px 48px;margin-bottom:24px}
+.fslbl{font-size:13px;color:var(--mut);margin-bottom:3px}.fsnum{font-size:56px;font-weight:900;color:var(--c)}
+.rbtn{background:linear-gradient(135deg,var(--c2),var(--c));color:#fff;border:none;border-radius:12px;padding:13px 40px;font-family:"Tajawal","Arial",sans-serif;font-size:17px;font-weight:900;cursor:pointer;margin-bottom:12px;transition:all .2s}
+.rbtn:hover{filter:brightness(1.1);transform:translateY(-2px)}
+.bhome{color:var(--mut);font-size:14px;cursor:pointer;text-decoration:underline}
+@media(max-width:600px){.wrap{padding:11px 13px}.qt{font-size:17px}.opts{grid-template-columns:1fr}.opt{font-size:14px}}
+</style></head><body>
+<canvas id="bgc"></canvas><canvas id="cfc"></canvas><div id="fb"></div>
+<div class="wrap" id="qs">
+  <div class="hdr"><div class="logo">🔗 حاسوب — الصف الحادي عشر علمي</div>
+  <div class="sb"><span class="sl">Score</span><span class="sv" id="sv">0</span></div></div>
+  <div class="ptrack"><div class="pfill" id="pf" style="width:0%"></div></div>
+  <div class="plbl" id="pl"></div><div class="sbar" id="sbar"></div>
+  <div class="qcard" id="qc">
+    <div class="qn" id="qn"></div><div class="qt" id="qt"></div>
+    <div class="opts" id="og"></div><div class="exp" id="ex"></div>
+    <button class="nbtn" id="nb" onclick="nxt()">Next ←</button>
+  </div>
+</div>
+<div class="final" id="fs">
+  <div class="fstars" id="fst"></div><div class="ftitle" id="ftl"></div>
+  <div class="fmsg" id="fmg"></div>
+  <div class="fsbox"><div class="fslbl">Total Score</div><div class="fsnum" id="fsn">0</div></div>
+  <button class="rbtn" onclick="rst()">🔄 Try Again</button>
+  <span class="bhome" onclick="window.history.back()">← Back to site</span>
+</div>
+<script>
+const QS=[{"q": "ما العلاقات Relationships في قواعد البيانات العلائقية ولماذا هي مهمة؟", "opts": ["روابط بين صفحات الويب لا علاقة لها بقواعد البيانات", "روابط منطقية تربط بيانات جداول مختلفة ببعضها؛ أهميتها: تنظيم البيانات Data Management، استرجاعها Data Retrieval، منع التكرار Redundancy، وضمان تكامل البيانات Data Integrity — أساس قواعد البيانات العلائقية الحديثة", "إعدادات حماية كلمات المرور في قواعد البيانات", "أساليب نسخ البيانات احتياطياً"], "ans": 1, "exp": "العلاقات في قواعد البيانات: تُمكِّن من: (1) ربط جداول منفصلة ببيانات مشتركة. (2) منع تكرار البيانات Redundancy. (3) ضمان تكامل البيانات Referential Integrity. (4) استعلامات معقدة تجمع بيانات من عدة جداول. أنواعها: One-to-One (1:1)، One-to-Many (1:M)، Many-to-Many (M:N)."}, {"q": "ما علاقة One-to-Many وكيف تُطبَّق في قواعد البيانات؟", "opts": ["كل صف في الجدول الأول يرتبط بصف واحد فقط في الثاني", "صف واحد في الجدول الأب (Parent Table) يرتبط بصفوف متعددة في الجدول الابن (Child Table) — مثال: جدول class (أب) يرتبط بجدول students (ابن): صف صف دراسي واحد ↔ عدة طلاب. يُنفَّذ بـ Foreign Key في الجدول الابن", "كل جدول مستقل ولا علاقة بينهما", "العلاقة تعني دمج الجدولين في جدول واحد"], "ans": 1, "exp": "One-to-Many (1:M): الأكثر شيوعاً في قواعد البيانات. أمثلة: (1) كل مدرس → عدة طلاب. (2) كل قسم → عدة موظفين. (3) كل عميل → عدة طلبات. التطبيق: يُضاف عمود Foreign Key في الجدول الابن يُشير إلى Primary Key الجدول الأب. مثال: student.class_id → class.id."}, {"q": "ما FOREIGN KEY Constraint وكيف يُنشأ في SQLite؟", "opts": ["أمر لحذف الجداول المرتبطة تلقائياً", "قيد يربط عمود في جدول ابن بـ Primary Key جدول أب لضمان التكامل المرجعي — يمنع إضافة قيمة في الابن غير موجودة في الأب؛ يتطلب تفعيل: PRAGMA foreign_keys = ON", "قاعدة لتحديد سرعة الاستعلام", "نوع خاص من الأعداد في SQLite"], "ans": 1, "code": "-- تفعيل Foreign Keys في SQLite\nconnection.execute('PRAGMA foreign_keys = ON')\n\ncursor.execute('''\n  CREATE TABLE IF NOT EXISTS students (\n    id       INTEGER PRIMARY KEY,\n    name     TEXT NOT NULL,\n    class_id INTEGER,\n    FOREIGN KEY (class_id) REFERENCES classes(id)\n  )\n''')", "exp": "FOREIGN KEY: يربط class_id في students بـ id في classes. Referential Integrity: لا يمكن إضافة طالب بـ class_id غير موجود في جدول classes. PRAGMA foreign_keys = ON: ضروري في SQLite لتفعيل هذا القيد (غير مفعَّل افتراضياً). ON DELETE CASCADE: حذف الأب يحذف الأبناء تلقائياً."}, {"q": "ما عمليات CRUD وما دورها في إدارة البيانات في الجداول المترابطة؟", "opts": ["CRUD = Create, Run, Update, Debug", "CRUD = Create (INSERT), Read (SELECT), Update (UPDATE), Delete (DELETE) — العمليات الأساسية الأربع لإدارة أي قاعدة بيانات؛ في الجداول المترابطة يجب مراعاة ترتيب الإدخال: الأب أولاً ثم الابن، والحذف: الابن أولاً ثم الأب", "CRUD = Copy, Retrieve, Upload, Download", "CRUD = Code, Run, Upload, Deploy"], "ans": 1, "exp": "CRUD Operations: C = Create (INSERT INTO): إضافة سجلات جديدة. R = Read (SELECT FROM): قراءة واسترجاع البيانات. U = Update (UPDATE SET): تعديل بيانات موجودة. D = Delete (DELETE FROM): حذف سجلات. في الجداول المترابطة: INSERT الأب قبل الابن (Foreign Key). DELETE الابن قبل الأب (لتجنب Foreign Key violation)."}, {"q": "كيف نُضيف بيانات في جداول مترابطة مع مراعاة التكامل المرجعي؟", "opts": ["نُضيف الابن أولاً ثم الأب", "نُضيف الأب (Parent) أولاً للحصول على Primary Key، ثم نُضيف الابن (Child) مستخدمين القيمة المُولَّدة كـ Foreign Key — يُستخدم cursor.lastrowid للحصول على id الصف المُضاف الأخير", "نُضيف الجدولين في نفس الوقت معاً", "لا يهم ترتيب الإضافة في الجداول المترابطة"], "ans": 1, "code": "# 1. إضافة الأب (Class) أولاً\ncursor.execute(\n  'INSERT INTO classes (name) VALUES (?)', ('11S3',)\n)\nclass_id = cursor.lastrowid  # الحصول على ID الأب\n\n# 2. إضافة الابن (Student) مع Foreign Key\ncursor.execute(\n  'INSERT INTO students (name, class_id) VALUES (?, ?)',\n  ('Bader Abdullah', class_id)\n)\nconnection.commit()", "exp": "الترتيب الصحيح للإدخال في الجداول المترابطة: (1) INSERT في الجدول الأب أولاً. (2) cursor.lastrowid: يُعيد id الصف المُضاف الأخير. (3) استخدام هذا الـ id كـ Foreign Key في الجدول الابن. إذا أضفت الابن أولاً: Foreign Key Constraint Error لأن الأب غير موجود."}, {"q": "ما JOIN في SQL وكيف يُستخدم للاستعلام عن بيانات من جداول مترابطة؟", "opts": ["JOIN يدمج جدولين في جدول واحد جديد بشكل دائم", "JOIN يُستخدم في SELECT لاسترجاع بيانات من جدولين أو أكثر مترابطَين في استعلام واحد — أشهرها INNER JOIN يُعيد الصفوف المشتركة بين الجدولين حيث تتطابق قيم Foreign Key مع Primary Key", "JOIN يُحدِّث بيانات عدة جداول في آنٍ واحد", "JOIN أمر لإضافة عمود جديد للجدول"], "ans": 1, "code": "cursor.execute('''\n  SELECT students.name, classes.name AS class\n  FROM students\n  INNER JOIN classes\n  ON students.class_id = classes.id\n  WHERE classes.name = ?\n''', ('11S3',))\nresults = cursor.fetchall()", "exp": "INNER JOIN: يُعيد الصفوف الموجودة في كلا الجدولين (التقاطع). الصياغة: FROM table1 INNER JOIN table2 ON table1.fk = table2.pk. أنواع أخرى: LEFT JOIN (جميع صفوف اليسار + المطابق من اليمين)، RIGHT JOIN (العكس). في المثال: يجمع اسم الطالب مع اسم صفه في استعلام واحد."}, {"q": "كيف نُحدِّث بيانات في جداول مترابطة مع تجنب انتهاك التكامل المرجعي؟", "opts": ["UPDATE في الابن أولاً دائماً", "UPDATE في الجدول المطلوب مع WHERE محدد. تعديل Foreign Key في الجدول الابن يجب أن يُشير لقيمة موجودة في الأب. تعديل Primary Key الأب يتطلب تحديث جميع الأبناء المرتبطين (أو استخدام ON UPDATE CASCADE)", "لا يمكن UPDATE في الجداول المترابطة", "DELETE ثم INSERT بدلاً من UPDATE"], "ans": 1, "code": "# تحديث class_id للطالب (class_id الجديد يجب أن يوجد في classes)\ncursor.execute(\n  'UPDATE students SET class_id=? WHERE id=?',\n  (new_class_id, student_id)\n)\nprint('Updated rows:', cursor.rowcount)\nconnection.commit()", "exp": "UPDATE في الجداول المترابطة: تعديل Foreign Key: القيمة الجديدة يجب أن تكون موجودة في Primary Key الجدول الأب. cursor.rowcount: عدد الصفوف المُعدَّلة (للتحقق). connection.commit(): لحفظ التغييرات. إذا أردت تعديل Primary Key الأب: يجب تعديل جميع الأبناء أو استخدام ON UPDATE CASCADE."}, {"q": "كيف نُنفِّذ استعلامات معقدة تجمع GROUP BY مع JOIN في قواعد البيانات المترابطة؟", "opts": ["GROUP BY تعمل فقط في الجداول غير المترابطة", "GROUP BY يجمع الصفوف حسب قيمة محددة وعادةً يُستخدم مع دوال تجميعية Aggregate Functions (COUNT, SUM, AVG) مع JOIN لتجميع بيانات من جداول متعددة — مثال: عدد الطلاب في كل منطقة", "GROUP BY تُعيد صفاً واحداً فقط دائماً", "GROUP BY يُستبدَل بـ ORDER BY في الجداول المترابطة"], "ans": 1, "code": "# عدد المعالم في كل منطقة\ncursor.execute('''\n  SELECT regions.name, COUNT(landmarks.id) AS landmark_count\n  FROM regions\n  INNER JOIN landmarks ON landmarks.region_id = regions.id\n  GROUP BY regions.name\n''')\nresults = cursor.fetchall()", "exp": "GROUP BY + JOIN: يجمع بيانات من عدة جداول ثم يُجمِّعها. Aggregate Functions مع GROUP BY: COUNT() يعدّ الصفوف. SUM() يجمع القيم. AVG() يحسب المتوسط. MAX()/MIN() أعلى/أدنى قيمة. في الكتاب: استعلام اسم المنطقة وعدد المعالم مُجمَّعة حسب المنطقة في قاعدة بيانات Kuwait_landmarks."}, {"q": "كيف نحذف بيانات من جداول مترابطة بشكل آمن؟", "opts": ["نحذف من الأب أولاً ثم الابن", "نحذف من الجدول الابن أولاً قبل الأب (لتجنب Foreign Key Violation) — أو نستخدم ON DELETE CASCADE في تعريف الجدول للحذف التلقائي للأبناء عند حذف الأب. نستخدم Placeholders لتجنب SQL Injection", "لا يمكن حذف بيانات من جداول مترابطة", "نحذف الجدول كاملاً ثم نُعيد إنشاءه"], "ans": 1, "code": "# الترتيب الآمن: حذف الابن أولاً\ncursor.execute(\n  'DELETE FROM students WHERE class_id=?', (class_id,)\n)\n\n# ثم حذف الأب\ncursor.execute(\n  'DELETE FROM classes WHERE id=?', (class_id,)\n)\nconnection.commit()", "exp": "الترتيب الصحيح للحذف في الجداول المترابطة: (1) حذف الأبناء أولاً (Child rows). (2) ثم حذف الأب (Parent row). إذا حذفت الأب أولاً: Foreign Key Constraint Error. البديل: ON DELETE CASCADE في تعريف FOREIGN KEY يحذف الأبناء تلقائياً عند حذف الأب. دائماً استخدم Placeholders للأمان."}, {"q": "ما الفرق بين ONE-TO-ONE وONE-TO-MANY وMANY-TO-MANY من حيث التطبيق؟", "opts": ["لا فرق في التطبيق — جميعها تستخدم نفس الصياغة", "One-to-One: كل صف في A يرتبط بصف واحد فقط في B (مثل: موظف وجواز سفره). One-to-Many: صف واحد في A يرتبط بعدة صفوف في B (مثل: صف دراسي → طلاب). Many-to-Many: عدة صفوف في A ترتبط بعدة في B (مثل: طلاب ومواد) — يحتاج جدول وسيط Junction Table", "One-to-Many هي نفسها Many-to-Many", "Many-to-Many لا توجد في SQLite"], "ans": 1, "exp": "أنواع العلاقات: (1) 1:1 One-to-One: موظف ↔ رقم هاتف عمل. Foreign Key في أحد الجدولين. (2) 1:M One-to-Many: الأكثر شيوعاً. Foreign Key في الجدول الابن. (3) M:N Many-to-Many: طالب ← يدرس → مادة. يتطلب جدول وسيط (Junction Table) يحتوي foreign keys من الجدولين مثل: student_course(student_id, course_id)."}],L=["أ", "ب", "ج", "د"],FN=[["🌟 ممتاز! درجة كاملة!", "أجبت على جميع الأسئلة صحيحة!", "⭐⭐⭐⭐⭐"], ["🔥 أداء رائع!", "تقريباً مثالي — راجع نقطةً أو اثنتين", "⭐⭐⭐⭐"], ["👍 أحسنت!", "نتيجة جيدة — المراجعة ستُحسِّن أداءك", "⭐⭐⭐"], ["💡 حاول مجدداً!", "راجع ملاحظاتك وحاول مرة أخرى", "⭐⭐"]];
+let cq=0,sc=0,ans=false;
+const cc=document.getElementById('cfc'),cx=cc.getContext('2d');cc.width=innerWidth;cc.height=innerHeight;let cf=[];
+function lc(x,y,n=15){const cl=['#22d3ee','#fff','#fbbf24','#a855f7','#22c55e'];for(let i=0;i<n;i++)cf.push({x,y,vx:(Math.random()-.5)*11,vy:(Math.random()-1)*9,r:Math.random()*4+2,c:cl[Math.floor(Math.random()*cl.length)],l:1,s:Math.random()*4-2,a:Math.random()*360})}
+function dcf(){cx.clearRect(0,0,cc.width,cc.height);cf=cf.filter(p=>p.l>0);cf.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.35;p.l-=.022;p.a+=p.s;cx.save();cx.globalAlpha=p.l;cx.translate(p.x,p.y);cx.rotate(p.a*Math.PI/180);cx.fillStyle=p.c;cx.fillRect(-p.r/2,-p.r/2,p.r,p.r*2);cx.restore()});requestAnimationFrame(dcf)}dcf();
+const bc=document.getElementById('bgc'),bx=bc.getContext('2d');let ns=[];
+function rb(){bc.width=innerWidth;bc.height=innerHeight;ns=Array.from({length:38},()=>{return{x:Math.random()*bc.width,y:Math.random()*bc.height,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:Math.random()*2+1}})}
+function db(){bx.clearRect(0,0,bc.width,bc.height);ns.forEach(n=>{n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>bc.width)n.vx*=-1;if(n.y<0||n.y>bc.height)n.vy*=-1});for(let i=0;i<ns.length;i++)for(let j=i+1;j<ns.length;j++){const dx=ns[i].x-ns[j].x,dy=ns[i].y-ns[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<130){bx.beginPath();bx.moveTo(ns[i].x,ns[i].y);bx.lineTo(ns[j].x,ns[j].y);bx.strokeStyle=`rgba(255,255,255,${(1-d/130)*.055})`;bx.lineWidth=.5;bx.stroke()}}ns.forEach(n=>{bx.beginPath();bx.arc(n.x,n.y,n.r,0,Math.PI*2);bx.fillStyle='rgba(255,255,255,.1)';bx.fill()});requestAnimationFrame(db)}
+rb();db();window.addEventListener('resize',()=>{rb();cc.width=innerWidth;cc.height=innerHeight});
+function bsb(){const sb=document.getElementById('sbar');sb.innerHTML='';for(let i=0;i<QS.length;i++){const d=document.createElement('div');d.className='sd'+(i<cq?' on':'');sb.appendChild(d)}}
+function lq(){ans=false;document.getElementById('nb').classList.remove('show');const ex=document.getElementById('ex');ex.classList.remove('show');ex.style.display='none';
+  const q=QS[cq];document.getElementById('pf').style.width=((cq/QS.length)*100)+'%';
+  document.getElementById('pl').textContent='Question '+(cq+1)+' of '+QS.length;
+  document.getElementById('qn').textContent='QUESTION '+String(cq+1).padStart(2,'0');
+  const qc=document.getElementById('qc');qc.classList.remove('si');void qc.offsetWidth;qc.classList.add('si');
+  const qtEl=document.getElementById('qt');
+  if(q.code){qtEl.innerHTML=q.q+'<code class="code">'+q.code+'</code>'}else{qtEl.textContent=q.q}
+  const og=document.getElementById('og');og.innerHTML='';
+  q.opts.forEach((o,i)=>{const b=document.createElement('button');b.className='opt';b.innerHTML=`<span class="ltr">${L[i]}</span><span>${o}</span>`;b.addEventListener('click',()=>pick(i,b));og.appendChild(b)});bsb();}
+function pick(idx,btn){if(ans)return;ans=true;const q=QS[cq];const bs=document.querySelectorAll('.opt');bs.forEach(b=>b.disabled=true);
+  const fb=document.getElementById('fb');fb.classList.remove('sc','wr');
+  if(idx===q.ans){btn.classList.add('correct');sc+=10;const sv=document.getElementById('sv');sv.textContent=sc;sv.classList.remove('pop');void sv.offsetWidth;sv.classList.add('pop');setTimeout(()=>sv.classList.remove('pop'),400);
+    fb.textContent=['✅','🎯','⭐','🔥','💥'][Math.floor(Math.random()*5)];fb.classList.add('sc');
+    for(let i=0;i<3;i++)setTimeout(()=>lc(innerWidth*(0.2+Math.random()*0.6),innerHeight*.4),i*80);
+    setTimeout(()=>document.getElementById('nb').classList.add('show'),500);
+  }else{btn.classList.add('wrong');bs[q.ans].classList.add('correct');
+    fb.textContent=['❌','😬','💭','🙈'][Math.floor(Math.random()*4)];fb.classList.add('wr');
+    const ex=document.getElementById('ex');ex.textContent='💡 '+q.exp;ex.style.display='block';setTimeout(()=>ex.classList.add('show'),50);
+    setTimeout(()=>document.getElementById('nb').classList.add('show'),350);}bsb();}
+function nxt(){cq++;if(cq<QS.length)lq();else sf()}
+function sf(){document.getElementById('qs').style.display='none';document.getElementById('fs').classList.add('vis');document.getElementById('fsn').textContent=sc;
+  const p=sc/(QS.length*10),f=p===1?FN[0]:p>=.75?FN[1]:p>=.5?FN[2]:FN[3];
+  document.getElementById('ftl').textContent=f[0];document.getElementById('fmg').textContent=f[1];document.getElementById('fst').textContent=f[2];
+  setTimeout(()=>{for(let i=0;i<8;i++)setTimeout(()=>lc(innerWidth*Math.random(),-20,20),i*100)},250);}
+function rst(){cq=0;sc=0;ans=false;cf=[];document.getElementById('sv').textContent='0';document.getElementById('fs').classList.remove('vis');document.getElementById('qs').style.display='flex';lq()}
+lq();
+</script></body></html>

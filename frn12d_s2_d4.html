@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الفرنسي - الثاني عشر أدبي - Dossier 4: Une fête</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=Orbitron:wght@500;700;900&family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0e1a;
+  --bg2:#0f1524;
+  --panel:rgba(15,21,36,.85);
+  --cyan:#00d9ff;
+  --gold:#ffb840;
+  --fr-blue:#1e3a8a;
+  --fr-red:#dc2626;
+  --fr-white:#f5f5f5;
+  --text:#e6edf7;
+  --muted:#8fa0bd;
+  --ok:#10d18b;
+  --bad:#ff5875;
+  --border:rgba(0,217,255,.25);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:var(--bg);color:var(--text);font-family:'Tajawal',sans-serif;min-height:100vh;overflow-x:hidden}
+body{
+  background:
+    radial-gradient(1200px 700px at 15% -10%, rgba(30,58,138,.22), transparent 60%),
+    radial-gradient(900px 600px at 100% 0%, rgba(220,38,38,.15), transparent 60%),
+    radial-gradient(800px 600px at 50% 110%, rgba(255,184,64,.10), transparent 60%),
+    var(--bg);
+}
+#particles{position:fixed;inset:0;z-index:0;pointer-events:none}
+.wrap{position:relative;z-index:2;max-width:980px;margin:0 auto;padding:24px 18px 60px}
+.header{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  background:linear-gradient(135deg, rgba(30,58,138,.35), rgba(220,38,38,.25));
+  border:1px solid var(--border);border-radius:18px;padding:18px 22px;
+  box-shadow:0 10px 40px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.06);
+}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{
+  width:54px;height:54px;border-radius:14px;
+  background:
+    conic-gradient(from 210deg, #1e3a8a, #dc2626, #f5f5f5, #1e3a8a);
+  display:grid;place-items:center;color:#fff;font-family:'Orbitron';font-weight:900;
+  box-shadow:0 0 30px rgba(30,58,138,.4);
+}
+.logo span{font-family:'Cormorant Garamond',serif;font-size:30px;font-style:italic}
+.title{font-family:'Orbitron',sans-serif;font-weight:800;font-size:17px;letter-spacing:1px;color:#fff}
+.subtitle{color:var(--muted);font-size:13px;margin-top:2px}
+.subject{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;
+  color:var(--gold);text-shadow:0 0 20px rgba(255,184,64,.35)
+}
+.back{
+  text-decoration:none;color:var(--text);background:rgba(255,255,255,.05);
+  border:1px solid var(--border);padding:8px 14px;border-radius:10px;font-weight:600;font-size:13px;
+  transition:all .2s
+}
+.back:hover{background:rgba(0,217,255,.12);border-color:var(--cyan)}
+
+.hero{
+  margin-top:18px;background:var(--panel);backdrop-filter:blur(10px);
+  border:1px solid var(--border);border-radius:18px;padding:22px;
+  display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center
+}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;font-weight:700;font-size:32px;line-height:1.2;
+  background:linear-gradient(90deg,#fff,#ffb840);-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero .meta{color:var(--muted);margin-top:6px;font-size:14px}
+.badge{
+  background:linear-gradient(135deg,var(--fr-blue),var(--fr-red));
+  color:#fff;padding:10px 14px;border-radius:12px;font-family:'Orbitron';font-weight:700;
+  font-size:13px;letter-spacing:1px;box-shadow:0 0 20px rgba(220,38,38,.3)
+}
+
+.progress-wrap{margin-top:16px;background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:14px 18px}
+.progress-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:13px;color:var(--muted)}
+.progress-top .score{font-family:'Orbitron';color:var(--gold);font-weight:700}
+.bar{height:10px;background:rgba(255,255,255,.06);border-radius:99px;overflow:hidden;position:relative}
+.bar>span{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--fr-blue),var(--fr-red),var(--gold));border-radius:99px;transition:width .4s ease;box-shadow:0 0 12px rgba(220,38,38,.4)}
+
+.card{
+  margin-top:18px;background:var(--panel);backdrop-filter:blur(10px);
+  border:1px solid var(--border);border-radius:18px;padding:24px;
+  box-shadow:0 10px 40px rgba(0,0,0,.3)
+}
+.qnum{display:inline-block;font-family:'Orbitron';font-weight:700;font-size:12px;letter-spacing:2px;
+  color:var(--gold);background:rgba(255,184,64,.1);padding:5px 10px;border-radius:8px;margin-bottom:10px}
+.qtext{font-size:19px;font-weight:500;line-height:1.7;margin-bottom:6px}
+.qtext .fr{font-family:'Cormorant Garamond',serif;font-style:italic;color:#c9d5f0}
+.hint{color:var(--muted);font-size:13px;margin-bottom:14px}
+.options{display:grid;gap:10px;margin-top:10px}
+.opt{
+  display:flex;align-items:center;gap:12px;
+  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);
+  padding:13px 16px;border-radius:12px;cursor:pointer;font-size:15.5px;
+  transition:all .18s;text-align:right;font-family:inherit;color:var(--text);width:100%;
+}
+.opt .fr-txt{font-family:'Cormorant Garamond',serif;font-size:17px;color:#dbe4f8}
+.opt:hover{border-color:var(--cyan);background:rgba(0,217,255,.05);transform:translateX(-3px)}
+.opt .letter{
+  width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,.06);
+  display:grid;place-items:center;font-family:'Orbitron';font-weight:700;color:var(--gold);
+  flex-shrink:0;font-size:14px
+}
+.opt.correct{background:rgba(16,209,139,.12);border-color:var(--ok)}
+.opt.correct .letter{background:var(--ok);color:#04241a}
+.opt.wrong{background:rgba(255,88,117,.12);border-color:var(--bad)}
+.opt.wrong .letter{background:var(--bad);color:#2a050c}
+.opt:disabled{cursor:not-allowed;opacity:.85}
+
+.feedback{
+  margin-top:14px;padding:14px 16px;border-radius:12px;font-size:14.5px;line-height:1.7;
+  display:none;border-left:3px solid var(--gold);
+  background:rgba(255,184,64,.06)
+}
+.feedback.show{display:block;animation:fadeIn .35s ease}
+.feedback b{color:var(--gold)}
+.feedback .fr{font-family:'Cormorant Garamond',serif;font-style:italic;color:#e7ecff}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:18px}
+.btn{
+  font-family:'Orbitron';font-weight:700;font-size:14px;letter-spacing:1px;
+  padding:12px 22px;border-radius:12px;border:none;cursor:pointer;
+  transition:all .18s
+}
+.btn-primary{background:linear-gradient(135deg,var(--fr-blue),var(--fr-red));color:#fff;box-shadow:0 6px 20px rgba(220,38,38,.35)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(220,38,38,.45)}
+.btn-primary:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.btn-ghost{background:rgba(255,255,255,.05);color:var(--text);border:1px solid var(--border)}
+.btn-ghost:hover{background:rgba(0,217,255,.1)}
+
+.result{display:none;text-align:center;padding:40px 20px}
+.result.show{display:block;animation:fadeIn .5s ease}
+.result .emoji{font-size:80px;margin-bottom:14px}
+.result h2{font-family:'Cormorant Garamond',serif;font-size:38px;margin-bottom:8px;color:#fff}
+.result .score-big{font-family:'Orbitron';font-size:54px;font-weight:900;
+  background:linear-gradient(90deg,var(--fr-blue),var(--fr-red),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent;
+  margin:14px 0}
+.result .tier{color:var(--gold);font-size:19px;margin-bottom:20px;font-family:'Cormorant Garamond',serif;font-style:italic}
+.result .msg{color:var(--muted);margin-bottom:24px;font-size:15px}
+
+@media (max-width:640px){
+  .hero{grid-template-columns:1fr}
+  .hero h1{font-size:24px}
+  .title{font-size:14px}
+  .subject{font-size:18px}
+  .qtext{font-size:17px}
+}
+</style>
+</head>
+<body>
+<canvas id="particles"></canvas>
+<div class="wrap">
+  <div class="header">
+    <div class="brand">
+      <div class="logo"><span>Fr</span></div>
+      <div>
+        <div class="title">ثانوية فهد الدويري للبنين</div>
+        <div class="subtitle">الثاني عشر أدبي · الفصل الدراسي الثاني</div>
+      </div>
+    </div>
+    <div class="subject">Langue Française</div>
+    <a class="back" href="index.html">→ عودة</a>
+  </div>
+
+  <div class="hero">
+    <div>
+      <h1>Dossier 4 — Une fête</h1>
+      <div class="meta">المفردات · القواعد (penser/croire · les quantificateurs · l'imparfait) · التواصل</div>
+    </div>
+    <div class="badge">15 Questions</div>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-top">
+      <span id="progress-text">السؤال 1 من 15</span>
+      <span class="score">النتيجة: <span id="score">0</span>/15</span>
+    </div>
+    <div class="bar"><span id="bar"></span></div>
+  </div>
+
+  <div id="quiz"></div>
+
+  <div class="result" id="result">
+    <div class="emoji" id="result-emoji">🎉</div>
+    <h2>Terminé !</h2>
+    <div class="score-big"><span id="final-score">0</span>/15</div>
+    <div class="tier" id="tier">—</div>
+    <div class="msg" id="result-msg"></div>
+    <button class="btn btn-primary" onclick="location.reload()">إعادة المحاولة</button>
+    <a class="back" href="index.html" style="margin-right:10px;display:inline-block">→ القائمة الرئيسية</a>
+  </div>
+</div>
+
+<script>
+const QUESTIONS = [
+  {
+    q: 'اختر الترجمة الصحيحة: "<span class="fr">Une fête d\'anniversaire</span>"',
+    options: ['حفلة زواج','حفلة عيد ميلاد','حفلة وطنية','حفلة تخرج'],
+    answer: 1,
+    explain: '<span class="fr">Une fête d\'anniversaire</span> تعني حفلة عيد ميلاد. أما <span class="fr">fête de mariage</span> = حفلة زواج، و<span class="fr">fête nationale</span> = حفلة وطنية.'
+  },
+  {
+    q: 'ما معنى كلمة "<span class="fr">plein de</span>" في جملة: <span class="fr">Il y avait plein de monde</span>؟',
+    options: ['قليل من','بدون','الكثير من','بعض'],
+    answer: 2,
+    explain: '<span class="fr">plein de = beaucoup de</span> أي "الكثير من". مثال: <span class="fr">plein d\'invités = beaucoup d\'invités</span>.'
+  },
+  {
+    q: 'اختر التصريف الصحيح: <span class="fr">Je ___ que tu as raison.</span>',
+    options: ['pense','penses','pensons','pensent'],
+    answer: 0,
+    explain: 'مع الضمير <span class="fr">Je</span> يُصرَّف فعل <span class="fr">penser</span> في الحاضر إلى <span class="fr">pense</span>. التصريف: je pense, tu penses, il/elle pense, nous pensons, vous pensez, ils/elles pensent.'
+  },
+  {
+    q: 'أي جملة تعبّر عن نية أو احتمال؟',
+    options: [
+      '<span class="fr-txt">Je pense à toi.</span>',
+      '<span class="fr-txt">Je pense que tu as raison.</span>',
+      '<span class="fr-txt">Je pense acheter une tarte.</span>',
+      '<span class="fr-txt">Je pense à mes études.</span>'
+    ],
+    answer: 2,
+    explain: '<span class="fr">Penser + verbe à l\'infinitif</span> يُستخدم للتعبير عن النية أو الاحتمال. أما <span class="fr">penser à</span> فتُستخدم عندما يخطر شخص أو شيء في الذهن، و<span class="fr">penser que</span> لإبداء الرأي.'
+  },
+  {
+    q: 'أكمل الجملة: <span class="fr">La salle était ___ de décorations.</span>',
+    options: ['plein','pleine','pleins','pleines'],
+    answer: 1,
+    explain: 'الصفة <span class="fr">plein</span> تتفق مع المؤنث <span class="fr">la salle</span>، فتصبح <span class="fr">pleine</span>. وبما أن <span class="fr">décorations</span> اسم، فيأتي قبلها <span class="fr">de</span>.'
+  },
+  {
+    q: 'اختر صيغة الكمية الصحيحة: <span class="fr">Ma mère achète un kilo ___ fruits.</span>',
+    options: ['des','de','du','de la'],
+    answer: 1,
+    explain: 'مع الكميات المحددة مثل <span class="fr">un kilo, une bouteille, un paquet, une tranche</span> نستعمل <span class="fr">de</span> دائمًا (أو <span class="fr">d\'</span> أمام حرف علة).'
+  },
+  {
+    q: 'ما تصريف الفعل <span class="fr">être</span> في الـ<span class="fr">imparfait</span> مع الضمير <span class="fr">Il</span>؟',
+    options: ['est','était','étais','a été'],
+    answer: 1,
+    explain: 'تصريف <span class="fr">être</span> في الـ<span class="fr">imparfait</span>: j\'étais, tu étais, il/elle <b>était</b>, nous étions, vous étiez, ils/elles étaient. وهو الاستثناء الوحيد في قاعدة الـimparfait.'
+  },
+  {
+    q: 'حوّل إلى الـ<span class="fr">imparfait</span>: <span class="fr">Nous habitons ici.</span>',
+    options: [
+      '<span class="fr-txt">Nous habitons ici.</span>',
+      '<span class="fr-txt">Nous habitions ici.</span>',
+      '<span class="fr-txt">Nous habitons ici hier.</span>',
+      '<span class="fr-txt">Nous avons habité ici.</span>'
+    ],
+    answer: 1,
+    explain: 'قاعدة الـ<span class="fr">imparfait</span>: نأخذ جذر الفعل مع <span class="fr">nous</span> في الحاضر (<span class="fr">habit-</span>) ثم نضيف النهايات: -ais, -ais, -ait, -ions, -iez, -aient. فيصبح <span class="fr">nous habitions</span>.'
+  },
+  {
+    q: 'ما عكس الكلمة "<span class="fr">obèse</span>"؟',
+    options: ['gros','maigre','grand','fatigué'],
+    answer: 1,
+    explain: '<span class="fr">obèse = trop gros</span> أي البدين. وعكسها <span class="fr">maigre = mince</span> أي النحيف. والمصطلح الطبي <span class="fr">l\'obésité</span> يعني السمنة المفرطة.'
+  },
+  {
+    q: 'اختر المفردة الغريبة: <span class="fr">café — eau — jus — salle</span>',
+    options: ['café','eau','jus','salle'],
+    answer: 3,
+    explain: '<span class="fr">café, eau, jus</span> كلها <span class="fr">boissons</span> (مشروبات)، أما <span class="fr">salle</span> فهي قاعة/غرفة ولا تنتمي للمجموعة.'
+  },
+  {
+    q: 'ما الجملة الصحيحة للتعبير عن رأي إيجابي عن حفلة؟',
+    options: [
+      '<span class="fr-txt">C\'était affreux !</span>',
+      '<span class="fr-txt">C\'était ennuyeux.</span>',
+      '<span class="fr-txt">C\'était formidable !</span>',
+      '<span class="fr-txt">C\'était nul.</span>'
+    ],
+    answer: 2,
+    explain: 'للتقدير الإيجابي نستعمل: <span class="fr">formidable, excellent, génial, remarquable, sympathique</span>. أما <span class="fr">affreux, ennuyeux, nul, mauvais</span> فللتقدير السلبي.'
+  },
+  {
+    q: 'أكمل بصيغة الكمية المناسبة: <span class="fr">Je n\'ai pas ___ de farine pour faire un gâteau.</span>',
+    options: ['très','peu','assez','beaucoup'],
+    answer: 2,
+    explain: '<span class="fr">Pas assez de</span> تعبّر عن كمية غير كافية، وهي الأنسب هنا. ولا يمكن قول <span class="fr">pas très de</span> (تركيب خاطئ).'
+  },
+  {
+    q: 'في أي جملة يُستخدم الفعل بصيغة الـ<span class="fr">imparfait</span>؟',
+    options: [
+      '<span class="fr-txt">Il fait beau aujourd\'hui.</span>',
+      '<span class="fr-txt">Il faisait beau hier.</span>',
+      '<span class="fr-txt">Il fera beau demain.</span>',
+      '<span class="fr-txt">Il a fait beau.</span>'
+    ],
+    answer: 1,
+    explain: 'يُستخدم الـ<span class="fr">imparfait</span> لوصف حالة أو حدث مستمر في الماضي. <span class="fr">faisait</span> هو تصريف <span class="fr">faire</span> في الـimparfait مع <span class="fr">il</span>.'
+  },
+  {
+    q: 'عبارة التحية للوداع قبل مغادرة حفلة: "أراك قريباً"',
+    options: [
+      '<span class="fr-txt">Bonjour !</span>',
+      '<span class="fr-txt">À bientôt !</span>',
+      '<span class="fr-txt">Bonne nuit !</span>',
+      '<span class="fr-txt">Enchanté !</span>'
+    ],
+    answer: 1,
+    explain: 'لتوديع والإشارة إلى لقاء قريب: <span class="fr">À bientôt, À demain, À plus, À tout de suite, Au revoir</span>. أما <span class="fr">Bonjour</span> فهي تحية الوصول.'
+  },
+  {
+    q: 'احتفال الكويت بـ<span class="fr">la fête nationale</span> في أي تاريخ؟',
+    options: [
+      '<span class="fr-txt">Le 15 janvier</span>',
+      '<span class="fr-txt">Le 25 février</span>',
+      '<span class="fr-txt">Le 1er mai</span>',
+      '<span class="fr-txt">Le 26 février</span>'
+    ],
+    answer: 1,
+    explain: '<span class="fr">Le 25 février</span> هو تاريخ العيد الوطني للكويت (<span class="fr">la fête nationale</span>)، و<span class="fr">le 26 février</span> هو يوم التحرير (<span class="fr">la libération de l\'occupation irakienne de 1991</span>).'
+  }
+];
+
+/* particles background */
+(function(){
+  const c=document.getElementById('particles');const x=c.getContext('2d');
+  let w,h,pts;
+  function rs(){w=c.width=innerWidth;h=c.height=innerHeight;pts=Array.from({length:55},()=>({
+    x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,
+    r:Math.random()*1.8+.4,
+    c:['rgba(30,58,138,','rgba(220,38,38,','rgba(255,184,64,'][Math.floor(Math.random()*3)]
+  }))}
+  function draw(){
+    x.clearRect(0,0,w,h);
+    for(const p of pts){
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;
+      x.beginPath();x.arc(p.x,p.y,p.r,0,Math.PI*2);x.fillStyle=p.c+'.6)';x.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+  rs();draw();addEventListener('resize',rs);
+})();
+
+let idx=0, score=0, locked=false;
+const quiz=document.getElementById('quiz');
+const bar=document.getElementById('bar');
+const progressText=document.getElementById('progress-text');
+const scoreEl=document.getElementById('score');
+
+function render(){
+  if(idx>=QUESTIONS.length){finish();return}
+  const q=QUESTIONS[idx];
+  bar.style.width=((idx)/QUESTIONS.length*100)+'%';
+  progressText.textContent=`السؤال ${idx+1} من ${QUESTIONS.length}`;
+  const letters=['A','B','C','D'];
+  quiz.innerHTML=`
+    <div class="card">
+      <div class="qnum">QUESTION ${String(idx+1).padStart(2,'0')}</div>
+      <div class="qtext">${q.q}</div>
+      <div class="options">
+        ${q.options.map((o,i)=>`<button class="opt" data-i="${i}"><span class="letter">${letters[i]}</span><span>${o}</span></button>`).join('')}
+      </div>
+      <div class="feedback" id="fb"></div>
+      <div class="nav">
+        <button class="btn btn-ghost" id="skip">تخطّي</button>
+        <button class="btn btn-primary" id="next" disabled>التالي ←</button>
+      </div>
+    </div>
+  `;
+  locked=false;
+  quiz.querySelectorAll('.opt').forEach(b=>b.addEventListener('click',()=>choose(parseInt(b.dataset.i))));
+  document.getElementById('next').addEventListener('click',()=>{idx++;render()});
+  document.getElementById('skip').addEventListener('click',()=>{idx++;render()});
+}
+
+function choose(i){
+  if(locked)return;locked=true;
+  const q=QUESTIONS[idx];
+  const opts=quiz.querySelectorAll('.opt');
+  opts.forEach((b,bi)=>{
+    b.disabled=true;
+    if(bi===q.answer)b.classList.add('correct');
+    else if(bi===i)b.classList.add('wrong');
+  });
+  const fb=document.getElementById('fb');
+  const correct=i===q.answer;
+  if(correct){score++;scoreEl.textContent=score}
+  fb.innerHTML=`<b>${correct?'✔ Correct !':'✘ Incorrect.'}</b> ${q.explain}`;
+  fb.classList.add('show');
+  document.getElementById('next').disabled=false;
+}
+
+function finish(){
+  document.getElementById('quiz').style.display='none';
+  bar.style.width='100%';
+  progressText.textContent=`اكتمل الاختبار`;
+  const r=document.getElementById('result');
+  r.classList.add('show');
+  document.getElementById('final-score').textContent=score;
+  const pct=score/QUESTIONS.length*100;
+  let emoji,tier,msg;
+  if(pct>=90){emoji='🏆';tier='Excellent — Félicitations !';msg='أداء متميز! إتقان واضح للمفردات والقواعد.'}
+  else if(pct>=75){emoji='🎉';tier='Très bien — مستوى ممتاز';msg='نتيجة جيدة جداً. راجع الأسئلة التي أخطأت فيها.'}
+  else if(pct>=60){emoji='👍';tier='Bien — جيد';msg='اقتربت من الهدف، ركّز على الـ<span class="fr">imparfait</span> والـ<span class="fr">quantificateurs</span>.'}
+  else if(pct>=40){emoji='📚';tier='Passable — يحتاج مراجعة';msg='راجع الدوسيه 4 بعناية، خاصة المفردات والتواصل.'}
+  else{emoji='💪';tier='À refaire — حاول مجدداً';msg='لا تيأس! أعد المحاولة بعد مراجعة الدرس.'}
+  document.getElementById('result-emoji').textContent=emoji;
+  document.getElementById('tier').textContent=tier;
+  document.getElementById('result-msg').innerHTML=msg;
+}
+
+render();
+</script>
+</body>
+</html>
