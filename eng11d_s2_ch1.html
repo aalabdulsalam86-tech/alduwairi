@@ -1,116 +1,291 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>English — Semester 2 | Module 3: The Media</title>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 3: The Media — Grade 11 Literary</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
 <style>
-:root{--c:#f472b6;--c2:#be185d;--bg:#0a0208;--brd:rgba(244,114,182,.18);--txt:#f1f5f9;--mut:rgba(241,245,249,.62);--red:#ef4444;--grn:#22c55e}
+:root{--cyan:#00f5ff;--gold:#fbbf24;--green:#22c55e;--red:#ef4444;--purple:#c026d3;--dark:#020617;--dark2:#0f172a;--text:#f1f5f9;--muted:rgba(241,245,249,0.6);--border:rgba(0,245,255,0.15)}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:"Tajawal","Arial",sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow-x:hidden}
-#bgc,#cfc{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none}#bgc{z-index:0}#cfc{z-index:6}
-#fb{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);font-size:88px;z-index:100;pointer-events:none}
-#fb.sc{animation:fbs .9s ease forwards}#fb.wr{animation:fbw .9s ease forwards}
-@keyframes fbs{0%{transform:translate(-50%,-50%) scale(0);opacity:0}40%{transform:translate(-50%,-50%) scale(1.25);opacity:1}100%{transform:translate(-50%,-65%) scale(.6);opacity:0}}
-@keyframes fbw{0%{transform:translate(-50%,-50%) scale(0);opacity:0}40%{transform:translate(-50%,-50%) scale(1.1);opacity:1}100%{transform:translate(-50%,-65%) scale(.6);opacity:0}}
-.wrap{position:relative;z-index:10;width:100%;max-width:960px;padding:18px 26px;display:flex;flex-direction:column;gap:13px}
-.hdr{display:flex;justify-content:space-between;align-items:center}
-.logo{font-size:13px;font-weight:900;color:var(--c);letter-spacing:1.5px;text-shadow:0 0 14px color-mix(in srgb,var(--c) 50%,transparent)}
-.sb{background:rgba(255,255,255,.04);border:2px solid var(--c);border-radius:50px;padding:7px 20px;display:flex;align-items:center;gap:7px}
-.sl{font-size:13px;color:var(--mut)}.sv{font-size:25px;font-weight:900;color:var(--c);transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
-.sv.pop{transform:scale(1.55)}
-.ptrack{width:100%;height:6px;background:rgba(255,255,255,.07);border-radius:99px;overflow:hidden}
-.pfill{height:100%;background:linear-gradient(90deg,var(--c2),var(--c));border-radius:99px;transition:width .5s ease}
-.plbl{text-align:center;font-size:13px;color:var(--mut);margin-top:2px}
-.sbar{display:flex;gap:5px;justify-content:center}
-.sd{width:20px;height:7px;border-radius:4px;background:rgba(255,255,255,.08);transition:all .3s}
-.sd.on{background:var(--c);box-shadow:0 0 6px var(--c)}
-.qcard{background:rgba(255,255,255,.03);border:1.5px solid var(--brd);border-radius:20px;padding:28px 32px;backdrop-filter:blur(10px)}
-.qcard.si{animation:si .4s cubic-bezier(.34,1.56,.64,1) forwards}
-@keyframes si{from{transform:translateX(55px);opacity:0}to{transform:translateX(0);opacity:1}}
-.qn{font-size:12px;font-weight:700;color:var(--c);margin-bottom:9px;letter-spacing:2px;opacity:.8}
-.qt{font-size:20px;font-weight:700;line-height:1.7;margin-bottom:18px}
-.code{font-family:"Courier New",monospace;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:10px 14px;font-size:13px;color:#a5f3fc;display:block;margin:10px 0;direction:ltr;text-align:left;white-space:pre;overflow-x:auto}
-.opts{display:grid;grid-template-columns:1fr 1fr;gap:11px}
-.opt{background:rgba(255,255,255,.04);border:2px solid rgba(255,255,255,.08);border-radius:13px;padding:14px 16px;font-family:"Tajawal","Arial",sans-serif;font-size:15px;font-weight:700;color:#dde;cursor:pointer;display:flex;align-items:flex-start;gap:10px;transition:all .17s;line-height:1.5;text-align:right}
-.opt:hover:not(:disabled){border-color:rgba(255,255,255,.25);transform:translateY(-2px);color:#fff}
-.ltr{font-size:13px;font-weight:900;color:var(--c);background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.12);border-radius:7px;min-width:32px;height:32px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;font-family:"Courier New",monospace}
-.opt.correct{background:rgba(34,197,94,.12)!important;border-color:var(--grn)!important;color:#fff!important;animation:cp .5s ease}
-.opt.correct .ltr{background:var(--grn);color:#fff;border-color:var(--grn)}
-@keyframes cp{0%{transform:scale(1)}40%{transform:scale(1.03)}100%{transform:scale(1)}}
-.opt.wrong{background:rgba(239,68,68,.1)!important;border-color:var(--red)!important;animation:shk .4s ease}
-.opt.wrong .ltr{background:var(--red);color:#fff;border-color:var(--red)}
-@keyframes shk{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
-.exp{margin-top:13px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.09);border-right:3px solid var(--c);border-radius:10px;padding:12px 15px;font-size:15px;line-height:1.85;color:var(--mut);display:none}
-.exp.show{display:block;animation:fd .3s ease}
-@keyframes fd{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
-.nbtn{margin-top:11px;width:100%;padding:12px;background:linear-gradient(135deg,var(--c2),var(--c));border:none;border-radius:10px;font-family:"Tajawal","Arial",sans-serif;font-size:16px;font-weight:900;color:#fff;cursor:pointer;display:none;transition:all .2s}
-.nbtn.show{display:block;animation:fd .25s ease}.nbtn:hover{filter:brightness(1.1);transform:translateY(-1px)}
-.final{display:none;flex-direction:column;align-items:center;text-align:center;padding:46px 24px;max-width:620px;margin:0 auto}
-.final.vis{display:flex;animation:fd .4s ease}
-.fstars{font-size:42px;margin-bottom:12px}.ftitle{font-size:28px;font-weight:900;margin-bottom:7px}
-.fmsg{font-size:16px;color:var(--mut);margin-bottom:22px;line-height:1.7}
-.fsbox{background:rgba(255,255,255,.04);border:2px solid var(--c);border-radius:16px;padding:22px 48px;margin-bottom:24px}
-.fslbl{font-size:13px;color:var(--mut);margin-bottom:3px}.fsnum{font-size:56px;font-weight:900;color:var(--c)}
-.rbtn{background:linear-gradient(135deg,var(--c2),var(--c));color:#fff;border:none;border-radius:12px;padding:13px 40px;font-family:"Tajawal","Arial",sans-serif;font-size:17px;font-weight:900;cursor:pointer;margin-bottom:12px;transition:all .2s}
-.rbtn:hover{filter:brightness(1.1);transform:translateY(-2px)}
-.bhome{color:var(--mut);font-size:14px;cursor:pointer;text-decoration:underline}
-@media(max-width:600px){.wrap{padding:11px 13px}.qt{font-size:17px}.opts{grid-template-columns:1fr}.opt{font-size:14px}}
-</style></head><body>
-<canvas id="bgc"></canvas><canvas id="cfc"></canvas><div id="fb"></div>
-<div class="wrap" id="qs">
-  <div class="hdr"><div class="logo">📺 English — Grade 11 Science</div>
-  <div class="sb"><span class="sl">Score</span><span class="sv" id="sv">0</span></div></div>
-  <div class="ptrack"><div class="pfill" id="pf" style="width:0%"></div></div>
-  <div class="plbl" id="pl"></div><div class="sbar" id="sbar"></div>
-  <div class="qcard" id="qc">
-    <div class="qn" id="qn"></div><div class="qt" id="qt"></div>
-    <div class="opts" id="og"></div><div class="exp" id="ex"></div>
-    <button class="nbtn" id="nb" onclick="nxt()">Next ←</button>
+html{scroll-behavior:smooth}
+body{font-family:"Tajawal",sans-serif;background:var(--dark);color:var(--text);min-height:100vh;overflow-x:hidden}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--dark2)}
+::-webkit-scrollbar-thumb{background:rgba(0,245,255,0.3);border-radius:3px}
+#bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(2,6,23,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 32px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:"Orbitron",sans-serif;font-size:13px;color:var(--cyan);letter-spacing:3px;text-shadow:0 0 20px rgba(0,245,255,0.5)}
+.back-btn{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:8px 18px;font-family:"Tajawal",sans-serif;font-size:14px;color:var(--muted);cursor:pointer;text-decoration:none;transition:all 0.2s}
+.back-btn:hover{background:rgba(255,255,255,0.08);color:var(--text)}
+.wrap{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:96px 24px 60px}
+.ghdr{background:linear-gradient(135deg,rgba(0,245,255,0.08),rgba(192,38,211,0.05));border:1.5px solid rgba(0,245,255,0.2);border-radius:22px;padding:32px 28px;margin-bottom:28px;position:relative;overflow:hidden}
+.ghdr::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle,rgba(0,245,255,0.1) 1px,transparent 1px);background-size:26px 26px;opacity:0.4;pointer-events:none}
+.ghdr-top{display:flex;align-items:center;gap:16px;margin-bottom:14px;position:relative;z-index:1}
+.ghdr-emo{font-size:48px}
+.ghdr-info h1{font-size:26px;font-weight:900;margin-bottom:4px;background:linear-gradient(135deg,#fff,var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.ghdr-info p{color:var(--muted);font-size:14px}
+.ghdr-tags{display:flex;flex-wrap:wrap;gap:6px;position:relative;z-index:1}
+.tg{font-size:11px;background:rgba(0,245,255,0.1);border:1px solid rgba(0,245,255,0.25);color:var(--cyan);padding:4px 10px;border-radius:7px;font-weight:700}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:26px}
+.stat{background:rgba(15,23,42,0.85);border:1.5px solid rgba(255,255,255,0.08);border-radius:14px;padding:14px 12px;text-align:center;transition:all 0.25s}
+.stat-l{font-family:"Orbitron",sans-serif;font-size:9px;color:var(--muted);letter-spacing:2px;margin-bottom:6px}
+.stat-v{font-size:22px;font-weight:900;color:var(--cyan);font-family:"Orbitron",sans-serif}
+.stat.score .stat-v{color:var(--gold)}
+.stat.streak .stat-v{color:var(--green)}
+.stat.wrong .stat-v{color:var(--red)}
+.prog{background:rgba(15,23,42,0.85);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;height:10px;margin-bottom:28px;overflow:hidden;position:relative}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--cyan),var(--purple));border-radius:12px;transition:width 0.5s cubic-bezier(0.4,0,0.2,1);width:0%;box-shadow:0 0 20px rgba(0,245,255,0.5)}
+.qcard{background:rgba(15,23,42,0.85);border:1.5px solid var(--border);border-radius:22px;padding:32px 28px;margin-bottom:24px;position:relative;overflow:hidden;backdrop-filter:blur(12px);animation:qin 0.4s ease}
+@keyframes qin{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.q-num{font-family:"Orbitron",sans-serif;font-size:11px;color:var(--cyan);letter-spacing:3px;margin-bottom:10px}
+.q-text{font-size:20px;font-weight:700;line-height:1.8;margin-bottom:26px;color:var(--text)}
+.opts{display:flex;flex-direction:column;gap:12px}
+.opt{background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:14px;padding:16px 20px;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:14px;font-family:"Tajawal",sans-serif;font-size:16px;color:var(--text);text-align:right;width:100%;font-weight:500}
+.opt:hover:not(.disabled){border-color:var(--cyan);background:rgba(0,245,255,0.05);transform:translateX(-4px)}
+.opt.correct{border-color:var(--green);background:rgba(34,197,94,0.1);color:#86efac;animation:pulseG 0.5s ease}
+.opt.wrong{border-color:var(--red);background:rgba(239,68,68,0.1);color:#fca5a5;animation:shake 0.4s ease}
+.opt.disabled{cursor:default;opacity:0.5}
+@keyframes pulseG{0%,100%{transform:scale(1)}50%{transform:scale(1.02)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.opt-letter{font-family:"Orbitron",sans-serif;font-size:12px;font-weight:900;width:34px;height:34px;display:flex;align-items:center;justify-content:center;background:rgba(0,245,255,0.1);border:1px solid rgba(0,245,255,0.25);border-radius:8px;color:var(--cyan);flex-shrink:0}
+.opt.correct .opt-letter{background:rgba(34,197,94,0.2);border-color:rgba(34,197,94,0.4);color:#86efac}
+.opt.wrong .opt-letter{background:rgba(239,68,68,0.2);border-color:rgba(239,68,68,0.4);color:#fca5a5}
+.expl{margin-top:20px;padding:18px 22px;background:rgba(0,245,255,0.05);border-right:3px solid var(--cyan);border-radius:12px;font-size:15px;line-height:1.9;color:rgba(241,245,249,0.85);display:none}
+.expl.show{display:block;animation:qin 0.3s ease}
+.expl strong{color:var(--cyan)}
+.next-btn{margin-top:22px;width:100%;background:linear-gradient(135deg,var(--cyan),var(--purple));color:var(--dark);border:none;border-radius:14px;padding:15px;font-family:"Tajawal",sans-serif;font-size:16px;font-weight:900;cursor:pointer;transition:all 0.25s;display:none;align-items:center;justify-content:center;gap:10px}
+.next-btn.show{display:flex;animation:qin 0.3s ease}
+.next-btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,245,255,0.3)}
+.final{background:rgba(15,23,42,0.9);border:1.5px solid var(--border);border-radius:22px;padding:48px 32px;text-align:center;display:none;animation:qin 0.5s ease}
+.final.show{display:block}
+.final-emo{font-size:80px;margin-bottom:16px;display:block}
+.final h2{font-size:32px;font-weight:900;margin-bottom:10px;background:linear-gradient(135deg,#fff,var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.final-msg{color:var(--muted);font-size:16px;margin-bottom:28px;line-height:1.8}
+.final-score{font-family:"Orbitron",sans-serif;font-size:56px;font-weight:900;color:var(--gold);margin-bottom:10px;text-shadow:0 0 30px rgba(251,191,36,0.4)}
+.final-sub{font-size:13px;color:var(--muted);letter-spacing:2px;font-family:"Orbitron",sans-serif;margin-bottom:32px}
+.final-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.fb{padding:12px 26px;border-radius:12px;font-family:"Tajawal",sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all 0.25s;text-decoration:none;border:none;display:inline-flex;align-items:center;gap:8px}
+.fb.primary{background:var(--cyan);color:var(--dark)}
+.fb.secondary{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);color:var(--text)}
+.fb:hover{transform:translateY(-3px);filter:brightness(1.1)}
+.flash{position:fixed;inset:0;pointer-events:none;z-index:50;opacity:0}
+.flash.green{background:radial-gradient(ellipse at center,rgba(34,197,94,0.18),transparent 60%);animation:flashAnim 0.5s ease}
+.flash.red{background:radial-gradient(ellipse at center,rgba(239,68,68,0.18),transparent 60%);animation:flashAnim 0.5s ease}
+@keyframes flashAnim{0%{opacity:0}30%{opacity:1}100%{opacity:0}}
+@media(max-width:640px){nav{padding:0 16px}.nav-logo{font-size:11px;letter-spacing:2px}.back-btn{padding:7px 14px;font-size:13px}.wrap{padding:80px 16px 48px}.ghdr{padding:24px 20px}.ghdr-info h1{font-size:20px}.stats{grid-template-columns:repeat(2,1fr);gap:10px}.qcard{padding:24px 20px}.q-text{font-size:17px}.opt{padding:14px 16px;font-size:14.5px}.final h2{font-size:24px}.final-score{font-size:44px}}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<nav>
+  <div class="nav-logo">📺 ENG11D · M3</div>
+  <a href="index.html" class="back-btn">→ رجوع للصفحة الرئيسية</a>
+</nav>
+<div class="wrap">
+  <div class="ghdr">
+    <div class="ghdr-top">
+      <span class="ghdr-emo">📺</span>
+      <div class="ghdr-info">
+        <h1>Module 3: The Media</h1>
+        <p>الحادي عشر أدبي · انجليزي · الفصل الدراسي الثاني</p>
+      </div>
+    </div>
+    <div class="ghdr-tags">
+      <span class="tg">Relative Clauses</span>
+      <span class="tg">Broadcasting</span>
+      <span class="tg">TV Habits</span>
+      <span class="tg">Cameras</span>
+      <span class="tg">Kuwait Times</span>
+    </div>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="stat-l">QUESTION</div><div class="stat-v" id="qCount">0/0</div></div>
+    <div class="stat score"><div class="stat-l">SCORE</div><div class="stat-v" id="score">0</div></div>
+    <div class="stat streak"><div class="stat-l">STREAK</div><div class="stat-v" id="streak">0</div></div>
+    <div class="stat wrong"><div class="stat-l">WRONG</div><div class="stat-v" id="wrong">0</div></div>
+  </div>
+  <div class="prog"><div class="prog-fill" id="progFill"></div></div>
+  <div id="quizArea"></div>
+  <div class="final" id="final">
+    <span class="final-emo" id="finalEmo">🎉</span>
+    <h2 id="finalTitle">أحسنت!</h2>
+    <p class="final-msg" id="finalMsg"></p>
+    <div class="final-score" id="finalScore">0%</div>
+    <div class="final-sub" id="finalSub">RESULT</div>
+    <div class="final-btns">
+      <button class="fb primary" onclick="restart()">🔄 إعادة اللعبة</button>
+      <a href="index.html" class="fb secondary">🏠 الصفحة الرئيسية</a>
+    </div>
   </div>
 </div>
-<div class="final" id="fs">
-  <div class="fstars" id="fst"></div><div class="ftitle" id="ftl"></div>
-  <div class="fmsg" id="fmg"></div>
-  <div class="fsbox"><div class="fslbl">Total Score</div><div class="fsnum" id="fsn">0</div></div>
-  <button class="rbtn" onclick="rst()">🔄 Try Again</button>
-  <span class="bhome" onclick="window.history.back()">← Back to site</span>
-</div>
+<div class="flash" id="flash"></div>
 <script>
-const QS=[{"q": "Unit 7 (Broadcasting) teaches relative clauses. What is the difference between defining and non-defining relative clauses?", "opts": ["Defining uses 'which' and non-defining uses 'that'", "Defining: identifies which person/thing (no commas, 'that' possible). Non-defining: adds extra info (commas required, 'that' NOT used). Example: The man who called is here (defining) vs. My brother, who lives in London, called (non-defining)", "Defining clauses are shorter than non-defining", "Non-defining uses 'who' and defining uses 'which'"], "ans": 1, "exp": "Relative Clauses: Defining (restrictive): no commas, identifies the noun — The book that I read was amazing. Non-defining (non-restrictive): commas, adds extra info — My sister, who is a doctor, lives in Kuwait. KEY: 'that' can replace 'who/which' in defining but NOT in non-defining. Both types use who (people), which (things), whose (possession), where (places)."}, {"q": "ما تعريف البث Broadcasting وكيف تطوّر تاريخياً وفق ما تناوله Unit 7؟", "opts": ["Broadcasting: إرسال رسائل مكتوبة عبر التلغراف فقط", "Broadcasting: إرسال البرامج عبر الراديو أو التلفاز للجمهور. بدأ بـ Heinrich Hertz (اكتشاف الأمواج الراديوية)، ثم Marconi أول إرسال لاسلكي، ثم John Logie Baird طوّر التلفزيون، والكويت طوّرت مؤسساتها الإعلامية بشكل ملحوظ", "Broadcasting: نقل الصور فقط دون صوت", "Broadcasting اخترعه Edison عام 1900"], "ans": 1, "exp": "Broadcasting (البث): إرسال برامج لجمهور واسع. التطور التاريخي في Unit 7: Heinrich Hertz (اكتشف الأمواج الكهرومغناطيسية). قبل الراديو: كان الناس يستخدمون أسلاك التلغراف. Marconi: أول إرسال لاسلكي. John Logie Baird: طوّر أول تلفزيون. الكويت: سياستها تُركّز على تطوير مؤسساتها الإعلامية."}, {"q": "In Unit 7, the prefix 'tele-' is studied. What does it mean and what words use it?", "opts": ["tele- means 'small' — as in telescope and telephone", "tele- means 'far/over a distance' — telephone, television, teletext, telecommunications, telescope, teleport", "tele- means 'digital' — as in telecom", "tele- means 'fast' — as in telegraph"], "ans": 1, "exp": "Prefix tele- = 'far, over a distance' (from Greek). Words: telephone (talk over distance), television (see over distance), teletext (text over distance), telecommunications (communication over distance), telescope (see far), teleport (transport over distance). Unit 7 task: add tele- to: visualise→televise, phone→telephone, text→teletext, print→teleprint, communicate→telecommunicate."}, {"q": "ما المفردات الأساسية من Unit 8 (Television Watching Habits) وما معنى التعابير الدارجة؟", "opts": ["crash, cushion, decrease — مفردات الحوادث", "it depends (يعتمد على الموقف) / from time to time (أحياناً) / I'd rather (أُفضّل) / comedy (برنامج أو فيلم مضحك)", "smokestack, exhaust fumes, landfill site", "airbag, seatbelt, safeguard"], "ans": 1, "exp": "Unit 8 Vocabulary تعابير خاصة بعادات مشاهدة التلفزيون: it depends = الأمر يعتمد على الموقف (different situations). from time to time = occasionally/sometimes. I'd rather = I would prefer. comedy = play/film/programme that makes you laugh. تُستخدم هذه التعابير في مناقشة عادات المشاهدة وتفضيلات البرامج."}, {"q": "Unit 9 (Uses of Cameras) focuses on expressing opinions. What four domains of camera use are discussed?", "opts": ["Sports, music, art, fashion", "Information, Education, Medicine, Entertainment — with students evaluating positive and negative influences", "Science, technology, engineering, mathematics", "Broadcasting, journalism, cinema, photography"], "ans": 1, "exp": "Unit 9 focuses on four uses of television/cameras: Information (news, documentaries), Education (educational programmes), Medicine (medical imaging, training), Entertainment (films, series). Students discuss positive influences (educational content, awareness) and negative influences (excessive watching, inappropriate content, addiction)."}, {"q": "ما قواعد Relative Clauses في Unit 7 — أيٌّ من الجمل الآتية يحتوي non-defining relative clause صحيح؟", "opts": ["The woman that won the award is my teacher", "My mother, who is a journalist, works for Kuwait Times", "The book which is on the table is mine", "I know the man who called you"], "ans": 1, "exp": "Non-defining relative clause: يُضاف بين فاصلتين (commas) ويُعطي معلومات إضافية غير ضرورية لتحديد الاسم. 'My mother, who is a journalist...' — 'who is a journalist' معلومة إضافية عن أمي (لدي أم واحدة فقط). الجمل الأخرى defining (بدون فواصل) تُحدِّد أي امرأة أو كتاب أو رجل."}, {"q": "Unit 8 discusses TV guidelines for teens. According to the text, what is the main risk of excessive TV watching?", "opts": ["It improves vocabulary", "Day-to-day television watching has considerable social impact on teens — risks include reduced study time, exposure to inappropriate content, sedentary lifestyle", "TV is beneficial for all ages with no negative effects", "Too much TV improves creativity and imagination"], "ans": 1, "exp": "Unit 8 text: TV watching has considerable social impact on teens. The average twelve-year-old watches significant amounts of TV. Risks: reduced study/reading time, exposure to violence or inappropriate content, sedentary lifestyle, reduced family interaction. The text discusses how guidelines can help families manage TV viewing habits."}, {"q": "ما مشروع Module 3 (The Media) الذي يُنجزه الطلاب؟", "opts": ["Creating a festival leaflet", "Conducting an English language survey", "Designing a New TV Channel — تصميم قناة تلفزيونية جديدة", "Writing safety guidelines"], "ans": 2, "exp": "Module 3 Project: Designing a New TV Channel. الطلاب يُصمِّمون قناة تلفزيونية جديدة تشمل: اختيار اسم القناة، تحديد الجمهور المستهدف، اختيار أنواع البرامج، إعداد جدول برامج schedule، وتقديم المشروع للفصل. يُطبّق مفردات ومهارات الوحدات 7 و8 و9."}, {"q": "In Unit 9, what language functions are practised when discussing the uses and effects of television?", "opts": ["Giving instructions and using imperatives", "Expressing opinions, stating advantages and disadvantages, talking about effects, persuading, and disagreeing", "Writing formal letters and application forms", "Describing past events using past perfect"], "ans": 1, "exp": "Unit 9 Language functions: Expressing opinions (I think/believe/feel...), Stating advantages and disadvantages (One advantage is... On the other hand...), Talking about effects (Television has a negative/positive effect on...), Persuading (You should consider...), Disagreeing (I'm afraid I don't agree because...). These functions appear across Module 3."}, {"q": "ما الـ Focus on في نهاية Module 3 وما الشخصية الكويتية المذكورة؟", "opts": ["Suad Mohammed Al-Sabah — شاعرة كويتية", "Kuwait Times وYousuf Saleh Alyan — كاتب صحفي كويتي بارز", "Al-Doha nature reserve", "Meeting Friends in Kuwait"], "ans": 1, "exp": "Module 3 Focus on: Kuwait Times and Yousuf Saleh Alyan — كاتب صحفي كويتي بارز أسهم في تطوير الصحافة الإنجليزية في الكويت. هذا المقطع يربط بموضوع Module 3 (الإعلام) بسياق كويتي محلي، ويُشجع الطلاب على مناقشة دور وسائل الإعلام الإنجليزية في الكويت."}],L=["A", "B", "C", "D"],FN=[["🌟 Excellent! Full marks!", "You answered all questions correctly — outstanding!", "⭐⭐⭐⭐⭐"], ["🔥 Great job!", "Almost perfect — review one or two points", "⭐⭐⭐⭐"], ["👍 Well done!", "Good result — keep practising", "⭐⭐⭐"], ["💡 Try again!", "Review your notes and try once more", "⭐⭐"]];
-let cq=0,sc=0,ans=false;
-const cc=document.getElementById('cfc'),cx=cc.getContext('2d');cc.width=innerWidth;cc.height=innerHeight;let cf=[];
-function lc(x,y,n=15){const cl=['#f472b6','#fff','#fbbf24','#a855f7','#22c55e'];for(let i=0;i<n;i++)cf.push({x,y,vx:(Math.random()-.5)*11,vy:(Math.random()-1)*9,r:Math.random()*4+2,c:cl[Math.floor(Math.random()*cl.length)],l:1,s:Math.random()*4-2,a:Math.random()*360})}
-function dcf(){cx.clearRect(0,0,cc.width,cc.height);cf=cf.filter(p=>p.l>0);cf.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.35;p.l-=.022;p.a+=p.s;cx.save();cx.globalAlpha=p.l;cx.translate(p.x,p.y);cx.rotate(p.a*Math.PI/180);cx.fillStyle=p.c;cx.fillRect(-p.r/2,-p.r/2,p.r,p.r*2);cx.restore()});requestAnimationFrame(dcf)}dcf();
-const bc=document.getElementById('bgc'),bx=bc.getContext('2d');let ns=[];
-function rb(){bc.width=innerWidth;bc.height=innerHeight;ns=Array.from({length:38},()=>{return{x:Math.random()*bc.width,y:Math.random()*bc.height,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:Math.random()*2+1}})}
-function db(){bx.clearRect(0,0,bc.width,bc.height);ns.forEach(n=>{n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>bc.width)n.vx*=-1;if(n.y<0||n.y>bc.height)n.vy*=-1});for(let i=0;i<ns.length;i++)for(let j=i+1;j<ns.length;j++){const dx=ns[i].x-ns[j].x,dy=ns[i].y-ns[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<130){bx.beginPath();bx.moveTo(ns[i].x,ns[i].y);bx.lineTo(ns[j].x,ns[j].y);bx.strokeStyle=`rgba(255,255,255,${(1-d/130)*.055})`;bx.lineWidth=.5;bx.stroke()}}ns.forEach(n=>{bx.beginPath();bx.arc(n.x,n.y,n.r,0,Math.PI*2);bx.fillStyle='rgba(255,255,255,.1)';bx.fill()});requestAnimationFrame(db)}
-rb();db();window.addEventListener('resize',()=>{rb();cc.width=innerWidth;cc.height=innerHeight});
-function bsb(){const sb=document.getElementById('sbar');sb.innerHTML='';for(let i=0;i<QS.length;i++){const d=document.createElement('div');d.className='sd'+(i<cq?' on':'');sb.appendChild(d)}}
-function lq(){ans=false;document.getElementById('nb').classList.remove('show');const ex=document.getElementById('ex');ex.classList.remove('show');ex.style.display='none';
-  const q=QS[cq];document.getElementById('pf').style.width=((cq/QS.length)*100)+'%';
-  document.getElementById('pl').textContent='Question '+(cq+1)+' of '+QS.length;
-  document.getElementById('qn').textContent='QUESTION '+String(cq+1).padStart(2,'0');
-  const qc=document.getElementById('qc');qc.classList.remove('si');void qc.offsetWidth;qc.classList.add('si');
-  const qtEl=document.getElementById('qt');
-  if(q.code){qtEl.innerHTML=q.q+'<code class="code">'+q.code+'</code>'}else{qtEl.textContent=q.q}
-  const og=document.getElementById('og');og.innerHTML='';
-  q.opts.forEach((o,i)=>{const b=document.createElement('button');b.className='opt';b.innerHTML=`<span class="ltr">${L[i]}</span><span>${o}</span>`;b.addEventListener('click',()=>pick(i,b));og.appendChild(b)});bsb();}
-function pick(idx,btn){if(ans)return;ans=true;const q=QS[cq];const bs=document.querySelectorAll('.opt');bs.forEach(b=>b.disabled=true);
-  const fb=document.getElementById('fb');fb.classList.remove('sc','wr');
-  if(idx===q.ans){btn.classList.add('correct');sc+=10;const sv=document.getElementById('sv');sv.textContent=sc;sv.classList.remove('pop');void sv.offsetWidth;sv.classList.add('pop');setTimeout(()=>sv.classList.remove('pop'),400);
-    fb.textContent=['✅','🎯','⭐','🔥','💥'][Math.floor(Math.random()*5)];fb.classList.add('sc');
-    for(let i=0;i<3;i++)setTimeout(()=>lc(innerWidth*(0.2+Math.random()*0.6),innerHeight*.4),i*80);
-    setTimeout(()=>document.getElementById('nb').classList.add('show'),500);
-  }else{btn.classList.add('wrong');bs[q.ans].classList.add('correct');
-    fb.textContent=['❌','😬','💭','🙈'][Math.floor(Math.random()*4)];fb.classList.add('wr');
-    const ex=document.getElementById('ex');ex.textContent='💡 '+q.exp;ex.style.display='block';setTimeout(()=>ex.classList.add('show'),50);
-    setTimeout(()=>document.getElementById('nb').classList.add('show'),350);}bsb();}
-function nxt(){cq++;if(cq<QS.length)lq();else sf()}
-function sf(){document.getElementById('qs').style.display='none';document.getElementById('fs').classList.add('vis');document.getElementById('fsn').textContent=sc;
-  const p=sc/(QS.length*10),f=p===1?FN[0]:p>=.75?FN[1]:p>=.5?FN[2]:FN[3];
-  document.getElementById('ftl').textContent=f[0];document.getElementById('fmg').textContent=f[1];document.getElementById('fst').textContent=f[2];
-  setTimeout(()=>{for(let i=0;i<8;i++)setTimeout(()=>lc(innerWidth*Math.random(),-20,20),i*100)},250);}
-function rst(){cq=0;sc=0;ans=false;cf=[];document.getElementById('sv').textContent='0';document.getElementById('fs').classList.remove('vis');document.getElementById('qs').style.display='flex';lq()}
-lq();
-</script></body></html>
+const QUESTIONS = [
+  {
+    q: "Complete: 'This is the book ___ I borrowed from the library.'",
+    opts: ["which", "who", "whose", "where"],
+    correct: 0,
+    expl: "<strong>Which</strong> is used for <strong>things/objects</strong>. For people we use <strong>who</strong>, for possession <strong>whose</strong>, and for places <strong>where</strong>."
+  },
+  {
+    q: "Choose the correct relative pronoun: 'The journalist ___ wrote the article is famous.'",
+    opts: ["who", "which", "whose", "what"],
+    correct: 0,
+    expl: "<strong>Who</strong> is used for <strong>people as the subject</strong> of the relative clause. For objects, we use 'which' or 'that'."
+  },
+  {
+    q: "'The studio ___ they broadcast the news is in the capital.' Choose the best pronoun.",
+    opts: ["where", "which", "who", "when"],
+    correct: 0,
+    expl: "<strong>Where</strong> is used to describe <strong>places</strong>. It means 'in which' or 'at which' and refers to a location."
+  },
+  {
+    q: "What does 'broadcasting' mean?",
+    opts: [
+      "Transmitting programs to a wide audience via radio or TV",
+      "Writing a newspaper article",
+      "Taking photographs",
+      "Delivering mail"
+    ],
+    correct: 0,
+    expl: "<strong>Broadcasting</strong> is the distribution of audio or video content to a <strong>large, dispersed audience</strong> through any electronic mass communication medium."
+  },
+  {
+    q: "A person who presents the news on television is called a:",
+    opts: ["newsreader / anchor", "actor", "director", "producer"],
+    correct: 0,
+    expl: "A <strong>newsreader</strong> (or <strong>news anchor</strong>) is the person who reads and presents news stories on television or radio broadcasts."
+  },
+  {
+    q: "Which of these is a typical TV watching habit?",
+    opts: [
+      "Watching news in the evening with family",
+      "Eating the TV remote",
+      "Reading a newspaper while swimming",
+      "Writing letters during commercials"
+    ],
+    correct: 0,
+    expl: "Watching the <strong>evening news</strong> with family is a common routine in many households, especially in Kuwait and the Gulf region."
+  },
+  {
+    q: "What does 'DSLR' refer to in photography?",
+    opts: [
+      "A type of digital camera",
+      "A phone model",
+      "A printing technique",
+      "A video format"
+    ],
+    correct: 0,
+    expl: "<strong>DSLR</strong> = <strong>D</strong>igital <strong>S</strong>ingle-<strong>L</strong>ens <strong>R</strong>eflex. It's a professional digital camera known for high-quality images and interchangeable lenses."
+  },
+  {
+    q: "The 'Kuwait Times' is:",
+    opts: [
+      "An English-language newspaper in Kuwait",
+      "A sports channel",
+      "A radio station",
+      "A magazine for children"
+    ],
+    correct: 0,
+    expl: "The <strong>Kuwait Times</strong> is the <strong>first English daily newspaper</strong> in the Arabian Gulf, founded in 1961. It covers local and international news."
+  },
+  {
+    q: "Which word means 'an event where important news is announced publicly'?",
+    opts: ["press conference", "picnic", "festival", "exhibition"],
+    correct: 0,
+    expl: "A <strong>press conference</strong> is a meeting held to give information to reporters and answer their questions about a particular topic."
+  },
+  {
+    q: "'The photographer ___ photos won the prize.' Complete with the correct relative pronoun.",
+    opts: ["whose", "who", "which", "where"],
+    correct: 0,
+    expl: "<strong>Whose</strong> shows <strong>possession</strong>. It means 'the photos belonging to the photographer'. Used for both people and things."
+  }
+];
+let current=0,score=0,streak=0,maxStreak=0,wrong=0,answered=false;
+function render(){
+  if(current>=QUESTIONS.length){showFinal();return}
+  answered=false;
+  const q=QUESTIONS[current];
+  document.getElementById('qCount').textContent=(current+1)+'/'+QUESTIONS.length;
+  document.getElementById('progFill').style.width=((current)/QUESTIONS.length*100)+'%';
+  const area=document.getElementById('quizArea');
+  area.innerHTML=`
+    <div class="qcard">
+      <div class="q-num">QUESTION ${String(current+1).padStart(2,'0')}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="opts">
+        ${q.opts.map((opt,i)=>`
+          <button class="opt" onclick="answer(${i})">
+            <span class="opt-letter">${String.fromCharCode(65+i)}</span>
+            <span>${opt}</span>
+          </button>
+        `).join('')}
+      </div>
+      <div class="expl" id="expl">${q.expl}</div>
+      <button class="next-btn" id="nextBtn" onclick="nextQ()">
+        ${current+1>=QUESTIONS.length?'🏁 إنهاء اللعبة':'← السؤال التالي'}
+      </button>
+    </div>`;
+}
+function answer(idx){
+  if(answered)return;
+  answered=true;
+  const q=QUESTIONS[current];
+  document.querySelectorAll('.opt').forEach((el,i)=>{
+    el.classList.add('disabled');
+    if(i===q.correct)el.classList.add('correct');
+    if(i===idx&&i!==q.correct)el.classList.add('wrong');
+  });
+  if(idx===q.correct){score++;streak++;if(streak>maxStreak)maxStreak=streak;flashScreen('green')}
+  else{wrong++;streak=0;flashScreen('red')}
+  document.getElementById('score').textContent=score;
+  document.getElementById('streak').textContent=streak;
+  document.getElementById('wrong').textContent=wrong;
+  document.getElementById('expl').classList.add('show');
+  document.getElementById('nextBtn').classList.add('show');
+  document.getElementById('progFill').style.width=((current+1)/QUESTIONS.length*100)+'%';
+}
+function nextQ(){current++;render();window.scrollTo({top:0,behavior:'smooth'})}
+function flashScreen(color){const f=document.getElementById('flash');f.className='flash '+color;setTimeout(()=>f.className='flash',500)}
+function showFinal(){
+  document.getElementById('quizArea').style.display='none';
+  const percent=Math.round((score/QUESTIONS.length)*100);
+  document.getElementById('finalScore').textContent=percent+'%';
+  document.getElementById('finalSub').textContent=`${score} / ${QUESTIONS.length} إجابة صحيحة · أعلى سلسلة: ${maxStreak}`;
+  let emo='🎉',title='',msg='';
+  if(percent===100){emo='🏆';title='ممتاز! علامة كاملة!';msg='أتقنت Module 3 بامتياز. أنت جاهز للاختبار تماماً! 🌟'}
+  else if(percent>=80){emo='🌟';title='أداء رائع!';msg='مستواك قوي جداً. راجع الأخطاء البسيطة وستكون مستعداً تماماً.'}
+  else if(percent>=60){emo='👍';title='أداء جيد';msg='أنت في الطريق الصحيح. راجع النقاط التي أخطأت فيها وأعد المحاولة.'}
+  else if(percent>=40){emo='📚';title='يحتاج مراجعة';msg='الأساسيات واضحة لكن تحتاج تركيز أكثر. اقرأ الشرح جيداً وأعد اللعبة.'}
+  else{emo='💪';title='لا تستسلم';msg='البداية دائماً صعبة. راجع الدرس من الكتاب ثم عد لتجرب مرة ثانية.'}
+  document.getElementById('finalEmo').textContent=emo;
+  document.getElementById('finalTitle').textContent=title;
+  document.getElementById('finalMsg').textContent=msg;
+  document.getElementById('final').classList.add('show');
+}
+function restart(){
+  current=0;score=0;streak=0;maxStreak=0;wrong=0;
+  document.getElementById('score').textContent='0';
+  document.getElementById('streak').textContent='0';
+  document.getElementById('wrong').textContent='0';
+  document.getElementById('final').classList.remove('show');
+  document.getElementById('quizArea').style.display='block';
+  render();window.scrollTo({top:0,behavior:'smooth'});
+}
+render();
+const cv=document.getElementById('bg'),cx=cv.getContext('2d');let ns=[];
+function rsz(){cv.width=innerWidth;cv.height=innerHeight}
+function ini(){ns=Array.from({length:40},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,r:Math.random()*2+1}))}
+function draw(){
+  cx.clearRect(0,0,cv.width,cv.height);
+  ns.forEach(n=>{n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>cv.width)n.vx*=-1;if(n.y<0||n.y>cv.height)n.vy*=-1});
+  for(let i=0;i<ns.length;i++)for(let j=i+1;j<ns.length;j++){const dx=ns[i].x-ns[j].x,dy=ns[i].y-ns[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<140){cx.beginPath();cx.moveTo(ns[i].x,ns[i].y);cx.lineTo(ns[j].x,ns[j].y);cx.strokeStyle=`rgba(0,245,255,${(1-d/140)*.08})`;cx.lineWidth=.6;cx.stroke()}}
+  ns.forEach(n=>{cx.beginPath();cx.arc(n.x,n.y,n.r,0,Math.PI*2);cx.fillStyle='rgba(0,245,255,0.2)';cx.fill()});
+  requestAnimationFrame(draw);
+}
+rsz();ini();draw();window.addEventListener('resize',()=>{rsz();ini()});
+</script>
+</body>
+</html>

@@ -1,116 +1,306 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>English — Semester 2 | Module 4: Health, Safety & Environment</title>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Module 4: Health, Safety & Environment — Grade 11 Literary</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
 <style>
-:root{--c:#f472b6;--c2:#be185d;--bg:#0a0208;--brd:rgba(244,114,182,.18);--txt:#f1f5f9;--mut:rgba(241,245,249,.62);--red:#ef4444;--grn:#22c55e}
+:root{--cyan:#00f5ff;--gold:#fbbf24;--green:#22c55e;--red:#ef4444;--purple:#c026d3;--dark:#020617;--dark2:#0f172a;--text:#f1f5f9;--muted:rgba(241,245,249,0.6);--border:rgba(0,245,255,0.15)}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:"Tajawal","Arial",sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow-x:hidden}
-#bgc,#cfc{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none}#bgc{z-index:0}#cfc{z-index:6}
-#fb{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);font-size:88px;z-index:100;pointer-events:none}
-#fb.sc{animation:fbs .9s ease forwards}#fb.wr{animation:fbw .9s ease forwards}
-@keyframes fbs{0%{transform:translate(-50%,-50%) scale(0);opacity:0}40%{transform:translate(-50%,-50%) scale(1.25);opacity:1}100%{transform:translate(-50%,-65%) scale(.6);opacity:0}}
-@keyframes fbw{0%{transform:translate(-50%,-50%) scale(0);opacity:0}40%{transform:translate(-50%,-50%) scale(1.1);opacity:1}100%{transform:translate(-50%,-65%) scale(.6);opacity:0}}
-.wrap{position:relative;z-index:10;width:100%;max-width:960px;padding:18px 26px;display:flex;flex-direction:column;gap:13px}
-.hdr{display:flex;justify-content:space-between;align-items:center}
-.logo{font-size:13px;font-weight:900;color:var(--c);letter-spacing:1.5px;text-shadow:0 0 14px color-mix(in srgb,var(--c) 50%,transparent)}
-.sb{background:rgba(255,255,255,.04);border:2px solid var(--c);border-radius:50px;padding:7px 20px;display:flex;align-items:center;gap:7px}
-.sl{font-size:13px;color:var(--mut)}.sv{font-size:25px;font-weight:900;color:var(--c);transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
-.sv.pop{transform:scale(1.55)}
-.ptrack{width:100%;height:6px;background:rgba(255,255,255,.07);border-radius:99px;overflow:hidden}
-.pfill{height:100%;background:linear-gradient(90deg,var(--c2),var(--c));border-radius:99px;transition:width .5s ease}
-.plbl{text-align:center;font-size:13px;color:var(--mut);margin-top:2px}
-.sbar{display:flex;gap:5px;justify-content:center}
-.sd{width:20px;height:7px;border-radius:4px;background:rgba(255,255,255,.08);transition:all .3s}
-.sd.on{background:var(--c);box-shadow:0 0 6px var(--c)}
-.qcard{background:rgba(255,255,255,.03);border:1.5px solid var(--brd);border-radius:20px;padding:28px 32px;backdrop-filter:blur(10px)}
-.qcard.si{animation:si .4s cubic-bezier(.34,1.56,.64,1) forwards}
-@keyframes si{from{transform:translateX(55px);opacity:0}to{transform:translateX(0);opacity:1}}
-.qn{font-size:12px;font-weight:700;color:var(--c);margin-bottom:9px;letter-spacing:2px;opacity:.8}
-.qt{font-size:20px;font-weight:700;line-height:1.7;margin-bottom:18px}
-.code{font-family:"Courier New",monospace;background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:10px 14px;font-size:13px;color:#a5f3fc;display:block;margin:10px 0;direction:ltr;text-align:left;white-space:pre;overflow-x:auto}
-.opts{display:grid;grid-template-columns:1fr 1fr;gap:11px}
-.opt{background:rgba(255,255,255,.04);border:2px solid rgba(255,255,255,.08);border-radius:13px;padding:14px 16px;font-family:"Tajawal","Arial",sans-serif;font-size:15px;font-weight:700;color:#dde;cursor:pointer;display:flex;align-items:flex-start;gap:10px;transition:all .17s;line-height:1.5;text-align:right}
-.opt:hover:not(:disabled){border-color:rgba(255,255,255,.25);transform:translateY(-2px);color:#fff}
-.ltr{font-size:13px;font-weight:900;color:var(--c);background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.12);border-radius:7px;min-width:32px;height:32px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;font-family:"Courier New",monospace}
-.opt.correct{background:rgba(34,197,94,.12)!important;border-color:var(--grn)!important;color:#fff!important;animation:cp .5s ease}
-.opt.correct .ltr{background:var(--grn);color:#fff;border-color:var(--grn)}
-@keyframes cp{0%{transform:scale(1)}40%{transform:scale(1.03)}100%{transform:scale(1)}}
-.opt.wrong{background:rgba(239,68,68,.1)!important;border-color:var(--red)!important;animation:shk .4s ease}
-.opt.wrong .ltr{background:var(--red);color:#fff;border-color:var(--red)}
-@keyframes shk{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
-.exp{margin-top:13px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.09);border-right:3px solid var(--c);border-radius:10px;padding:12px 15px;font-size:15px;line-height:1.85;color:var(--mut);display:none}
-.exp.show{display:block;animation:fd .3s ease}
-@keyframes fd{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
-.nbtn{margin-top:11px;width:100%;padding:12px;background:linear-gradient(135deg,var(--c2),var(--c));border:none;border-radius:10px;font-family:"Tajawal","Arial",sans-serif;font-size:16px;font-weight:900;color:#fff;cursor:pointer;display:none;transition:all .2s}
-.nbtn.show{display:block;animation:fd .25s ease}.nbtn:hover{filter:brightness(1.1);transform:translateY(-1px)}
-.final{display:none;flex-direction:column;align-items:center;text-align:center;padding:46px 24px;max-width:620px;margin:0 auto}
-.final.vis{display:flex;animation:fd .4s ease}
-.fstars{font-size:42px;margin-bottom:12px}.ftitle{font-size:28px;font-weight:900;margin-bottom:7px}
-.fmsg{font-size:16px;color:var(--mut);margin-bottom:22px;line-height:1.7}
-.fsbox{background:rgba(255,255,255,.04);border:2px solid var(--c);border-radius:16px;padding:22px 48px;margin-bottom:24px}
-.fslbl{font-size:13px;color:var(--mut);margin-bottom:3px}.fsnum{font-size:56px;font-weight:900;color:var(--c)}
-.rbtn{background:linear-gradient(135deg,var(--c2),var(--c));color:#fff;border:none;border-radius:12px;padding:13px 40px;font-family:"Tajawal","Arial",sans-serif;font-size:17px;font-weight:900;cursor:pointer;margin-bottom:12px;transition:all .2s}
-.rbtn:hover{filter:brightness(1.1);transform:translateY(-2px)}
-.bhome{color:var(--mut);font-size:14px;cursor:pointer;text-decoration:underline}
-@media(max-width:600px){.wrap{padding:11px 13px}.qt{font-size:17px}.opts{grid-template-columns:1fr}.opt{font-size:14px}}
-</style></head><body>
-<canvas id="bgc"></canvas><canvas id="cfc"></canvas><div id="fb"></div>
-<div class="wrap" id="qs">
-  <div class="hdr"><div class="logo">🌍 English — Grade 11 Science</div>
-  <div class="sb"><span class="sl">Score</span><span class="sv" id="sv">0</span></div></div>
-  <div class="ptrack"><div class="pfill" id="pf" style="width:0%"></div></div>
-  <div class="plbl" id="pl"></div><div class="sbar" id="sbar"></div>
-  <div class="qcard" id="qc">
-    <div class="qn" id="qn"></div><div class="qt" id="qt"></div>
-    <div class="opts" id="og"></div><div class="exp" id="ex"></div>
-    <button class="nbtn" id="nb" onclick="nxt()">Next ←</button>
+html{scroll-behavior:smooth}
+body{font-family:"Tajawal",sans-serif;background:var(--dark);color:var(--text);min-height:100vh;overflow-x:hidden}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--dark2)}
+::-webkit-scrollbar-thumb{background:rgba(0,245,255,0.3);border-radius:3px}
+#bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(2,6,23,0.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 32px;height:60px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:"Orbitron",sans-serif;font-size:13px;color:var(--cyan);letter-spacing:3px;text-shadow:0 0 20px rgba(0,245,255,0.5)}
+.back-btn{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:8px 18px;font-family:"Tajawal",sans-serif;font-size:14px;color:var(--muted);cursor:pointer;text-decoration:none;transition:all 0.2s}
+.back-btn:hover{background:rgba(255,255,255,0.08);color:var(--text)}
+.wrap{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:96px 24px 60px}
+.ghdr{background:linear-gradient(135deg,rgba(0,245,255,0.08),rgba(192,38,211,0.05));border:1.5px solid rgba(0,245,255,0.2);border-radius:22px;padding:32px 28px;margin-bottom:28px;position:relative;overflow:hidden}
+.ghdr::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle,rgba(0,245,255,0.1) 1px,transparent 1px);background-size:26px 26px;opacity:0.4;pointer-events:none}
+.ghdr-top{display:flex;align-items:center;gap:16px;margin-bottom:14px;position:relative;z-index:1}
+.ghdr-emo{font-size:48px}
+.ghdr-info h1{font-size:26px;font-weight:900;margin-bottom:4px;background:linear-gradient(135deg,#fff,var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.ghdr-info p{color:var(--muted);font-size:14px}
+.ghdr-tags{display:flex;flex-wrap:wrap;gap:6px;position:relative;z-index:1}
+.tg{font-size:11px;background:rgba(0,245,255,0.1);border:1px solid rgba(0,245,255,0.25);color:var(--cyan);padding:4px 10px;border-radius:7px;font-weight:700}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:26px}
+.stat{background:rgba(15,23,42,0.85);border:1.5px solid rgba(255,255,255,0.08);border-radius:14px;padding:14px 12px;text-align:center;transition:all 0.25s}
+.stat-l{font-family:"Orbitron",sans-serif;font-size:9px;color:var(--muted);letter-spacing:2px;margin-bottom:6px}
+.stat-v{font-size:22px;font-weight:900;color:var(--cyan);font-family:"Orbitron",sans-serif}
+.stat.score .stat-v{color:var(--gold)}
+.stat.streak .stat-v{color:var(--green)}
+.stat.wrong .stat-v{color:var(--red)}
+.prog{background:rgba(15,23,42,0.85);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;height:10px;margin-bottom:28px;overflow:hidden;position:relative}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--cyan),var(--purple));border-radius:12px;transition:width 0.5s cubic-bezier(0.4,0,0.2,1);width:0%;box-shadow:0 0 20px rgba(0,245,255,0.5)}
+.qcard{background:rgba(15,23,42,0.85);border:1.5px solid var(--border);border-radius:22px;padding:32px 28px;margin-bottom:24px;position:relative;overflow:hidden;backdrop-filter:blur(12px);animation:qin 0.4s ease}
+@keyframes qin{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.q-num{font-family:"Orbitron",sans-serif;font-size:11px;color:var(--cyan);letter-spacing:3px;margin-bottom:10px}
+.q-text{font-size:20px;font-weight:700;line-height:1.8;margin-bottom:26px;color:var(--text)}
+.opts{display:flex;flex-direction:column;gap:12px}
+.opt{background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:14px;padding:16px 20px;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:14px;font-family:"Tajawal",sans-serif;font-size:16px;color:var(--text);text-align:right;width:100%;font-weight:500}
+.opt:hover:not(.disabled){border-color:var(--cyan);background:rgba(0,245,255,0.05);transform:translateX(-4px)}
+.opt.correct{border-color:var(--green);background:rgba(34,197,94,0.1);color:#86efac;animation:pulseG 0.5s ease}
+.opt.wrong{border-color:var(--red);background:rgba(239,68,68,0.1);color:#fca5a5;animation:shake 0.4s ease}
+.opt.disabled{cursor:default;opacity:0.5}
+@keyframes pulseG{0%,100%{transform:scale(1)}50%{transform:scale(1.02)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.opt-letter{font-family:"Orbitron",sans-serif;font-size:12px;font-weight:900;width:34px;height:34px;display:flex;align-items:center;justify-content:center;background:rgba(0,245,255,0.1);border:1px solid rgba(0,245,255,0.25);border-radius:8px;color:var(--cyan);flex-shrink:0}
+.opt.correct .opt-letter{background:rgba(34,197,94,0.2);border-color:rgba(34,197,94,0.4);color:#86efac}
+.opt.wrong .opt-letter{background:rgba(239,68,68,0.2);border-color:rgba(239,68,68,0.4);color:#fca5a5}
+.expl{margin-top:20px;padding:18px 22px;background:rgba(0,245,255,0.05);border-right:3px solid var(--cyan);border-radius:12px;font-size:15px;line-height:1.9;color:rgba(241,245,249,0.85);display:none}
+.expl.show{display:block;animation:qin 0.3s ease}
+.expl strong{color:var(--cyan)}
+.next-btn{margin-top:22px;width:100%;background:linear-gradient(135deg,var(--cyan),var(--purple));color:var(--dark);border:none;border-radius:14px;padding:15px;font-family:"Tajawal",sans-serif;font-size:16px;font-weight:900;cursor:pointer;transition:all 0.25s;display:none;align-items:center;justify-content:center;gap:10px}
+.next-btn.show{display:flex;animation:qin 0.3s ease}
+.next-btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,245,255,0.3)}
+.final{background:rgba(15,23,42,0.9);border:1.5px solid var(--border);border-radius:22px;padding:48px 32px;text-align:center;display:none;animation:qin 0.5s ease}
+.final.show{display:block}
+.final-emo{font-size:80px;margin-bottom:16px;display:block}
+.final h2{font-size:32px;font-weight:900;margin-bottom:10px;background:linear-gradient(135deg,#fff,var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.final-msg{color:var(--muted);font-size:16px;margin-bottom:28px;line-height:1.8}
+.final-score{font-family:"Orbitron",sans-serif;font-size:56px;font-weight:900;color:var(--gold);margin-bottom:10px;text-shadow:0 0 30px rgba(251,191,36,0.4)}
+.final-sub{font-size:13px;color:var(--muted);letter-spacing:2px;font-family:"Orbitron",sans-serif;margin-bottom:32px}
+.final-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.fb{padding:12px 26px;border-radius:12px;font-family:"Tajawal",sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all 0.25s;text-decoration:none;border:none;display:inline-flex;align-items:center;gap:8px}
+.fb.primary{background:var(--cyan);color:var(--dark)}
+.fb.secondary{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);color:var(--text)}
+.fb:hover{transform:translateY(-3px);filter:brightness(1.1)}
+.flash{position:fixed;inset:0;pointer-events:none;z-index:50;opacity:0}
+.flash.green{background:radial-gradient(ellipse at center,rgba(34,197,94,0.18),transparent 60%);animation:flashAnim 0.5s ease}
+.flash.red{background:radial-gradient(ellipse at center,rgba(239,68,68,0.18),transparent 60%);animation:flashAnim 0.5s ease}
+@keyframes flashAnim{0%{opacity:0}30%{opacity:1}100%{opacity:0}}
+@media(max-width:640px){nav{padding:0 16px}.nav-logo{font-size:11px;letter-spacing:2px}.back-btn{padding:7px 14px;font-size:13px}.wrap{padding:80px 16px 48px}.ghdr{padding:24px 20px}.ghdr-info h1{font-size:20px}.stats{grid-template-columns:repeat(2,1fr);gap:10px}.qcard{padding:24px 20px}.q-text{font-size:17px}.opt{padding:14px 16px;font-size:14.5px}.final h2{font-size:24px}.final-score{font-size:44px}}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<nav>
+  <div class="nav-logo">🌿 ENG11D · M4</div>
+  <a href="index.html" class="back-btn">→ رجوع للصفحة الرئيسية</a>
+</nav>
+<div class="wrap">
+  <div class="ghdr">
+    <div class="ghdr-top">
+      <span class="ghdr-emo">🌿</span>
+      <div class="ghdr-info">
+        <h1>Module 4: Health, Safety & Environment</h1>
+        <p>الحادي عشر أدبي · انجليزي · الفصل الدراسي الثاني</p>
+      </div>
+    </div>
+    <div class="ghdr-tags">
+      <span class="tg">Accidents</span>
+      <span class="tg">Airbags</span>
+      <span class="tg">Pollution</span>
+      <span class="tg">David Copperfield</span>
+      <span class="tg">Nature</span>
+    </div>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="stat-l">QUESTION</div><div class="stat-v" id="qCount">0/0</div></div>
+    <div class="stat score"><div class="stat-l">SCORE</div><div class="stat-v" id="score">0</div></div>
+    <div class="stat streak"><div class="stat-l">STREAK</div><div class="stat-v" id="streak">0</div></div>
+    <div class="stat wrong"><div class="stat-l">WRONG</div><div class="stat-v" id="wrong">0</div></div>
+  </div>
+  <div class="prog"><div class="prog-fill" id="progFill"></div></div>
+  <div id="quizArea"></div>
+  <div class="final" id="final">
+    <span class="final-emo" id="finalEmo">🎉</span>
+    <h2 id="finalTitle">أحسنت!</h2>
+    <p class="final-msg" id="finalMsg"></p>
+    <div class="final-score" id="finalScore">0%</div>
+    <div class="final-sub" id="finalSub">RESULT</div>
+    <div class="final-btns">
+      <button class="fb primary" onclick="restart()">🔄 إعادة اللعبة</button>
+      <a href="index.html" class="fb secondary">🏠 الصفحة الرئيسية</a>
+    </div>
   </div>
 </div>
-<div class="final" id="fs">
-  <div class="fstars" id="fst"></div><div class="ftitle" id="ftl"></div>
-  <div class="fmsg" id="fmg"></div>
-  <div class="fsbox"><div class="fslbl">Total Score</div><div class="fsnum" id="fsn">0</div></div>
-  <button class="rbtn" onclick="rst()">🔄 Try Again</button>
-  <span class="bhome" onclick="window.history.back()">← Back to site</span>
-</div>
+<div class="flash" id="flash"></div>
 <script>
-const QS=[{"q": "Unit 10 (Accidents) introduces vocabulary about car safety. What does an 'airbag' do?", "opts": ["It increases engine speed in emergencies", "Airbags safeguard car drivers and passengers in a crash — they inflate instantly on impact to cushion and protect occupants from hitting hard surfaces", "Airbags decrease fuel consumption", "Airbags prevent the car from skidding"], "ans": 1, "exp": "Airbags (من Unit 10 - Innovations that keep us secure): safeguard drivers/passengers if involved in a crash. Most vehicles have a driver's airbag in the steering wheel and one for the front passenger. They inflate within milliseconds of impact (using a chemical reaction) to cushion occupants. Vocabulary includes: crash, cushion, inflate, decrease, safeguard, prevent, protect."}, {"q": "ما الـ Reported Speech / Indirect Speech المُدرَّسة في Unit 10 (Accidents)؟", "opts": ["نستخدم نفس صيغة الأفعال في الكلام المباشر", "في Reported Speech نحوّل: الأزمنة للخلف (backshift): is→was، has done→had done، will→would. أمثلة: She said she was fine. He told me he had called. They said they would come", "لا تتغير الأزمنة في Reported Speech", "فقط الضمائر تتغير دون الأزمنة"], "ans": 1, "exp": "Reported Speech في Unit 10 (report what people say): Backshift of tenses: Present simple → Past simple (is→was). Present perfect → Past perfect (has finished→had finished). Will → Would. Can → Could. الضمائر تتغير حسب السياق. Reporting verbs: said, told, explained, mentioned. مثال: 'I am fine' → He said he was fine."}, {"q": "Unit 11 (The Planet in Danger) teaches environmental vocabulary. What are the main pollution sources discussed?", "opts": ["Volcanoes and earthquakes only", "Smokestacks (factory chimneys), exhaust fumes (from vehicles), landfill sites (waste dumps), factory smoke — human-made sources of pollution", "Ocean waves and tides", "Deforestation and soil erosion only"], "ans": 1, "exp": "Unit 11 Environmental pollution vocabulary: smokestack (مدخنة المصنع الكبيرة), exhaust fumes (عوادم السيارات - can make it difficult to breathe), factory (مصنع), landfill site (موقع طمر النفايات), smoke (دخان), vehicle (مركبة), waste (نفايات). Students label illustrations and complete sentences using these terms."}, {"q": "ما موضوع الرواية الأدبية (David Copperfield) المُضمَّنة في Unit 11-12 وما صاحبها؟", "opts": ["The Old Man and the Sea by Ernest Hemingway", "David Copperfield by Charles Dickens — رواية كلاسيكية عن بطولة طفل يتيم في إنجلترا القرن التاسع عشر", "Oliver Twist by Charles Dickens", "Pride and Prejudice by Jane Austen"], "ans": 1, "exp": "Semester 2 يتضمن مقاطع من David Copperfield بقلم Charles Dickens. الرواية تحكي قصة David Copperfield اليتيم الذي يواجه صعوبات الحياة في إنجلترا القرن 19. المقطع المدروس: David يزور خالته Aunt Betsey بعد رحلة طويلة مضنية. أشخاص: Uriah Heep, Agnes, Mr Micawber, Mr Spenlow."}, {"q": "Unit 12 (The Power of Nature) teaches vocabulary about natural processes. What vocabulary is used to describe the water cycle?", "opts": ["airbag, seatbelt, cushion, protect", "come in / fall / flood / flow / go out — describing water movement; vocabulary: ordinary/high/low level, overflowing, cloud, rain, hill, stream, river, lake, sea", "smokestack, exhaust fumes, landfill", "broadcast, channel, relay, transmit"], "ans": 1, "exp": "Unit 12 Water cycle vocabulary: come in (دخول المياه), fall (سقوط الأمطار), flood (فيضان), flow (جريان), go out (خروج المياه). Levels: ordinary, higher, overflowing. Geographical features: cloud, rain, hill, stream, river, lake, sea. Students complete sentences using present simple verbs to describe the water cycle process."}, {"q": "ما Prepositions of time المُدرَّسة في Grammar File (Module 4)؟", "opts": ["Prepositions of direction: to, towards, into, onto", "on (يوم أو تاريخ: on Monday, on 21 July) / in (سنة أو وقت من اليوم: in 1971, in the morning) / from…to (من…حتى: from Wednesday to Sunday) / at (وقت محدد: at 6pm, at midnight)", "before / after / while / during للزمن فقط", "since / for / ago / already / yet"], "ans": 1, "exp": "Prepositions of time في Grammar File: on + day/date: on Monday, on 21 July, on my birthday. in + year/time of day: in 1971, in the morning, in summer. from…to + duration: from Wednesday to Sunday, from 9 to 5. at + specific time: at 6pm, at midnight, at noon. Prepositions of place: in (inside), at (specific point), on (surface)."}, {"q": "ما مشروع Module 4 (Health, Safety and Environment) Project؟", "opts": ["Designing a new TV channel", "Creating a festival leaflet", "Conducting an English language survey", "Creating guidelines for making the world safer — كتابة إرشادات لجعل العالم أكثر أماناً"], "ans": 3, "exp": "Module 4 Project: Creating guidelines for making the world safer. Students work in groups to write guidelines (e.g. Making Kuwait a safer place). They use: imperative forms (Do not... Always... Make sure...), headings and subheadings, formal language. Reference text: Guidelines for visitors to Al-Doha nature reserve."}, {"q": "Unit 10 vocabulary — what are the synonyms taught for accident-related words?", "opts": ["broadcast, transmit, relay, channel", "crash (car accident) / cushion (soften impact) / decrease (reduce) / disappear (vanish) / fit (seizure/spasm) / inflate (expand/fill with air) / prevent (stop) / protect (keep safe)", "flood, flow, overflow, stream", "exhaust, pollute, emit, release"], "ans": 1, "exp": "Unit 10 Vocabulary synonyms: crash = car accident (حادث سيارة). cushion = soften the impact (تخفيف الاصطدام). decrease = reduce (تقليل). disappear = vanish (اختفاء). fit = seizure/spasm (نوبة). inflate = fill with air/expand (انتفاخ). prevent = stop something happening (منع). protect = keep safe (حماية). Students use glossary/dictionary to find these."}, {"q": "What does Unit 11 (The Planet in Danger) require students to practise in terms of writing?", "opts": ["Writing a report about a festival", "Writing an open letter about an environmental issue — e.g. pollution, climate change, addressing decision-makers", "Writing instructions for a mobile phone", "Writing a formal letter of application"], "ans": 1, "exp": "Unit 11 Writing: an open letter about an environmental concern. Open letters are addressed to a public figure or organisation and published for wider audiences. Students practise: stating the problem, giving evidence, making demands/suggestions, using formal language, concluding with a call to action. Language of criticism and expressing concern are key functions."}, {"q": "In the Irregular Verbs List included in Semester 2, what is the past simple and past participle of 'break'?", "opts": ["breaked / breaked", "broke / broken", "break / breaking", "braked / broken"], "ans": 1, "exp": "Irregular verb: break → broke (past simple) → broken (past participle). Examples: The window broke during the storm. The window has been broken. Other irregular verbs in the list: be→was/were→been, begin→began→begun, bring→brought→brought, build→built→built, choose→chose→chosen, come→came→come."}],L=["A", "B", "C", "D"],FN=[["🌟 Excellent! Full marks!", "You answered all questions correctly — outstanding!", "⭐⭐⭐⭐⭐"], ["🔥 Great job!", "Almost perfect — review one or two points", "⭐⭐⭐⭐"], ["👍 Well done!", "Good result — keep practising", "⭐⭐⭐"], ["💡 Try again!", "Review your notes and try once more", "⭐⭐"]];
-let cq=0,sc=0,ans=false;
-const cc=document.getElementById('cfc'),cx=cc.getContext('2d');cc.width=innerWidth;cc.height=innerHeight;let cf=[];
-function lc(x,y,n=15){const cl=['#f472b6','#fff','#fbbf24','#a855f7','#22c55e'];for(let i=0;i<n;i++)cf.push({x,y,vx:(Math.random()-.5)*11,vy:(Math.random()-1)*9,r:Math.random()*4+2,c:cl[Math.floor(Math.random()*cl.length)],l:1,s:Math.random()*4-2,a:Math.random()*360})}
-function dcf(){cx.clearRect(0,0,cc.width,cc.height);cf=cf.filter(p=>p.l>0);cf.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.35;p.l-=.022;p.a+=p.s;cx.save();cx.globalAlpha=p.l;cx.translate(p.x,p.y);cx.rotate(p.a*Math.PI/180);cx.fillStyle=p.c;cx.fillRect(-p.r/2,-p.r/2,p.r,p.r*2);cx.restore()});requestAnimationFrame(dcf)}dcf();
-const bc=document.getElementById('bgc'),bx=bc.getContext('2d');let ns=[];
-function rb(){bc.width=innerWidth;bc.height=innerHeight;ns=Array.from({length:38},()=>{return{x:Math.random()*bc.width,y:Math.random()*bc.height,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:Math.random()*2+1}})}
-function db(){bx.clearRect(0,0,bc.width,bc.height);ns.forEach(n=>{n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>bc.width)n.vx*=-1;if(n.y<0||n.y>bc.height)n.vy*=-1});for(let i=0;i<ns.length;i++)for(let j=i+1;j<ns.length;j++){const dx=ns[i].x-ns[j].x,dy=ns[i].y-ns[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<130){bx.beginPath();bx.moveTo(ns[i].x,ns[i].y);bx.lineTo(ns[j].x,ns[j].y);bx.strokeStyle=`rgba(255,255,255,${(1-d/130)*.055})`;bx.lineWidth=.5;bx.stroke()}}ns.forEach(n=>{bx.beginPath();bx.arc(n.x,n.y,n.r,0,Math.PI*2);bx.fillStyle='rgba(255,255,255,.1)';bx.fill()});requestAnimationFrame(db)}
-rb();db();window.addEventListener('resize',()=>{rb();cc.width=innerWidth;cc.height=innerHeight});
-function bsb(){const sb=document.getElementById('sbar');sb.innerHTML='';for(let i=0;i<QS.length;i++){const d=document.createElement('div');d.className='sd'+(i<cq?' on':'');sb.appendChild(d)}}
-function lq(){ans=false;document.getElementById('nb').classList.remove('show');const ex=document.getElementById('ex');ex.classList.remove('show');ex.style.display='none';
-  const q=QS[cq];document.getElementById('pf').style.width=((cq/QS.length)*100)+'%';
-  document.getElementById('pl').textContent='Question '+(cq+1)+' of '+QS.length;
-  document.getElementById('qn').textContent='QUESTION '+String(cq+1).padStart(2,'0');
-  const qc=document.getElementById('qc');qc.classList.remove('si');void qc.offsetWidth;qc.classList.add('si');
-  const qtEl=document.getElementById('qt');
-  if(q.code){qtEl.innerHTML=q.q+'<code class="code">'+q.code+'</code>'}else{qtEl.textContent=q.q}
-  const og=document.getElementById('og');og.innerHTML='';
-  q.opts.forEach((o,i)=>{const b=document.createElement('button');b.className='opt';b.innerHTML=`<span class="ltr">${L[i]}</span><span>${o}</span>`;b.addEventListener('click',()=>pick(i,b));og.appendChild(b)});bsb();}
-function pick(idx,btn){if(ans)return;ans=true;const q=QS[cq];const bs=document.querySelectorAll('.opt');bs.forEach(b=>b.disabled=true);
-  const fb=document.getElementById('fb');fb.classList.remove('sc','wr');
-  if(idx===q.ans){btn.classList.add('correct');sc+=10;const sv=document.getElementById('sv');sv.textContent=sc;sv.classList.remove('pop');void sv.offsetWidth;sv.classList.add('pop');setTimeout(()=>sv.classList.remove('pop'),400);
-    fb.textContent=['✅','🎯','⭐','🔥','💥'][Math.floor(Math.random()*5)];fb.classList.add('sc');
-    for(let i=0;i<3;i++)setTimeout(()=>lc(innerWidth*(0.2+Math.random()*0.6),innerHeight*.4),i*80);
-    setTimeout(()=>document.getElementById('nb').classList.add('show'),500);
-  }else{btn.classList.add('wrong');bs[q.ans].classList.add('correct');
-    fb.textContent=['❌','😬','💭','🙈'][Math.floor(Math.random()*4)];fb.classList.add('wr');
-    const ex=document.getElementById('ex');ex.textContent='💡 '+q.exp;ex.style.display='block';setTimeout(()=>ex.classList.add('show'),50);
-    setTimeout(()=>document.getElementById('nb').classList.add('show'),350);}bsb();}
-function nxt(){cq++;if(cq<QS.length)lq();else sf()}
-function sf(){document.getElementById('qs').style.display='none';document.getElementById('fs').classList.add('vis');document.getElementById('fsn').textContent=sc;
-  const p=sc/(QS.length*10),f=p===1?FN[0]:p>=.75?FN[1]:p>=.5?FN[2]:FN[3];
-  document.getElementById('ftl').textContent=f[0];document.getElementById('fmg').textContent=f[1];document.getElementById('fst').textContent=f[2];
-  setTimeout(()=>{for(let i=0;i<8;i++)setTimeout(()=>lc(innerWidth*Math.random(),-20,20),i*100)},250);}
-function rst(){cq=0;sc=0;ans=false;cf=[];document.getElementById('sv').textContent='0';document.getElementById('fs').classList.remove('vis');document.getElementById('qs').style.display='flex';lq()}
-lq();
-</script></body></html>
+const QUESTIONS = [
+  {
+    q: "What is the main purpose of a seatbelt in a car?",
+    opts: [
+      "To keep passengers safe during a collision",
+      "To make the car look nice",
+      "To save fuel",
+      "To play music"
+    ],
+    correct: 0,
+    expl: "A <strong>seatbelt</strong> restrains the body during sudden stops or accidents, preventing passengers from being thrown forward or ejected — saving lives."
+  },
+  {
+    q: "An airbag inflates during an accident to:",
+    opts: [
+      "cushion the impact and protect the driver/passenger",
+      "make the car jump",
+      "signal the police",
+      "clean the windshield"
+    ],
+    correct: 0,
+    expl: "<strong>Airbags</strong> inflate in milliseconds during a crash to create a soft barrier between the passenger and hard surfaces like the steering wheel or dashboard."
+  },
+  {
+    q: "Which of the following is a type of pollution?",
+    opts: ["air pollution", "library noise", "quiet garden", "clean water"],
+    correct: 0,
+    expl: "<strong>Air pollution</strong> is the contamination of the atmosphere by harmful gases or particles. Other types include water, soil, and noise pollution."
+  },
+  {
+    q: "The main cause of air pollution in cities is:",
+    opts: [
+      "vehicle emissions and factories",
+      "planting too many trees",
+      "clean solar energy",
+      "reading books"
+    ],
+    correct: 0,
+    expl: "<strong>Vehicle exhaust</strong> and <strong>factory emissions</strong> release harmful gases like CO₂ and NOx, which pollute urban air and contribute to respiratory diseases."
+  },
+  {
+    q: "'David Copperfield' is a famous novel written by:",
+    opts: ["Charles Dickens", "William Shakespeare", "Jane Austen", "Mark Twain"],
+    correct: 0,
+    expl: "<strong>Charles Dickens</strong> (1812–1870) wrote 'David Copperfield' in 1850. It is partly autobiographical and one of his most celebrated novels."
+  },
+  {
+    q: "What is the main theme of 'David Copperfield'?",
+    opts: [
+      "A young boy's journey through hardship to adulthood",
+      "A war adventure",
+      "A science fiction story",
+      "A comedy about animals"
+    ],
+    correct: 0,
+    expl: "<strong>David Copperfield</strong> follows the protagonist from childhood to maturity, exploring themes of <strong>poverty, resilience, education, and personal growth</strong>."
+  },
+  {
+    q: "Which activity helps protect the environment?",
+    opts: ["recycling plastic", "burning waste", "wasting water", "cutting trees"],
+    correct: 0,
+    expl: "<strong>Recycling</strong> reduces landfill waste, conserves raw materials, and saves energy — making it one of the most effective ways to protect the environment."
+  },
+  {
+    q: "What should you do if you witness a road accident?",
+    opts: [
+      "Call emergency services (112 in Kuwait) immediately",
+      "Take a selfie first",
+      "Ignore it and walk away",
+      "Drive faster"
+    ],
+    correct: 0,
+    expl: "Calling <strong>emergency services</strong> (<strong>112</strong> in Kuwait) is the first priority. Do not move injured people unless necessary; wait for professional help."
+  },
+  {
+    q: "Nature reserves are important because they:",
+    opts: [
+      "protect wildlife and endangered species",
+      "provide parking spaces",
+      "increase air pollution",
+      "allow unlimited hunting"
+    ],
+    correct: 0,
+    expl: "<strong>Nature reserves</strong> are protected areas where ecosystems are preserved, endangered species can thrive, and biodiversity is safeguarded for future generations."
+  },
+  {
+    q: "Which of the following best describes 'sustainability'?",
+    opts: [
+      "Meeting today's needs without harming future generations",
+      "Using all resources quickly",
+      "Ignoring the environment",
+      "Building more factories"
+    ],
+    correct: 0,
+    expl: "<strong>Sustainability</strong> means using resources <strong>responsibly</strong> so that the environment, economy, and society remain healthy for generations to come."
+  }
+];
+let current=0,score=0,streak=0,maxStreak=0,wrong=0,answered=false;
+function render(){
+  if(current>=QUESTIONS.length){showFinal();return}
+  answered=false;
+  const q=QUESTIONS[current];
+  document.getElementById('qCount').textContent=(current+1)+'/'+QUESTIONS.length;
+  document.getElementById('progFill').style.width=((current)/QUESTIONS.length*100)+'%';
+  const area=document.getElementById('quizArea');
+  area.innerHTML=`
+    <div class="qcard">
+      <div class="q-num">QUESTION ${String(current+1).padStart(2,'0')}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="opts">
+        ${q.opts.map((opt,i)=>`
+          <button class="opt" onclick="answer(${i})">
+            <span class="opt-letter">${String.fromCharCode(65+i)}</span>
+            <span>${opt}</span>
+          </button>
+        `).join('')}
+      </div>
+      <div class="expl" id="expl">${q.expl}</div>
+      <button class="next-btn" id="nextBtn" onclick="nextQ()">
+        ${current+1>=QUESTIONS.length?'🏁 إنهاء اللعبة':'← السؤال التالي'}
+      </button>
+    </div>`;
+}
+function answer(idx){
+  if(answered)return;
+  answered=true;
+  const q=QUESTIONS[current];
+  document.querySelectorAll('.opt').forEach((el,i)=>{
+    el.classList.add('disabled');
+    if(i===q.correct)el.classList.add('correct');
+    if(i===idx&&i!==q.correct)el.classList.add('wrong');
+  });
+  if(idx===q.correct){score++;streak++;if(streak>maxStreak)maxStreak=streak;flashScreen('green')}
+  else{wrong++;streak=0;flashScreen('red')}
+  document.getElementById('score').textContent=score;
+  document.getElementById('streak').textContent=streak;
+  document.getElementById('wrong').textContent=wrong;
+  document.getElementById('expl').classList.add('show');
+  document.getElementById('nextBtn').classList.add('show');
+  document.getElementById('progFill').style.width=((current+1)/QUESTIONS.length*100)+'%';
+}
+function nextQ(){current++;render();window.scrollTo({top:0,behavior:'smooth'})}
+function flashScreen(color){const f=document.getElementById('flash');f.className='flash '+color;setTimeout(()=>f.className='flash',500)}
+function showFinal(){
+  document.getElementById('quizArea').style.display='none';
+  const percent=Math.round((score/QUESTIONS.length)*100);
+  document.getElementById('finalScore').textContent=percent+'%';
+  document.getElementById('finalSub').textContent=`${score} / ${QUESTIONS.length} إجابة صحيحة · أعلى سلسلة: ${maxStreak}`;
+  let emo='🎉',title='',msg='';
+  if(percent===100){emo='🏆';title='ممتاز! علامة كاملة!';msg='أتقنت Module 4 بامتياز. أنت جاهز للاختبار تماماً! 🌟'}
+  else if(percent>=80){emo='🌟';title='أداء رائع!';msg='مستواك قوي جداً. راجع الأخطاء البسيطة وستكون مستعداً تماماً.'}
+  else if(percent>=60){emo='👍';title='أداء جيد';msg='أنت في الطريق الصحيح. راجع النقاط التي أخطأت فيها وأعد المحاولة.'}
+  else if(percent>=40){emo='📚';title='يحتاج مراجعة';msg='الأساسيات واضحة لكن تحتاج تركيز أكثر. اقرأ الشرح جيداً وأعد اللعبة.'}
+  else{emo='💪';title='لا تستسلم';msg='البداية دائماً صعبة. راجع الدرس من الكتاب ثم عد لتجرب مرة ثانية.'}
+  document.getElementById('finalEmo').textContent=emo;
+  document.getElementById('finalTitle').textContent=title;
+  document.getElementById('finalMsg').textContent=msg;
+  document.getElementById('final').classList.add('show');
+}
+function restart(){
+  current=0;score=0;streak=0;maxStreak=0;wrong=0;
+  document.getElementById('score').textContent='0';
+  document.getElementById('streak').textContent='0';
+  document.getElementById('wrong').textContent='0';
+  document.getElementById('final').classList.remove('show');
+  document.getElementById('quizArea').style.display='block';
+  render();window.scrollTo({top:0,behavior:'smooth'});
+}
+render();
+const cv=document.getElementById('bg'),cx=cv.getContext('2d');let ns=[];
+function rsz(){cv.width=innerWidth;cv.height=innerHeight}
+function ini(){ns=Array.from({length:40},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,r:Math.random()*2+1}))}
+function draw(){
+  cx.clearRect(0,0,cv.width,cv.height);
+  ns.forEach(n=>{n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>cv.width)n.vx*=-1;if(n.y<0||n.y>cv.height)n.vy*=-1});
+  for(let i=0;i<ns.length;i++)for(let j=i+1;j<ns.length;j++){const dx=ns[i].x-ns[j].x,dy=ns[i].y-ns[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<140){cx.beginPath();cx.moveTo(ns[i].x,ns[i].y);cx.lineTo(ns[j].x,ns[j].y);cx.strokeStyle=`rgba(0,245,255,${(1-d/140)*.08})`;cx.lineWidth=.6;cx.stroke()}}
+  ns.forEach(n=>{cx.beginPath();cx.arc(n.x,n.y,n.r,0,Math.PI*2);cx.fillStyle='rgba(0,245,255,0.2)';cx.fill()});
+  requestAnimationFrame(draw);
+}
+rsz();ini();draw();window.addEventListener('resize',()=>{rsz();ini()});
+</script>
+</body>
+</html>
