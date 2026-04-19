@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>رياضيات 12 علمي · الفصل الدراسي الثاني</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{--cyan:#00f5ff;--gold:#fbbf24;--purple:#c026d3;--green:#22c55e;--red:#ef4444;--dark:#020617;--dark2:#0f172a;--text:#f1f5f9;--muted:rgba(241,245,249,0.6);--border:rgba(0,245,255,0.15)}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:"Tajawal",sans-serif;background:var(--dark);color:var(--text);min-height:100vh;overflow-x:hidden;padding:24px}
+#bg{position:fixed;inset:0;z-index:0;pointer-events:none}
+.wrap{position:relative;z-index:1;max-width:860px;margin:0 auto}
+.hdr{background:rgba(15,23,42,0.9);border:1.5px solid var(--border);border-radius:22px;padding:28px 30px;margin-bottom:22px;backdrop-filter:blur(12px);position:relative;overflow:hidden}
+.hdr::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--cyan),var(--purple));opacity:0.7}
+.hdr-top{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-bottom:14px}
+.hdr-title{font-size:24px;font-weight:900;background:linear-gradient(135deg,#fff 0%,#b2f5ff 60%,var(--cyan) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hdr-sub{font-size:13px;color:var(--muted);margin-top:4px;font-family:"Orbitron",sans-serif;letter-spacing:2px}
+.back-btn{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:9px 18px;font-family:"Tajawal",sans-serif;font-size:14px;color:var(--muted);cursor:pointer;text-decoration:none;transition:all 0.2s}
+.back-btn:hover{background:rgba(255,255,255,0.08);color:var(--text)}
+.progress-wrap{background:rgba(255,255,255,0.05);border-radius:10px;height:8px;overflow:hidden;margin-top:8px}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--cyan),var(--purple));transition:width 0.4s ease;border-radius:10px}
+.stats{display:flex;gap:18px;margin-top:14px;flex-wrap:wrap}
+.stat{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted)}
+.stat b{color:var(--cyan);font-weight:900;font-family:"Orbitron",sans-serif}
+.stat.sc b{color:var(--gold)}
+.q-card{background:rgba(15,23,42,0.85);border:1.5px solid rgba(255,255,255,0.08);border-radius:20px;padding:28px 30px;margin-bottom:18px;backdrop-filter:blur(12px);transition:all 0.3s;animation:fadeUp 0.5s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.q-num{display:inline-flex;align-items:center;gap:6px;background:rgba(0,245,255,0.1);border:1px solid rgba(0,245,255,0.2);border-radius:10px;padding:4px 12px;font-family:"Orbitron",sans-serif;font-size:11px;font-weight:900;color:var(--cyan);margin-bottom:14px;letter-spacing:1.5px}
+.q-text{font-size:17px;font-weight:700;line-height:1.8;margin-bottom:20px}
+.q-text code,.q-text .m{background:rgba(0,245,255,0.08);border:1px solid rgba(0,245,255,0.15);border-radius:6px;padding:1px 8px;font-family:"Cambria Math","Times New Roman",serif;color:var(--cyan);font-size:16px;direction:ltr;display:inline-block}
+.options{display:flex;flex-direction:column;gap:10px}
+.opt{background:rgba(255,255,255,0.03);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 18px;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;gap:12px;font-size:15px;line-height:1.6}
+.opt:hover:not(.locked){background:rgba(0,245,255,0.05);border-color:rgba(0,245,255,0.25);transform:translateX(-3px)}
+.opt .opt-letter{font-family:"Orbitron",sans-serif;font-size:12px;font-weight:900;background:rgba(0,245,255,0.1);border:1px solid rgba(0,245,255,0.2);border-radius:8px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--cyan);transition:all 0.2s}
+.opt .opt-text{flex:1;direction:rtl}
+.opt .opt-text .m{background:rgba(0,245,255,0.06);border:1px solid rgba(0,245,255,0.12);border-radius:5px;padding:0 6px;font-family:"Cambria Math","Times New Roman",serif;color:var(--cyan);direction:ltr;display:inline-block}
+.opt.selected{background:rgba(0,245,255,0.08);border-color:var(--cyan)}
+.opt.selected .opt-letter{background:var(--cyan);color:var(--dark)}
+.opt.correct{background:rgba(34,197,94,0.1);border-color:var(--green)}
+.opt.correct .opt-letter{background:var(--green);color:var(--dark);border-color:var(--green)}
+.opt.wrong{background:rgba(239,68,68,0.1);border-color:var(--red)}
+.opt.wrong .opt-letter{background:var(--red);color:#fff;border-color:var(--red)}
+.opt.locked{cursor:default}
+.feedback{margin-top:16px;padding:14px 18px;border-radius:12px;font-size:14px;line-height:1.8;display:none;animation:fadeUp 0.3s ease}
+.feedback.show{display:block}
+.feedback.ok{background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.3);color:#bbf7d0}
+.feedback.no{background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.3);color:#fecaca}
+.feedback b{color:var(--gold)}
+.feedback .m{background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.25);border-radius:5px;padding:1px 6px;font-family:"Cambria Math","Times New Roman",serif;color:var(--gold);direction:ltr;display:inline-block}
+.nav-btns{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+.nav-btn{flex:1;min-width:120px;padding:12px 20px;border-radius:12px;font-family:"Tajawal",sans-serif;font-size:14px;font-weight:900;cursor:pointer;border:none;transition:all 0.2s}
+.nav-btn.primary{background:var(--cyan);color:var(--dark)}
+.nav-btn.primary:hover{filter:brightness(1.15);transform:translateY(-2px)}
+.nav-btn.primary:disabled{background:rgba(255,255,255,0.08);color:var(--muted);cursor:not-allowed;transform:none;filter:none}
+.nav-btn.ghost{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:var(--muted)}
+.nav-btn.ghost:hover{background:rgba(255,255,255,0.08);color:var(--text)}
+.result{background:rgba(15,23,42,0.9);border:1.5px solid var(--border);border-radius:22px;padding:40px 32px;text-align:center;display:none;backdrop-filter:blur(12px)}
+.result.show{display:block;animation:fadeUp 0.5s ease}
+.result-emoji{font-size:72px;margin-bottom:14px;display:block}
+.result-score{font-family:"Orbitron",sans-serif;font-size:48px;font-weight:900;background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
+.result-msg{font-size:18px;color:var(--text);margin-bottom:8px;font-weight:700}
+.result-detail{font-size:14px;color:var(--muted);margin-bottom:28px}
+.result-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+@media(max-width:640px){body{padding:14px}.hdr{padding:20px}.q-card{padding:20px 22px}.hdr-title{font-size:20px}.result{padding:28px 20px}}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div class="wrap">
+  <div class="hdr">
+    <div class="hdr-top">
+      <div>
+        <div class="hdr-title">📐 رياضيات · الثاني عشر علمي</div>
+        <div class="hdr-sub">SEMESTER 2 · GRADE 12 SCIENTIFIC</div>
+      </div>
+      <a class="back-btn" href="index.html">→ رجوع</a>
+    </div>
+    <div class="stats">
+      <div class="stat">📖 <b id="qnum">1</b>/<b id="qtot">15</b></div>
+      <div class="stat sc">⭐ <b id="sc">0</b></div>
+      <div class="stat">✅ <b id="corr">0</b></div>
+    </div>
+    <div class="progress-wrap"><div class="progress-bar" id="prog" style="width:0"></div></div>
+  </div>
+
+  <div id="quiz"></div>
+
+  <div class="result" id="result">
+    <span class="result-emoji" id="re">🎯</span>
+    <div class="result-score" id="rs">0/15</div>
+    <div class="result-msg" id="rm">أحسنت!</div>
+    <div class="result-detail" id="rd">نسبة الإجابات الصحيحة: 0%</div>
+    <div class="result-btns">
+      <button class="nav-btn primary" onclick="restart()">🔄 حاول مرة أخرى</button>
+      <a class="nav-btn ghost" href="index.html" style="text-decoration:none;display:inline-flex;align-items:center;justify-content:center">🏠 الرئيسية</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const QUESTIONS=[
+  {
+    q:'التكامل <span class="m">∫ 3x² dx</span> يساوي:',
+    opts:['<span class="m">x³ + C</span>','<span class="m">6x + C</span>','<span class="m">3x³ + C</span>','<span class="m">x³/3 + C</span>'],
+    ans:0,
+    exp:'بقاعدة القوة للتكامل: <span class="m">∫ x<sup>n</sup> dx = x<sup>n+1</sup>/(n+1) + C</span>، إذن <span class="m">∫ 3x² dx = x³ + C</span>.'
+  },
+  {
+    q:'التكامل <span class="m">∫ cos(x) dx</span> يساوي:',
+    opts:['<span class="m">sin(x) + C</span>','<span class="m">−sin(x) + C</span>','<span class="m">−cos(x) + C</span>','<span class="m">tan(x) + C</span>'],
+    ans:0,
+    exp:'من المشتقات المعكوسة للدوال المثلثية: <span class="m">∫ cos(x) dx = sin(x) + C</span>.'
+  },
+  {
+    q:'التكامل المحدد <span class="m">∫<sub>0</sub><sup>2</sup> 2x dx</span> يساوي:',
+    opts:['<span class="m">2</span>','<span class="m">4</span>','<span class="m">8</span>','<span class="m">0</span>'],
+    ans:1,
+    exp:'<span class="m">∫ 2x dx = x²</span>، بالتعويض: <span class="m">[x²]<sub>0</sub><sup>2</sup> = 4 − 0 = 4</span>.'
+  },
+  {
+    q:'المساحة المحصورة بين المنحنى <span class="m">y = x²</span> ومحور السينات من <span class="m">x = 0</span> إلى <span class="m">x = 3</span> تساوي:',
+    opts:['<span class="m">9</span>','<span class="m">6</span>','<span class="m">27</span>','<span class="m">9</span>'],
+    ans:0,
+    exp:'<span class="m">A = ∫<sub>0</sub><sup>3</sup> x² dx = [x³/3]<sub>0</sub><sup>3</sup> = 27/3 = 9</span> وحدة مربعة.'
+  },
+  {
+    q:'باستخدام التعويض <span class="m">u = x² + 1</span>، التكامل <span class="m">∫ 2x(x² + 1)⁵ dx</span> يساوي:',
+    opts:['<span class="m">(x² + 1)⁶ / 6 + C</span>','<span class="m">(x² + 1)⁶ + C</span>','<span class="m">5(x² + 1)⁴ + C</span>','<span class="m">(x² + 1)⁴ / 4 + C</span>'],
+    ans:0,
+    exp:'<span class="m">du = 2x dx</span>، إذن <span class="m">∫ u⁵ du = u⁶/6 + C = (x² + 1)⁶/6 + C</span>.'
+  },
+  {
+    q:'معادلة القطع المكافئ الذي رأسه نقطة الأصل وبؤرته <span class="m">(0, 3)</span> هي:',
+    opts:['<span class="m">y² = 12x</span>','<span class="m">x² = 12y</span>','<span class="m">x² = 3y</span>','<span class="m">y² = 3x</span>'],
+    ans:1,
+    exp:'البؤرة على محور <span class="m">y</span> الموجب ⟵ الفتحة لأعلى، الصورة <span class="m">x² = 4py</span>، مع <span class="m">p = 3</span> نحصل على <span class="m">x² = 12y</span>.'
+  },
+  {
+    q:'في القطع المكافئ <span class="m">y² = 8x</span>، المسافة من الرأس إلى البؤرة تساوي:',
+    opts:['<span class="m">1</span>','<span class="m">2</span>','<span class="m">4</span>','<span class="m">8</span>'],
+    ans:1,
+    exp:'<span class="m">y² = 4px</span>، إذن <span class="m">4p = 8</span>، <span class="m">p = 2</span>. المسافة من الرأس للبؤرة = <span class="m">|p| = 2</span>.'
+  },
+  {
+    q:'في القطع الناقص <span class="m">x²/25 + y²/9 = 1</span>، طول المحور الأكبر يساوي:',
+    opts:['<span class="m">5</span>','<span class="m">9</span>','<span class="m">10</span>','<span class="m">25</span>'],
+    ans:2,
+    exp:'<span class="m">a² = 25 ⟹ a = 5</span>. طول المحور الأكبر <span class="m">= 2a = 10</span>.'
+  },
+  {
+    q:'في القطع الناقص <span class="m">x²/25 + y²/16 = 1</span>، قيمة <span class="m">c</span> (البُعد البؤري) تساوي:',
+    opts:['<span class="m">3</span>','<span class="m">4</span>','<span class="m">5</span>','<span class="m">9</span>'],
+    ans:0,
+    exp:'<span class="m">c² = a² − b² = 25 − 16 = 9 ⟹ c = 3</span>.'
+  },
+  {
+    q:'في القطع الزائد <span class="m">x²/16 − y²/9 = 1</span>، معادلة خطي التقارب هي:',
+    opts:['<span class="m">y = ±(3/4)x</span>','<span class="m">y = ±(4/3)x</span>','<span class="m">y = ±(9/16)x</span>','<span class="m">y = ±x</span>'],
+    ans:0,
+    exp:'للقطع الزائد <span class="m">x²/a² − y²/b² = 1</span>: خطا التقارب <span class="m">y = ±(b/a)x</span>. هنا <span class="m">b = 3, a = 4 ⟹ y = ±(3/4)x</span>.'
+  },
+  {
+    q:'إذا كان <span class="m">X</span> متغيراً عشوائياً متقطعاً بدالة توزيع احتمالي، فإن مجموع الاحتمالات لجميع قيم <span class="m">X</span> يساوي:',
+    opts:['<span class="m">0</span>','<span class="m">0.5</span>','<span class="m">1</span>','يعتمد على <span class="m">X</span>'],
+    ans:2,
+    exp:'من خصائص دالة التوزيع الاحتمالي: <span class="m">Σ P(x<sub>i</sub>) = 1</span>.'
+  },
+  {
+    q:'عند رمي حجر نرد متزن، التوقع (القيمة المتوقعة) للمتغير العشوائي <span class="m">X</span> (رقم الوجه الظاهر) يساوي:',
+    opts:['<span class="m">3</span>','<span class="m">3.5</span>','<span class="m">4</span>','<span class="m">6</span>'],
+    ans:1,
+    exp:'<span class="m">E(X) = Σ x<sub>i</sub> P(x<sub>i</sub>) = (1+2+3+4+5+6)/6 = 21/6 = 3.5</span>.'
+  },
+  {
+    q:'في التوزيع الاحتمالي المنتظم على الفترة <span class="m">[a, b]</span>، دالة الكثافة <span class="m">f(x)</span> تساوي:',
+    opts:['<span class="m">1/(b − a)</span>','<span class="m">1/(b + a)</span>','<span class="m">(b − a)/2</span>','<span class="m">a − b</span>'],
+    ans:0,
+    exp:'في التوزيع المنتظم: <span class="m">f(x) = 1/(b − a)</span> عند <span class="m">a ≤ x ≤ b</span>، وصفر غير ذلك.'
+  },
+  {
+    q:'للمتغير العشوائي الذي يتبع توزيعاً منتظماً على <span class="m">[0, 6]</span>، التوقع <span class="m">μ</span> يساوي:',
+    opts:['<span class="m">1</span>','<span class="m">3</span>','<span class="m">6</span>','<span class="m">12</span>'],
+    ans:1,
+    exp:'في التوزيع المنتظم: <span class="m">μ = (a + b)/2 = (0 + 6)/2 = 3</span>.'
+  },
+  {
+    q:'إذا كانت <span class="m">f(x) = 3x²</span> دالة كثافة على <span class="m">[0, 1]</span>، فإن <span class="m">P(0 ≤ X ≤ 0.5)</span> تساوي:',
+    opts:['<span class="m">0.125</span>','<span class="m">0.25</span>','<span class="m">0.5</span>','<span class="m">0.75</span>'],
+    ans:0,
+    exp:'<span class="m">P = ∫<sub>0</sub><sup>0.5</sup> 3x² dx = [x³]<sub>0</sub><sup>0.5</sup> = (0.5)³ = 0.125</span>.'
+  }
+];
+
+let cur=0,score=0,correctCount=0,locked=false;
+
+function render(){
+  const quiz=document.getElementById("quiz");
+  const q=QUESTIONS[cur];
+  document.getElementById("qnum").textContent=cur+1;
+  document.getElementById("qtot").textContent=QUESTIONS.length;
+  document.getElementById("prog").style.width=((cur)/QUESTIONS.length*100)+"%";
+  document.getElementById("sc").textContent=score;
+  document.getElementById("corr").textContent=correctCount;
+  locked=false;
+  const letters=["أ","ب","ج","د"];
+  quiz.innerHTML=`
+    <div class="q-card">
+      <div class="q-num">Q${String(cur+1).padStart(2,"0")}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="options" id="opts">
+        ${q.opts.map((o,i)=>`<div class="opt" data-i="${i}"><span class="opt-letter">${letters[i]}</span><span class="opt-text">${o}</span></div>`).join("")}
+      </div>
+      <div class="feedback" id="fb"></div>
+      <div class="nav-btns">
+        <button class="nav-btn primary" id="nxt" disabled>${cur===QUESTIONS.length-1?"📊 عرض النتيجة":"السؤال التالي ←"}</button>
+      </div>
+    </div>`;
+  quiz.querySelectorAll(".opt").forEach(el=>el.onclick=()=>pick(parseInt(el.dataset.i)));
+  document.getElementById("nxt").onclick=next;
+}
+
+function pick(i){
+  if(locked)return;
+  locked=true;
+  const q=QUESTIONS[cur];
+  const opts=document.querySelectorAll(".opt");
+  opts.forEach(o=>o.classList.add("locked"));
+  const fb=document.getElementById("fb");
+  if(i===q.ans){
+    opts[i].classList.add("correct");
+    score+=10;correctCount++;
+    fb.className="feedback show ok";
+    fb.innerHTML=`<b>✅ إجابة صحيحة!</b><br>${q.exp}`;
+  }else{
+    opts[i].classList.add("wrong");
+    opts[q.ans].classList.add("correct");
+    fb.className="feedback show no";
+    fb.innerHTML=`<b>❌ إجابة غير صحيحة</b><br>${q.exp}`;
+  }
+  document.getElementById("nxt").disabled=false;
+  document.getElementById("sc").textContent=score;
+  document.getElementById("corr").textContent=correctCount;
+}
+
+function next(){
+  if(cur===QUESTIONS.length-1){showResult();return}
+  cur++;render();
+}
+
+function showResult(){
+  document.getElementById("quiz").style.display="none";
+  const r=document.getElementById("result");
+  r.classList.add("show");
+  const pct=Math.round(correctCount/QUESTIONS.length*100);
+  document.getElementById("rs").textContent=`${correctCount}/${QUESTIONS.length}`;
+  document.getElementById("rd").textContent=`نسبة الإجابات الصحيحة: ${pct}% · مجموع النقاط: ${score}`;
+  let emoji="🎯",msg="أحسنت المحاولة!";
+  if(pct>=90){emoji="🏆";msg="ممتاز! أداء رائع جداً"}
+  else if(pct>=75){emoji="⭐";msg="جيد جداً، استمر!"}
+  else if(pct>=50){emoji="📚";msg="جيد، راجع بعض المواضيع"}
+  else{emoji="💪";msg="حاول مرة أخرى، ستتحسن!"}
+  document.getElementById("re").textContent=emoji;
+  document.getElementById("rm").textContent=msg;
+  document.getElementById("prog").style.width="100%";
+}
+
+function restart(){
+  cur=0;score=0;correctCount=0;
+  document.getElementById("result").classList.remove("show");
+  document.getElementById("quiz").style.display="block";
+  render();
+}
+
+render();
+
+const cv=document.getElementById("bg"),cx=cv.getContext("2d");let ns=[];
+function rsz(){cv.width=innerWidth;cv.height=innerHeight}
+function ini(){ns=Array.from({length:40},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,r:Math.random()*2.2+1}))}
+function draw(){
+  cx.clearRect(0,0,cv.width,cv.height);
+  ns.forEach(n=>{n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>cv.width)n.vx*=-1;if(n.y<0||n.y>cv.height)n.vy*=-1});
+  for(let i=0;i<ns.length;i++)for(let j=i+1;j<ns.length;j++){const dx=ns[i].x-ns[j].x,dy=ns[i].y-ns[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<150){cx.beginPath();cx.moveTo(ns[i].x,ns[i].y);cx.lineTo(ns[j].x,ns[j].y);cx.strokeStyle=`rgba(0,245,255,${(1-d/150)*.08})`;cx.lineWidth=.6;cx.stroke()}}
+  ns.forEach(n=>{cx.beginPath();cx.arc(n.x,n.y,n.r,0,Math.PI*2);cx.fillStyle="rgba(0,245,255,0.2)";cx.fill()});
+  requestAnimationFrame(draw);
+}
+rsz();ini();draw();addEventListener("resize",()=>{rsz();ini()});
+</script>
+</body>
+</html>
